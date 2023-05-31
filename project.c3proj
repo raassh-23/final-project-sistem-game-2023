@@ -8,8 +8,37 @@
 	"usedAddons": [
 		{
 			"type": "plugin",
+			"id": "Browser",
+			"name": "Browser",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Photon",
+			"name": "Photon",
+			"author": "Exit Games",
+			"bundled": false,
+			"version": "4.1.1.4"
+		},
+		{
+			"type": "plugin",
 			"id": "Sprite",
 			"name": "Sprite",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Spritefont2",
+			"name": "Sprite font",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "TextBox",
+			"name": "Text input",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -33,6 +62,34 @@
 			"name": "8 Direction",
 			"author": "Scirra",
 			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Fade",
+			"name": "Fade",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Tween",
+			"name": "Tween",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "bound",
+			"name": "Bound to layout",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "scrollto",
+			"name": "Scroll To",
+			"author": "Scirra",
+			"bundled": false
 		}
 	],
 	"uniqueId": "sr0ufd87kzc",
@@ -42,7 +99,13 @@
 			"Player",
 			"Big",
 			"Small",
-			"Touch"
+			"Touch",
+			"TextInput",
+			"SpriteFontUI",
+			"Button",
+			"Photon",
+			"Browser",
+			"Blank"
 		],
 		"subfolders": []
 	},
@@ -54,19 +117,35 @@
 	},
 	"layouts": {
 		"items": [
-			"Layout 1"
+			"Game",
+			"Menu",
+			"Room"
 		],
 		"subfolders": []
 	},
 	"eventSheets": {
 		"items": [
-			"Event sheet 1"
+			"Game_ES",
+			"Functions_ES",
+			"Room_ES",
+			"Menu_ES",
+			"Constants_ES",
+			"Common_ES"
 		],
 		"subfolders": []
 	},
 	"rootFileFolders": {
 		"script": {
-			"items": [],
+			"items": [
+				{
+					"name": "for-events.js",
+					"type": "application/javascript",
+					"sid": 439901364315930,
+					"script-info": {
+						"purpose": "imports-for-events"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"sound": {
@@ -217,5 +296,5 @@
 	},
 	"viewportWidth": 1280,
 	"viewportHeight": 720,
-	"firstLayout": null
+	"firstLayout": "Menu"
 }

@@ -1,0 +1,75 @@
+{
+	"name": "Common_ES",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "onerror0",
+					"objectClass": "Photon",
+					"sid": 409891440084183
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 655708089836914,
+					"parameters": {
+						"layout": "Menu"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 748110619789384,
+					"parameters": {
+						"variable": "message",
+						"value": "Photon.ErrorMessage"
+					}
+				},
+				{
+					"id": "log",
+					"objectClass": "Browser",
+					"sid": 854287937595050,
+					"parameters": {
+						"type": "error",
+						"message": "\"Error: \" & Photon.ErrorMessage"
+					}
+				}
+			],
+			"sid": 301606134238695
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "ondisconnected24",
+					"objectClass": "Photon",
+					"sid": 360227610951966
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 784922950275036,
+					"parameters": {
+						"layout": "Menu"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 677832376400659,
+					"parameters": {
+						"variable": "message",
+						"value": "\"Disconnected\""
+					}
+				}
+			],
+			"sid": 840663895601246
+		}
+	],
+	"sid": 198981415750893
+}

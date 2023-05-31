@@ -1,0 +1,368 @@
+{
+	"name": "Menu_ES",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "Common_ES"
+		},
+		{
+			"eventType": "variable",
+			"name": "message",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 659596272479247
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 682862174329733,
+					"parameters": {
+						"object": "Button"
+					}
+				},
+				{
+					"id": "is-visible",
+					"objectClass": "Button",
+					"sid": 277526069396586
+				},
+				{
+					"id": "layer-is-visible",
+					"objectClass": "System",
+					"sid": 773293810921785,
+					"parameters": {
+						"layer": "Button.LayerName"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 162159246880582,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-animation-frame",
+							"objectClass": "Button",
+							"sid": 367692299042194,
+							"parameters": {
+								"comparison": 0,
+								"number": "0"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 314305255375978,
+							"parameters": {
+								"value": "Functions.isTextInputEmpty(0, \"Name cannot be empty\")"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "joinrandomroom13",
+							"objectClass": "Photon",
+							"sid": 454306476258810,
+							"parameters": {
+								"matchmyroom2": "no",
+								"matchmakingmode6": "fillroom",
+								"lobbyname7": "LOBBY_NAME",
+								"lobbytype10": "default",
+								"sqllobbyfilter11": "\"\""
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 433607057956488,
+							"parameters": {
+								"variable": "message",
+								"value": "\"Joining a random room\""
+							}
+						}
+					],
+					"sid": 122999050131955
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-animation-frame",
+							"objectClass": "Button",
+							"sid": 107566552536716,
+							"parameters": {
+								"comparison": 0,
+								"number": "1"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 511475066044331,
+							"parameters": {
+								"value": "Functions.isTextInputEmpty(0, \"Name cannot be empty\")"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "createRoom",
+							"sid": 571633202190090
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 436209244638665,
+							"parameters": {
+								"variable": "message",
+								"value": "\"Creating a room\""
+							}
+						}
+					],
+					"sid": 801159603514692
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-animation-frame",
+							"objectClass": "Button",
+							"sid": 540787448567341,
+							"parameters": {
+								"comparison": 0,
+								"number": "2"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 259771764129326,
+							"parameters": {
+								"value": "Functions.isTextInputEmpty(0, \"Name cannot be empty\")"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 982677747759286,
+							"parameters": {
+								"value": "Functions.isTextInputEmpty(1, \"Room code cannot be empty\")"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "TextInput",
+							"sid": 183600085646305,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "joinroom12",
+							"objectClass": "Photon",
+							"sid": 607813899181363,
+							"parameters": {
+								"room0": "TextInput.Text",
+								"rejoin3": "no",
+								"createifnotexists6": "no",
+								"lobbyname7": "LOBBY_NAME",
+								"lobbytype10": "default"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 838518776728772,
+							"parameters": {
+								"variable": "message",
+								"value": "\"Joining a room\""
+							}
+						}
+					],
+					"sid": 100902484995365
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 262412331300828
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 175979553764653,
+					"parameters": {
+						"layer": "\"UI\"",
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 567308807334010,
+					"parameters": {
+						"layer": "\"Loading\"",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-css-style",
+					"objectClass": "TextInput",
+					"sid": 908732247706503,
+					"parameters": {
+						"property-name": "\"font-size\"",
+						"value": "\"1.5vw\""
+					}
+				}
+			],
+			"sid": 918199405317389,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "isconnectedtonameserver31",
+							"objectClass": "Photon",
+							"sid": 961225059221801,
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "connect10",
+							"objectClass": "Photon",
+							"sid": 103824273908700
+						}
+					],
+					"sid": 115101221533111
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "isinlobby33",
+					"objectClass": "Photon",
+					"sid": 998151318927629
+				}
+			],
+			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 210391782884229,
+					"parameters": {
+						"layer": "\"UI\"",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 539475970890834,
+					"parameters": {
+						"layer": "\"Loading\"",
+						"visibility": "invisible"
+					}
+				}
+			],
+			"sid": 339651431664940,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "onjoinrandomroomnomatchfound23",
+					"objectClass": "Photon",
+					"sid": 272951565365034
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "createRoom",
+					"sid": 822060548305296
+				}
+			],
+			"sid": 686333273128198
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "SpriteFontUI",
+					"sid": 799165231071559,
+					"parameters": {
+						"instance-variable": "id",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "SpriteFontUI",
+					"sid": 468770781087108,
+					"parameters": {
+						"text": "message"
+					}
+				}
+			],
+			"sid": 504263227785979
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "onjoinroom14",
+					"objectClass": "Photon",
+					"sid": 339446506451680
+				}
+			],
+			"actions": [
+				{
+					"id": "setpropertyofactorbynr102",
+					"objectClass": "Photon",
+					"sid": 127608939128331,
+					"parameters": {
+						"actornr0": "Photon.MyActorNr",
+						"propname1": "\"name\"",
+						"value2": "TextInput.Text <> \"\" ? TextInput.Text : Functions.generateName(4)",
+						"webforward5": "no",
+						"checkandset8": "no",
+						"expectedvalue9": "0"
+					}
+				},
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 730865081836504,
+					"parameters": {
+						"layout": "Room"
+					}
+				}
+			],
+			"sid": 576960082985118
+		}
+	],
+	"sid": 750548703589974
+}

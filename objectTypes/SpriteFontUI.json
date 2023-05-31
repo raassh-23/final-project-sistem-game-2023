@@ -1,0 +1,34 @@
+{
+	"name": "SpriteFontUI",
+	"plugin-id": "Spritefont2",
+	"sid": 549058711828514,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "id",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 348428925630061
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Fade",
+			"name": "Fade",
+			"sid": 553387034968324
+		}
+	],
+	"effectTypes": [],
+	"image": {
+		"width": 128,
+		"height": 256,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"imageSpriteId": 8963884,
+		"useCollisionPoly": true
+	}
+}

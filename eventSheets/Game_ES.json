@@ -1,0 +1,1241 @@
+{
+	"name": "Game_ES",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "gameRunning",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 648850501797486
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Control",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "moveTouchID",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 856721159618178
+				},
+				{
+					"eventType": "variable",
+					"name": "aimTouchID",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 904880581247364
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 441812411553518,
+							"parameters": {
+								"object": "Big"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 239299914175468,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Big",
+									"sid": 809777362829753,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"move\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 963746204970555,
+									"parameters": {
+										"variable": "moveTouchID",
+										"value": "Touch.TouchID"
+									}
+								}
+							],
+							"sid": 994421418712253
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Big",
+									"sid": 426818474052008,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"aim\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 961213268156540,
+									"parameters": {
+										"variable": "aimTouchID",
+										"value": "Touch.TouchID"
+									}
+								}
+							],
+							"sid": 991581082985347
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-touch-end",
+							"objectClass": "Touch",
+							"sid": 139648222220096
+						}
+					],
+					"actions": [],
+					"sid": 638791141477548,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 875048934431613,
+									"parameters": {
+										"variable": "moveTouchID",
+										"comparison": 0,
+										"value": "Touch.TouchID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 136581764198412,
+									"parameters": {
+										"variable": "moveTouchID",
+										"value": "-1"
+									}
+								}
+							],
+							"sid": 634356220851039
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 368278104291992,
+									"parameters": {
+										"variable": "aimTouchID",
+										"comparison": 0,
+										"value": "Touch.TouchID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 356457276573509,
+									"parameters": {
+										"variable": "aimTouchID",
+										"value": "-1"
+									}
+								}
+							],
+							"sid": 588069595588179
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Big",
+							"sid": 866933475303710,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"move\""
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "Big",
+							"sid": 388641350882954,
+							"parameters": {
+								"child": "Small",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "Small",
+							"sid": 721247728360867,
+							"parameters": {
+								"object": "Big",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Big",
+							"sid": 255394241564840,
+							"parameters": {
+								"instance-variable": "dist",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Big",
+							"sid": 948938592904852,
+							"parameters": {
+								"instance-variable": "ang",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 732072706632448,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-in-touch",
+									"objectClass": "Touch",
+									"sid": 956145960271150
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 872677751883081,
+									"parameters": {
+										"variable": "moveTouchID",
+										"comparison": 4,
+										"value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 741466172982154,
+									"parameters": {
+										"instance-variable": "ang",
+										"value": "angle(Big.X, Big.Y, Touch.XForID(moveTouchID, \"UI\"), Touch.YForID(moveTouchID, \"UI\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 715208761055167,
+									"parameters": {
+										"instance-variable": "dist",
+										"value": "distance(Big.X, Big.Y, Touch.XForID(moveTouchID, \"UI\"), Touch.YForID(moveTouchID, \"UI\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 684674280590716,
+									"parameters": {
+										"instance-variable": "dist",
+										"value": "min(Self.dist, (Big.Width/2 - Small.Width/3))"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "Small",
+									"sid": 581384411303899,
+									"parameters": {
+										"x": "big.X+ Big.dist * cos(Big.ang)",
+										"y": "big.y+Big.dist * sin(Big.ang)"
+									}
+								}
+							],
+							"sid": 883672770269453,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Big",
+											"sid": 510799560012795,
+											"parameters": {
+												"instance-variable": "dist",
+												"comparison": 4,
+												"value": "20"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 810534545936822,
+											"parameters": {
+												"variable": "gameRunning"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Player",
+											"sid": 166773415741104,
+											"parameters": {
+												"instance-variable": "actorNr",
+												"comparison": 0,
+												"value": "Photon.MyActorNr"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 408396032324645,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 658789987938834,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 4,
+														"value": "-60"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 568482875260359,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 2,
+														"value": "60"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "simulate-control",
+													"objectClass": "Player",
+													"sid": 499962399179359,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"control": "right"
+													}
+												}
+											],
+											"sid": 253627012155076
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 279338886394553,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 2,
+														"value": "-120"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 794448268156364,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 4,
+														"value": "120"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "simulate-control",
+													"objectClass": "Player",
+													"sid": 305550314155260,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"control": "left"
+													}
+												}
+											],
+											"sid": 299637831676850,
+											"isOrBlock": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 753269031779808,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 4,
+														"value": "30"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 985628546622673,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 2,
+														"value": "150"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "simulate-control",
+													"objectClass": "Player",
+													"sid": 576091141637076,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"control": "down"
+													}
+												}
+											],
+											"sid": 265820954395194
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 183091222048791,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 2,
+														"value": "-30"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 849261022347395,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 4,
+														"value": "-150"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "simulate-control",
+													"objectClass": "Player",
+													"sid": 311163193756241,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"control": "up"
+													}
+												}
+											],
+											"sid": 355495892018368
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Big",
+							"sid": 542504407901296,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"aim\""
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "Big",
+							"sid": 633748705321642,
+							"parameters": {
+								"child": "Small",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "Small",
+							"sid": 895780654210567,
+							"parameters": {
+								"object": "Big",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Big",
+							"sid": 844278779197109,
+							"parameters": {
+								"instance-variable": "dist",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Big",
+							"sid": 169295111588409,
+							"parameters": {
+								"instance-variable": "ang",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 847488368257755,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-in-touch",
+									"objectClass": "Touch",
+									"sid": 952397065921213
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 309360576396097,
+									"parameters": {
+										"variable": "aimTouchID",
+										"comparison": 4,
+										"value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 476467005041131,
+									"parameters": {
+										"instance-variable": "ang",
+										"value": "angle(Big.X, Big.Y, Touch.XForID(aimTouchID, \"UI\"), Touch.YForID(aimTouchID, \"UI\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 809366482414672,
+									"parameters": {
+										"instance-variable": "dist",
+										"value": "distance(Big.X, Big.Y, Touch.XForID(aimTouchID, \"UI\"), Touch.YForID(aimTouchID, \"UI\"))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 705279982492819,
+									"parameters": {
+										"instance-variable": "dist",
+										"value": "min(Self.dist, (Big.Width/2 - Small.Width/3))"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "Small",
+									"sid": 123269579189698,
+									"parameters": {
+										"x": "big.X+ Big.dist * cos(Big.ang)",
+										"y": "big.y+Big.dist * sin(Big.ang)"
+									}
+								}
+							],
+							"sid": 445641471920653,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Big",
+											"sid": 716766603908361,
+											"parameters": {
+												"instance-variable": "dist",
+												"comparison": 4,
+												"value": "10"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 259575918839268,
+											"parameters": {
+												"variable": "gameRunning"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Player",
+											"sid": 661620079475606,
+											"parameters": {
+												"instance-variable": "actorNr",
+												"comparison": 0,
+												"value": "Photon.MyActorNr"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-angle",
+											"objectClass": "Player",
+											"sid": 517278032835930,
+											"parameters": {
+												"angle": "Big.ang"
+											}
+										}
+									],
+									"sid": 636033062115921
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 928862869159683,
+							"parameters": {
+								"variable": "gameRunning"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 773464714237811,
+							"parameters": {
+								"instance-variable": "actorNr",
+								"comparison": 0,
+								"value": "Photon.MyActorNr"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 548377350173024,
+							"parameters": {
+								"code0": "SET_POSITION_PLAYER_EVENT",
+								"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "others",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 686006598785798
+				}
+			],
+			"sid": 101175453050736
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Multiplayer",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "joinedPlayer",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 596560823485417
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 835205955562738
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 169546017471373,
+							"parameters": {
+								"variable": "gameRunning",
+								"value": "false"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Player",
+							"sid": 981289425006532
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 603231009104672,
+							"parameters": {
+								"variable": "joinedPlayer",
+								"value": "0"
+							}
+						},
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 527469412236673,
+							"parameters": {
+								"code0": "JOINED_GAME_EVENT",
+								"data1": "0",
+								"interestgroup2": "0",
+								"cache11": "addtoroomcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 741185193904494,
+							"parameters": {
+								"layer": "\"Waiting\"",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 201480669224077,
+							"parameters": {
+								"layer": "\"Waiting\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 988183402560060,
+							"parameters": {
+								"layer": "\"UI\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 340627547329453,
+							"parameters": {
+								"layer": "\"UI\"",
+								"interactive": false
+							}
+						}
+					],
+					"sid": 778012805779025
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 435457609821987,
+							"parameters": {
+								"code0": "JOINED_GAME_EVENT"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 834811061873948,
+							"parameters": {
+								"variable": "joinedPlayer",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 261874358284375,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 438830441241290,
+									"parameters": {
+										"variable": "joinedPlayer",
+										"comparison": 0,
+										"value": "Photon.ActorCount"
+									}
+								},
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 426389225308046,
+									"parameters": {
+										"value": "Functions.isRoomMaster"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "raiseevent17",
+									"objectClass": "Photon",
+									"sid": 879217630615548,
+									"parameters": {
+										"code0": "START_GAME_EVENT",
+										"data1": "0",
+										"interestgroup2": "0",
+										"cache11": "donotcache",
+										"receivers15": "all",
+										"targetactors16": "\"\"",
+										"webforward19": "no"
+									}
+								}
+							],
+							"sid": 637126724550976
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 759857199205875,
+									"parameters": {
+										"value": "Functions.isRoomMaster"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "raiseevent17",
+									"objectClass": "Photon",
+									"sid": 978110173887591,
+									"parameters": {
+										"code0": "SPAWN_PLAYER_EVENT",
+										"data1": "Photon.ActorNr & \"|\" & random(100, LayoutWidth-100) & \"|\" & random(100, LayoutHeight-100)",
+										"interestgroup2": "0",
+										"cache11": "donotcache",
+										"receivers15": "all",
+										"targetactors16": "\"\"",
+										"webforward19": "no"
+									}
+								}
+							],
+							"sid": 630844337637174
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 475718732931475,
+							"parameters": {
+								"code0": "START_GAME_EVENT"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 944532368895079,
+							"parameters": {
+								"layer": "\"Waiting\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 322048731678463,
+							"parameters": {
+								"layer": "\"Waiting\"",
+								"interactive": false
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 767430822218632,
+							"parameters": {
+								"layer": "\"UI\"",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 197557705712648,
+							"parameters": {
+								"layer": "\"UI\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "setpropertyofmyroom103",
+							"objectClass": "Photon",
+							"sid": 983041951494503,
+							"parameters": {
+								"propname0": "\"isStarted\"",
+								"value1": "1",
+								"webforward4": "no",
+								"checkandset7": "no",
+								"expectedvalue8": "0"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 617930197531643,
+							"parameters": {
+								"variable": "gameRunning",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 428061507399803
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 153572045027014,
+							"parameters": {
+								"code0": "SPAWN_PLAYER_EVENT"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 986733748634592,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 696755420467126
+						},
+						{
+							"eventType": "variable",
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 937642812496078
+						},
+						{
+							"eventType": "variable",
+							"name": "nr",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 736822580705805
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 505692971472813,
+									"parameters": {
+										"variable": "nr",
+										"value": "int(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 708207339659796,
+									"parameters": {
+										"variable": "x",
+										"value": "float(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 699891698312672,
+									"parameters": {
+										"variable": "y",
+										"value": "float(tokenat(Photon.EventData, 2, \"|\"))"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 197850788433317,
+									"parameters": {
+										"object-to-create": "Player",
+										"layer": "\"Game\"",
+										"x": "x",
+										"y": "y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Player",
+									"sid": 491921605722029,
+									"parameters": {
+										"instance-variable": "actorNr",
+										"value": "nr"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "Player",
+									"sid": 580975279186442,
+									"parameters": {
+										"animation": "\"Player\"&nr",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 617525584875766,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Player",
+											"sid": 632220552586446,
+											"parameters": {
+												"instance-variable": "actorNr",
+												"comparison": 0,
+												"value": "Photon.MyActorNr"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-enabled",
+											"objectClass": "Player",
+											"sid": 183875884752696,
+											"behaviorType": "ScrollTo",
+											"parameters": {
+												"state": "enabled"
+											}
+										}
+									],
+									"sid": 651835251597425
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 258104235529372,
+							"parameters": {
+								"code0": "SET_POSITION_PLAYER_EVENT"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 426847431268245,
+							"parameters": {
+								"instance-variable": "actorNr",
+								"comparison": 0,
+								"value": "Photon.ActorNr"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 282988643610977,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 150864683936738
+						},
+						{
+							"eventType": "variable",
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 749041491321976
+						},
+						{
+							"eventType": "variable",
+							"name": "newAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 126396551293519
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 716256701720156,
+									"parameters": {
+										"variable": "x",
+										"value": "float(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 519380926860638,
+									"parameters": {
+										"variable": "y",
+										"value": "float(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 631438484366823,
+									"parameters": {
+										"variable": "newAngle",
+										"value": "float(tokenat(Photon.EventData, 2, \"|\"))"
+									}
+								},
+								{
+									"id": "tween-two-properties",
+									"objectClass": "Player",
+									"sid": 100808193836884,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "MOVE_PLAYER",
+										"property": "position",
+										"end-x": "x",
+										"end-y": "y",
+										"time": "0.05",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "Player",
+									"sid": 201917921300660,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "ROTATE_PLAYER",
+										"property": "offsetAngle",
+										"end-value": "newAngle",
+										"time": "0.05",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 693601885340480,
+									"parameters": {
+										"type": "log",
+										"message": "\"set \" & x & \" \" & y & \" \" & newAngle"
+									}
+								}
+							],
+							"sid": 499463094661786
+						}
+					]
+				}
+			],
+			"sid": 371752309851478
+		}
+	],
+	"sid": 410964794892231
+}
