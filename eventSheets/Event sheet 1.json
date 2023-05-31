@@ -1,5 +1,651 @@
 {
 	"name": "Event sheet 1",
-	"events": [],
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "gameRunning",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 648850501797486
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 362092150574936
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 499483422286076,
+					"parameters": {
+						"variable": "gameRunning",
+						"value": "true"
+					}
+				}
+			],
+			"sid": 855353626688495
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Control",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "moveTouchID",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 856721159618178
+				},
+				{
+					"eventType": "variable",
+					"name": "aimTouchID",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 904880581247364
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-touched-object",
+							"objectClass": "Touch",
+							"sid": 441812411553518,
+							"parameters": {
+								"object": "Big"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 239299914175468,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Big",
+									"sid": 809777362829753,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"move\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 963746204970555,
+									"parameters": {
+										"variable": "moveTouchID",
+										"value": "Touch.TouchID"
+									}
+								}
+							],
+							"sid": 994421418712253
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Big",
+									"sid": 426818474052008,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"aim\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 961213268156540,
+									"parameters": {
+										"variable": "aimTouchID",
+										"value": "Touch.TouchID"
+									}
+								}
+							],
+							"sid": 991581082985347
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-touch-end",
+							"objectClass": "Touch",
+							"sid": 139648222220096
+						}
+					],
+					"actions": [],
+					"sid": 638791141477548,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 875048934431613,
+									"parameters": {
+										"variable": "moveTouchID",
+										"comparison": 0,
+										"value": "Touch.TouchID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 136581764198412,
+									"parameters": {
+										"variable": "moveTouchID",
+										"value": "-1"
+									}
+								}
+							],
+							"sid": 634356220851039
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 368278104291992,
+									"parameters": {
+										"variable": "aimTouchID",
+										"comparison": 0,
+										"value": "Touch.TouchID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 356457276573509,
+									"parameters": {
+										"variable": "aimTouchID",
+										"value": "-1"
+									}
+								}
+							],
+							"sid": 588069595588179
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Big",
+							"sid": 866933475303710,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"move\""
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "Big",
+							"sid": 388641350882954,
+							"parameters": {
+								"child": "Small",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "Small",
+							"sid": 721247728360867,
+							"parameters": {
+								"object": "Big",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Big",
+							"sid": 255394241564840,
+							"parameters": {
+								"instance-variable": "dist",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Big",
+							"sid": 948938592904852,
+							"parameters": {
+								"instance-variable": "ang",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 732072706632448,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-in-touch",
+									"objectClass": "Touch",
+									"sid": 956145960271150
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 872677751883081,
+									"parameters": {
+										"variable": "moveTouchID",
+										"comparison": 4,
+										"value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 133163771618804,
+									"parameters": {
+										"instance-variable": "ang",
+										"value": "angle(Big.X, Big.Y, Touch.XForID(moveTouchID), Touch.YForID(moveTouchID))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 463931853943051,
+									"parameters": {
+										"instance-variable": "dist",
+										"value": "distance(Big.X, Big.Y, Touch.XForID(moveTouchID), Touch.YForID(moveTouchID))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 684674280590716,
+									"parameters": {
+										"instance-variable": "dist",
+										"value": "min(Self.dist, (Big.Width/2 - Small.Width/3))"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "Small",
+									"sid": 581384411303899,
+									"parameters": {
+										"x": "big.X+ Big.dist * cos(Big.ang)",
+										"y": "big.y+Big.dist * sin(Big.ang)"
+									}
+								}
+							],
+							"sid": 883672770269453,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Big",
+											"sid": 510799560012795,
+											"parameters": {
+												"instance-variable": "dist",
+												"comparison": 4,
+												"value": "20"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 810534545936822,
+											"parameters": {
+												"variable": "gameRunning"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 408396032324645,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 658789987938834,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 4,
+														"value": "-60"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 568482875260359,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 2,
+														"value": "60"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "simulate-control",
+													"objectClass": "Player",
+													"sid": 499962399179359,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"control": "right"
+													}
+												}
+											],
+											"sid": 253627012155076
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 279338886394553,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 2,
+														"value": "-120"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 794448268156364,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 4,
+														"value": "120"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "simulate-control",
+													"objectClass": "Player",
+													"sid": 305550314155260,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"control": "left"
+													}
+												}
+											],
+											"sid": 299637831676850,
+											"isOrBlock": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 753269031779808,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 4,
+														"value": "30"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 985628546622673,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 2,
+														"value": "150"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "simulate-control",
+													"objectClass": "Player",
+													"sid": 576091141637076,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"control": "down"
+													}
+												}
+											],
+											"sid": 265820954395194
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 183091222048791,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 2,
+														"value": "-30"
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Big",
+													"sid": 849261022347395,
+													"parameters": {
+														"instance-variable": "ang",
+														"comparison": 4,
+														"value": "-150"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "simulate-control",
+													"objectClass": "Player",
+													"sid": 311163193756241,
+													"behaviorType": "8Direction",
+													"parameters": {
+														"control": "up"
+													}
+												}
+											],
+											"sid": 355495892018368
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Big",
+							"sid": 542504407901296,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"aim\""
+							}
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "Big",
+							"sid": 633748705321642,
+							"parameters": {
+								"child": "Small",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "Small",
+							"sid": 895780654210567,
+							"parameters": {
+								"object": "Big",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Big",
+							"sid": 844278779197109,
+							"parameters": {
+								"instance-variable": "dist",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Big",
+							"sid": 169295111588409,
+							"parameters": {
+								"instance-variable": "ang",
+								"value": "0"
+							}
+						}
+					],
+					"sid": 847488368257755,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-in-touch",
+									"objectClass": "Touch",
+									"sid": 952397065921213
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 309360576396097,
+									"parameters": {
+										"variable": "aimTouchID",
+										"comparison": 4,
+										"value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 873038333919171,
+									"parameters": {
+										"instance-variable": "ang",
+										"value": "angle(Big.X, Big.Y, Touch.XForID(aimTouchID), Touch.YForID(aimTouchID))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 614189741177553,
+									"parameters": {
+										"instance-variable": "dist",
+										"value": "distance(Big.X, Big.Y, Touch.XForID(aimTouchID), Touch.YForID(aimTouchID))"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Big",
+									"sid": 705279982492819,
+									"parameters": {
+										"instance-variable": "dist",
+										"value": "min(Self.dist, (Big.Width/2 - Small.Width/3))"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "Small",
+									"sid": 123269579189698,
+									"parameters": {
+										"x": "big.X+ Big.dist * cos(Big.ang)",
+										"y": "big.y+Big.dist * sin(Big.ang)"
+									}
+								}
+							],
+							"sid": 445641471920653,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Big",
+											"sid": 716766603908361,
+											"parameters": {
+												"instance-variable": "dist",
+												"comparison": 4,
+												"value": "10"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 259575918839268,
+											"parameters": {
+												"variable": "gameRunning"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-angle",
+											"objectClass": "Player",
+											"sid": 517278032835930,
+											"parameters": {
+												"angle": "Big.ang"
+											}
+										}
+									],
+									"sid": 636033062115921
+								}
+							]
+						}
+					]
+				}
+			],
+			"sid": 101175453050736
+		}
+	],
 	"sid": 410964794892231
 }
