@@ -181,6 +181,42 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "Obstacle",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 26,
+					"instanceVariables": {},
+					"behaviors": {
+						"Solid": {
+							"properties": {
+								"enabled": true,
+								"tags": ""
+							}
+						}
+					},
+					"world": {
+						"x": 232,
+						"y": 212,
+						"width": 37,
+						"height": 36,
+						"originX": 0.5135135135135135,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 149566903455847,
@@ -731,7 +767,18 @@
 		}
 	],
 	"sid": 785519553583377,
-	"nonworld-instances": [],
+	"nonworld-instances": [
+		{
+			"type": "Players",
+			"properties": {
+				"width": 10,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 27,
+			"instanceVariables": {}
+		}
+	],
 	"effectTypes": [],
 	"width": 2560,
 	"height": 1440,

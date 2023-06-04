@@ -757,6 +757,16 @@
 							"sid": 981289425006532
 						},
 						{
+							"id": "destroy",
+							"objectClass": "Obstacle",
+							"sid": 347591316957454
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Bullet",
+							"sid": 763806720803367
+						},
+						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
 							"sid": 603231009104672,
@@ -814,6 +824,16 @@
 								"layer": "\"UI\"",
 								"interactive": false
 							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "Players",
+							"sid": 576742023895745,
+							"parameters": {
+								"width": "0",
+								"height": "1",
+								"depth": "1"
+							}
 						}
 					],
 					"sid": 778012805779025
@@ -832,6 +852,15 @@
 					],
 					"actions": [
 						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 430396746937992,
+							"parameters": {
+								"variable": "joinedPlayer",
+								"value": "1"
+							}
+						},
+						{
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 700767162830308,
@@ -841,12 +870,13 @@
 							}
 						},
 						{
-							"id": "add-to-eventvar",
-							"objectClass": "System",
-							"sid": 834811061873948,
+							"id": "push",
+							"objectClass": "Players",
+							"sid": 898453832046044,
 							"parameters": {
-								"variable": "joinedPlayer",
-								"value": "1"
+								"where": "back",
+								"value": "Photon.ActorNr",
+								"axis": "x"
 							}
 						}
 					],
@@ -891,36 +921,6 @@
 								}
 							],
 							"sid": 637126724550976
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "evaluate-expression",
-									"objectClass": "System",
-									"sid": 759857199205875,
-									"parameters": {
-										"value": "Functions.isRoomMaster"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "raiseevent17",
-									"objectClass": "Photon",
-									"sid": 489707314888992,
-									"parameters": {
-										"code0": "SPAWN_PLAYER_EVENT",
-										"data1": "Photon.ActorNr & \"|\" & Functions.getRandomPosition",
-										"interestgroup2": "0",
-										"cache11": "donotcache",
-										"receivers15": "all",
-										"targetactors16": "\"\"",
-										"webforward19": "no"
-									}
-								}
-							],
-							"sid": 630844337637174
 						}
 					]
 				},
@@ -1004,7 +1004,86 @@
 							}
 						}
 					],
-					"sid": 428061507399803
+					"sid": 428061507399803,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 759857199205875,
+									"parameters": {
+										"value": "Functions.isRoomMaster"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 630844337637174,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for-each-element",
+											"objectClass": "Players",
+											"sid": 227682711811532,
+											"parameters": {
+												"axes": "x"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "raiseevent17",
+											"objectClass": "Photon",
+											"sid": 964122196768874,
+											"parameters": {
+												"code0": "SPAWN_PLAYER_EVENT",
+												"data1": "Players.CurValue & \"|\" & Functions.getRandomPosition",
+												"interestgroup2": "0",
+												"cache11": "donotcache",
+												"receivers15": "all",
+												"targetactors16": "\"\"",
+												"webforward19": "no"
+											}
+										}
+									],
+									"sid": 637534356023983
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 315026217040317,
+											"parameters": {
+												"count": "floor(random(15, 30))"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "raiseevent17",
+											"objectClass": "Photon",
+											"sid": 963499461533135,
+											"parameters": {
+												"code0": "ADD_OBSTACLE_EVENT",
+												"data1": "floor(random(Obstacle.AnimationFrameCount)) & \"|\" & Functions.getRandomPosition & \"|\" & random(360) & \"|\" & random(1,5) & \"|\" & random(1,5)",
+												"interestgroup2": "0",
+												"cache11": "donotcache",
+												"receivers15": "all",
+												"targetactors16": "\"\"",
+												"webforward19": "no"
+											}
+										}
+									],
+									"sid": 887245703516431
+								}
+							]
+						}
+					]
 				},
 				{
 					"eventType": "block",
@@ -1594,6 +1673,182 @@
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 451020817995797,
+							"parameters": {
+								"code0": "ADD_OBSTACLE_EVENT"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 765555248707550,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "frame",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 757364577829546
+						},
+						{
+							"eventType": "variable",
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 799930418377742
+						},
+						{
+							"eventType": "variable",
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 290359602227320
+						},
+						{
+							"eventType": "variable",
+							"name": "obstacleAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 720154913896456
+						},
+						{
+							"eventType": "variable",
+							"name": "xScale",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 108559825008558
+						},
+						{
+							"eventType": "variable",
+							"name": "yScale",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 318607739453190
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 113955806555745,
+									"parameters": {
+										"variable": "frame",
+										"value": "int(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 317631409144492,
+									"parameters": {
+										"variable": "x",
+										"value": "float(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 500433602611487,
+									"parameters": {
+										"variable": "y",
+										"value": "float(tokenat(Photon.EventData, 2, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 491537899621698,
+									"parameters": {
+										"variable": "obstacleAngle",
+										"value": "float(tokenat(Photon.EventData, 3, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 252202867692703,
+									"parameters": {
+										"variable": "xScale",
+										"value": "float(tokenat(Photon.EventData, 4, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 684100610917053,
+									"parameters": {
+										"variable": "yScale",
+										"value": "float(tokenat(Photon.EventData, 5, \"|\"))"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 537340838316810,
+									"parameters": {
+										"object-to-create": "Obstacle",
+										"layer": "\"Game\"",
+										"x": "x",
+										"y": "y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-animation-frame",
+									"objectClass": "Obstacle",
+									"sid": 906411367107012,
+									"parameters": {
+										"frame-number": "frame"
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "Obstacle",
+									"sid": 502946986522594,
+									"parameters": {
+										"angle": "obstacleAngle"
+									}
+								},
+								{
+									"id": "set-size",
+									"objectClass": "Obstacle",
+									"sid": 763513428678148,
+									"parameters": {
+										"width": "Self.Width * xScale",
+										"height": "Self.Height * yScale"
+									}
+								}
+							],
+							"sid": 507542341259065
+						}
+					]
 				}
 			],
 			"sid": 371752309851478
@@ -1693,6 +1948,84 @@
 				}
 			],
 			"sid": 135436596549512
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Bullet",
+					"sid": 251514110195843,
+					"parameters": {
+						"object": "Obstacle"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Bullet",
+					"sid": 562569952860622
+				}
+			],
+			"sid": 684424086364947
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-distance-travelled",
+					"objectClass": "Bullet",
+					"sid": 256827044444089,
+					"behaviorType": "Bullet",
+					"parameters": {
+						"comparison": 4,
+						"distance": "BULLET_MAX_DISTANCE"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Bullet",
+					"sid": 859149490091366
+				}
+			],
+			"sid": 368643912154334
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Obstacle",
+					"sid": 584771188846250,
+					"parameters": {
+						"object": "OtherObstacle"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-position",
+					"objectClass": "Obstacle",
+					"sid": 549045999282611,
+					"parameters": {
+						"x": "Self.X - 5",
+						"y": "Self.Y - 5"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "OtherObstacle",
+					"sid": 315231314293233,
+					"parameters": {
+						"x": "Self.X + 5",
+						"y": "Self.Y + 5"
+					}
+				}
+			],
+			"sid": 512143204262281
 		},
 		{
 			"eventType": "block",

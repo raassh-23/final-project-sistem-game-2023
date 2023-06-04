@@ -116,6 +116,16 @@
 			"sid": 326915652734317
 		},
 		{
+			"eventType": "variable",
+			"name": "ADD_OBSTACLE_EVENT",
+			"type": "number",
+			"initialValue": "8",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 908178313578923
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},
@@ -166,6 +176,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 289348626839457
+		},
+		{
+			"eventType": "variable",
+			"name": "BULLET_MAX_DISTANCE",
+			"type": "number",
+			"initialValue": "800",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 440768919039781
 		}
 	],
 	"sid": 688673809868010

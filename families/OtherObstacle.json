@@ -1,0 +1,11 @@
+{
+	"name": "OtherObstacle",
+	"plugin-id": "Sprite",
+	"sid": 393064055962924,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"Obstacle"
+	]
+}
