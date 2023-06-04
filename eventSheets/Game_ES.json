@@ -2,6 +2,10 @@
 	"name": "Game_ES",
 	"events": [
 		{
+			"eventType": "include",
+			"includeSheet": "Common_ES"
+		},
+		{
 			"eventType": "variable",
 			"name": "gameRunning",
 			"type": "boolean",
@@ -473,6 +477,27 @@
 												}
 											],
 											"sid": 355495892018368
+										},
+										{
+											"eventType": "block",
+											"conditions": [],
+											"actions": [
+												{
+													"id": "raiseevent17",
+													"objectClass": "Photon",
+													"sid": 591368932477373,
+													"parameters": {
+														"code0": "SET_POSITION_PLAYER_EVENT",
+														"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+														"interestgroup2": "0",
+														"cache11": "donotcache",
+														"receivers15": "others",
+														"targetactors16": "\"\"",
+														"webforward19": "no"
+													}
+												}
+											],
+											"sid": 333900821818611
 										}
 									]
 								}
@@ -598,6 +623,16 @@
 									"conditions": [
 										{
 											"id": "compare-instance-variable",
+											"objectClass": "Player",
+											"sid": 284483805657633,
+											"parameters": {
+												"instance-variable": "actorNr",
+												"comparison": 0,
+												"value": "Photon.MyActorNr"
+											}
+										},
+										{
+											"id": "compare-instance-variable",
 											"objectClass": "Big",
 											"sid": 716766603908361,
 											"parameters": {
@@ -613,16 +648,6 @@
 											"parameters": {
 												"variable": "gameRunning"
 											}
-										},
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Player",
-											"sid": 661620079475606,
-											"parameters": {
-												"instance-variable": "actorNr",
-												"comparison": 0,
-												"value": "Photon.MyActorNr"
-											}
 										}
 									],
 									"actions": [
@@ -633,53 +658,59 @@
 											"parameters": {
 												"angle": "Big.ang"
 											}
+										},
+										{
+											"id": "raiseevent17",
+											"objectClass": "Photon",
+											"sid": 497718923432036,
+											"parameters": {
+												"code0": "SET_POSITION_PLAYER_EVENT",
+												"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+												"interestgroup2": "0",
+												"cache11": "donotcache",
+												"receivers15": "others",
+												"targetactors16": "\"\"",
+												"webforward19": "no"
+											}
 										}
 									],
-									"sid": 636033062115921
+									"sid": 636033062115921,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "every-x-seconds",
+													"objectClass": "System",
+													"sid": 766831728370010,
+													"parameters": {
+														"interval-seconds": "SHOOT_RATE"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "raiseevent17",
+													"objectClass": "Photon",
+													"sid": 231509107469228,
+													"parameters": {
+														"code0": "SHOOT_PLAYER_EVENT",
+														"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+														"interestgroup2": "0",
+														"cache11": "donotcache",
+														"receivers15": "all",
+														"targetactors16": "\"\"",
+														"webforward19": "no"
+													}
+												}
+											],
+											"sid": 486255954655286
+										}
+									]
 								}
 							]
 						}
 					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 928862869159683,
-							"parameters": {
-								"variable": "gameRunning"
-							}
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Player",
-							"sid": 773464714237811,
-							"parameters": {
-								"instance-variable": "actorNr",
-								"comparison": 0,
-								"value": "Photon.MyActorNr"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "raiseevent17",
-							"objectClass": "Photon",
-							"sid": 548377350173024,
-							"parameters": {
-								"code0": "SET_POSITION_PLAYER_EVENT",
-								"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
-								"interestgroup2": "0",
-								"cache11": "donotcache",
-								"receivers15": "others",
-								"targetactors16": "\"\"",
-								"webforward19": "no"
-							}
-						}
-					],
-					"sid": 686006598785798
 				}
 			],
 			"sid": 101175453050736
@@ -801,6 +832,15 @@
 					],
 					"actions": [
 						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 700767162830308,
+							"parameters": {
+								"type": "log",
+								"message": "\"Join event\""
+							}
+						},
+						{
 							"id": "add-to-eventvar",
 							"objectClass": "System",
 							"sid": 834811061873948,
@@ -868,10 +908,10 @@
 								{
 									"id": "raiseevent17",
 									"objectClass": "Photon",
-									"sid": 978110173887591,
+									"sid": 489707314888992,
 									"parameters": {
 										"code0": "SPAWN_PLAYER_EVENT",
-										"data1": "Photon.ActorNr & \"|\" & random(100, LayoutWidth-100) & \"|\" & random(100, LayoutHeight-100)",
+										"data1": "Photon.ActorNr & \"|\" & Functions.getRandomPosition",
 										"interestgroup2": "0",
 										"cache11": "donotcache",
 										"receivers15": "all",
@@ -897,6 +937,15 @@
 						}
 					],
 					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 222114845923140,
+							"parameters": {
+								"type": "log",
+								"message": "\"Start event\""
+							}
+						},
 						{
 							"id": "set-layer-visible",
 							"objectClass": "System",
@@ -969,7 +1018,17 @@
 							}
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 404287993837549,
+							"parameters": {
+								"type": "log",
+								"message": "\"Spawn event\""
+							}
+						}
+					],
 					"sid": 986733748634592,
 					"children": [
 						{
@@ -1218,23 +1277,507 @@
 										"ping-pong": "no",
 										"repeat-count": "1"
 									}
-								},
-								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 693601885340480,
-									"parameters": {
-										"type": "log",
-										"message": "\"set \" & x & \" \" & y & \" \" & newAngle"
-									}
 								}
 							],
 							"sid": 499463094661786
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 412865256156228,
+							"parameters": {
+								"code0": "SHOOT_PLAYER_EVENT"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 432403890034256,
+							"parameters": {
+								"instance-variable": "actorNr",
+								"comparison": 0,
+								"value": "Photon.ActorNr"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 878043359563219,
+							"parameters": {
+								"type": "log",
+								"message": "\"shoot event\""
+							}
+						}
+					],
+					"sid": 981236362249124,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 934476178380612
+						},
+						{
+							"eventType": "variable",
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 560812435450461
+						},
+						{
+							"eventType": "variable",
+							"name": "newAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 295540103104762
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 518034559644908,
+									"parameters": {
+										"variable": "x",
+										"value": "float(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 261035054288276,
+									"parameters": {
+										"variable": "y",
+										"value": "float(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 584961243920188,
+									"parameters": {
+										"variable": "newAngle",
+										"value": "float(tokenat(Photon.EventData, 2, \"|\"))"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "Player",
+									"sid": 246758201005647,
+									"parameters": {
+										"x": "x",
+										"y": "y"
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "Player",
+									"sid": 890266504461880,
+									"parameters": {
+										"angle": "newAngle"
+									}
+								},
+								{
+									"id": "spawn-another-object",
+									"objectClass": "Player",
+									"sid": 392386332942936,
+									"parameters": {
+										"object": "Bullet",
+										"layer": "\"Game\"",
+										"image-point": "1",
+										"create-hierarchy": false
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Bullet",
+									"sid": 498582786521049,
+									"parameters": {
+										"instance-variable": "shotBy",
+										"value": "Photon.ActorNr"
+									}
+								}
+							],
+							"sid": 539453537712997
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 323657715457508,
+							"parameters": {
+								"code0": "BULLET_HIT_EVENT"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 483370833380752,
+							"parameters": {
+								"type": "log",
+								"message": "\"hit event\""
+							}
+						}
+					],
+					"sid": 481938836449094,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "nr",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 797371519072843
+						},
+						{
+							"eventType": "variable",
+							"name": "newHealth",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 992184735098702
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 874217420952031,
+									"parameters": {
+										"variable": "nr",
+										"value": "int(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 173682506567621,
+									"parameters": {
+										"variable": "newHealth",
+										"value": "int(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 827971024756311,
+									"parameters": {
+										"type": "log",
+										"message": "Photon.EventData"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 391956686835495,
+									"parameters": {
+										"type": "log",
+										"message": "nr & \" \" & newHealth"
+									}
+								}
+							],
+							"sid": 269915913296741
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Player",
+									"sid": 144283779254281,
+									"parameters": {
+										"instance-variable": "actorNr",
+										"comparison": 0,
+										"value": "nr"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "Player",
+									"sid": 239702617554877,
+									"parameters": {
+										"instance-variable": "health",
+										"value": "newHealth"
+									}
+								}
+							],
+							"sid": 352865348499618,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Player",
+											"sid": 653236477422572,
+											"parameters": {
+												"instance-variable": "health",
+												"comparison": 3,
+												"value": "0"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "Player",
+											"sid": 320773208131711
+										}
+									],
+									"sid": 531029546589504,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 397055017625464,
+													"parameters": {
+														"value": "Functions.isRoomMaster"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "raiseevent17",
+													"objectClass": "Photon",
+													"sid": 218226885974749,
+													"parameters": {
+														"code0": "SPAWN_PLAYER_EVENT",
+														"data1": "nr & \"|\" & Functions.getRandomPosition",
+														"interestgroup2": "0",
+														"cache11": "donotcache",
+														"receivers15": "all",
+														"targetactors16": "\"\"",
+														"webforward19": "no"
+													}
+												}
+											],
+											"sid": 258406334795200
+										}
+									]
+								}
+							]
+						}
+					]
 				}
 			],
 			"sid": 371752309851478
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 869333437316528,
+					"parameters": {
+						"variable": "gameRunning"
+					}
+				},
+				{
+					"id": "evaluate-expression",
+					"objectClass": "System",
+					"sid": 701203424305599,
+					"parameters": {
+						"value": "Functions.isRoomMaster"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 686847376704408,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Bullet",
+							"sid": 795458021776166,
+							"parameters": {
+								"object": "Player"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 688084171218485,
+							"parameters": {
+								"instance-variable": "actorNr",
+								"comparison": 1,
+								"value": "Bullet.shotBy"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 805321536660461,
+							"parameters": {
+								"code0": "BULLET_HIT_EVENT",
+								"data1": "Player.actorNr & \"|\" & Player.health - 1",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 181942549159554
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "Bullet",
+					"sid": 616751207835365,
+					"parameters": {
+						"object": "Player"
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 488383685741140,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 1,
+						"value": "Bullet.shotBy"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Bullet",
+					"sid": 684284959602079
+				}
+			],
+			"sid": 135436596549512
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 911050976704625,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 399824408768270,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 464082217014502,
+							"parameters": {
+								"instance-variable": "newId",
+								"comparison": 0,
+								"value": "\"heatlh\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 486538922177460,
+							"parameters": {
+								"text": "\"Health: \" & Player.health"
+							}
+						}
+					],
+					"sid": 923803175320892
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 571814546333993
+				}
+			],
+			"actions": [],
+			"sid": 122569290462157,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 783384271947401,
+							"parameters": {
+								"instance-variable": "newId",
+								"comparison": 0,
+								"value": "\"heatlh\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 274784463400739,
+							"parameters": {
+								"text": "\"Health: \" & 0"
+							}
+						}
+					],
+					"sid": 522001736943960
+				}
+			]
 		}
 	],
 	"sid": 410964794892231

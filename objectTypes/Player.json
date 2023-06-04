@@ -10,6 +10,13 @@
 			"desc": "",
 			"show": true,
 			"sid": 677703564091349
+		},
+		{
+			"name": "health",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 785591527530673
 		}
 	],
 	"behaviorTypes": [
@@ -79,6 +86,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.96875,
+								"y": 0.7321428571428571
+							}
+						],
 						"duration": 1
 					}
 				],
@@ -132,6 +146,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.96875,
+								"y": 0.7321428571428571
+							}
+						],
 						"duration": 1
 					}
 				],
@@ -185,6 +206,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.96875,
+								"y": 0.7321428571428571
+							}
+						],
 						"duration": 1
 					}
 				],
@@ -238,6 +266,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.96875,
+								"y": 0.7321428571428571
+							}
+						],
 						"duration": 1
 					}
 				],
@@ -291,6 +326,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.96875,
+								"y": 0.7321428571428571
+							}
+						],
 						"duration": 1
 					}
 				],
@@ -344,6 +386,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.96875,
+								"y": 0.7321428571428571
+							}
+						],
 						"duration": 1
 					}
 				],
@@ -397,6 +446,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.96875,
+								"y": 0.7321428571428571
+							}
+						],
 						"duration": 1
 					}
 				],
@@ -450,6 +506,13 @@
 							]
 						},
 						"useCollisionPoly": true,
+						"imagePoints": [
+							{
+								"name": "Image Point 1",
+								"x": 0.96875,
+								"y": 0.7321428571428571
+							}
+						],
 						"duration": 1
 					}
 				],

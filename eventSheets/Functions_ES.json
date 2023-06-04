@@ -28,6 +28,28 @@
 			"sid": 917848238777824
 		},
 		{
+			"functionName": "getRandomPosition",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "string",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 171425767533939,
+					"parameters": {
+						"value": "random(100, LayoutWidth-100) & \"|\" & random(100, LayoutHeight-100)"
+					}
+				}
+			],
+			"sid": 661114824066920
+		},
+		{
 			"functionName": "isRoomMaster",
 			"functionDescription": "",
 			"functionCategory": "",

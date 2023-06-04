@@ -96,6 +96,26 @@
 			"sid": 972048499241310
 		},
 		{
+			"eventType": "variable",
+			"name": "SHOOT_PLAYER_EVENT",
+			"type": "number",
+			"initialValue": "6",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 984335974049915
+		},
+		{
+			"eventType": "variable",
+			"name": "BULLET_HIT_EVENT",
+			"type": "number",
+			"initialValue": "7",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 326915652734317
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},
@@ -132,6 +152,20 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 827580624073371
+		},
+		{
+			"eventType": "comment",
+			"text": "Game"
+		},
+		{
+			"eventType": "variable",
+			"name": "SHOOT_RATE",
+			"type": "number",
+			"initialValue": "0.33",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 289348626839457
 		}
 	],
 	"sid": 688673809868010

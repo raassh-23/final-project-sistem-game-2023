@@ -27,7 +27,8 @@
 					},
 					"uid": 16,
 					"instanceVariables": {
-						"id": 1
+						"id": 1,
+						"newId": ""
 					},
 					"behaviors": {
 						"Fade": {
@@ -79,7 +80,8 @@
 					},
 					"uid": 17,
 					"instanceVariables": {
-						"id": 2
+						"id": 2,
+						"newId": ""
 					},
 					"behaviors": {
 						"Fade": {
