@@ -1184,13 +1184,13 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 197850788433317,
+									"sid": 985383172897920,
 									"parameters": {
 										"object-to-create": "Player",
 										"layer": "\"Game\"",
 										"x": "x",
 										"y": "y",
-										"create-hierarchy": false,
+										"create-hierarchy": true,
 										"template-name": "\"\""
 									}
 								},
@@ -1210,6 +1210,22 @@
 									"parameters": {
 										"animation": "\"Player\"&nr",
 										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 351696423917086,
+									"parameters": {
+										"text": "Photon.PropertyOfActorByNr(nr, \"name\")"
+									}
+								},
+								{
+									"id": "move-to-layer",
+									"objectClass": "SpriteFontUI",
+									"sid": 774641028095842,
+									"parameters": {
+										"layer": "\"TopGame\""
 									}
 								}
 							],

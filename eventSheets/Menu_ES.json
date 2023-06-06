@@ -186,17 +186,27 @@
 					"id": "onjoinroom14",
 					"objectClass": "Photon",
 					"sid": 339446506451680
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "TextInput",
+					"sid": 683008391965579,
+					"parameters": {
+						"instance-variable": "id",
+						"comparison": 0,
+						"value": "\"name\""
+					}
 				}
 			],
 			"actions": [
 				{
 					"id": "setpropertyofactorbynr102",
 					"objectClass": "Photon",
-					"sid": 127608939128331,
+					"sid": 296271205374192,
 					"parameters": {
 						"actornr0": "Photon.MyActorNr",
 						"propname1": "\"name\"",
-						"value2": "TextInput.Text <> \"\" ? TextInput.Text : Functions.generateName(4)",
+						"value2": "TextInput.Text ",
 						"webforward5": "no",
 						"checkandset8": "no",
 						"expectedvalue9": "0"

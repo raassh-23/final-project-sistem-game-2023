@@ -696,6 +696,22 @@
 							"parameters": {
 								"text": "tokenat(Choices, loopindex, \",\")"
 							}
+						},
+						{
+							"id": "move-to-layer",
+							"objectClass": "Choice",
+							"sid": 688156357219404,
+							"parameters": {
+								"layer": "\"TopGame\""
+							}
+						},
+						{
+							"id": "move-to-layer",
+							"objectClass": "SpriteFontUI",
+							"sid": 593598859484567,
+							"parameters": {
+								"layer": "\"TopGame\""
+							}
 						}
 					],
 					"sid": 497799247569678,
