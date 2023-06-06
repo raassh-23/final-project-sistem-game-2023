@@ -899,7 +899,61 @@
 							"sid": 875323879912624
 						}
 					],
-					"sid": 778012805779025
+					"sid": 778012805779025,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SpriteFontUI",
+									"sid": 721344550498584,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"countdown\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 998401402827491,
+									"parameters": {
+										"text": "\"waiting for question...\""
+									}
+								}
+							],
+							"sid": 612134981584273
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SpriteFontUI",
+									"sid": 685629424837129,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"question\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 877270418489854,
+									"parameters": {
+										"text": "\"\""
+									}
+								}
+							],
+							"sid": 204191388841870
+						}
+					]
 				},
 				{
 					"eventType": "block",
@@ -1065,6 +1119,17 @@
 								"variable": "gameRunning",
 								"value": "true"
 							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "TimeManager",
+							"sid": 729041769114712,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "WAITING_DURATION",
+								"type": "once",
+								"tag": "WAITING_TAG"
+							}
 						}
 					],
 					"sid": 428061507399803,
@@ -1081,12 +1146,7 @@
 									}
 								}
 							],
-							"actions": [
-								{
-									"callFunction": "GenerateQuestion",
-									"sid": 725484583777772
-								}
-							],
+							"actions": [],
 							"sid": 630844337637174,
 							"children": [
 								{
@@ -2017,10 +2077,21 @@
 						{
 							"id": "log",
 							"objectClass": "Browser",
-							"sid": 946108381872015,
+							"sid": 926767939543328,
 							"parameters": {
 								"type": "log",
 								"message": "\"Eliminate event \" & Photon.EventData"
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "TimeManager",
+							"sid": 653453013569299,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "WAITING_DURATION",
+								"type": "once",
+								"tag": "WAITING_TAG"
 							}
 						}
 					],
@@ -2028,107 +2099,198 @@
 					"children": [
 						{
 							"eventType": "variable",
-							"name": "nr",
+							"name": "eliminatedCount",
 							"type": "number",
 							"initialValue": "0",
 							"comment": "",
 							"isStatic": false,
 							"isConstant": false,
-							"sid": 976886422554613
+							"sid": 591507670704967
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 706457630450405,
+									"parameters": {
+										"variable": "eliminatedCount",
+										"value": "tokencount(Photon.EventData, \"|\") - 1"
+									}
+								}
+							],
+							"sid": 602405716526455
 						},
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "repeat",
+									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 926542026601048,
+									"sid": 576066167411850,
 									"parameters": {
-										"count": "tokencount(Photon.EventData, \"|\") - 1"
+										"variable": "eliminatedCount",
+										"comparison": 4,
+										"value": "0"
+									}
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 567723156401757,
+									"parameters": {
+										"variable": "eliminatedCount",
+										"comparison": 2,
+										"value": "JoinedPlayers.Width - EliminatedPlayers.Width"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 563158169672248,
-									"parameters": {
-										"variable": "nr",
-										"value": "int(tokenat(Photon.EventData, loopindex, \"|\"))"
-									}
-								},
-								{
 									"id": "log",
 									"objectClass": "Browser",
-									"sid": 630548187663734,
+									"sid": 150347145827962,
 									"parameters": {
 										"type": "log",
-										"message": "\"eliminating \" & nr"
-									}
-								},
-								{
-									"id": "push",
-									"objectClass": "EliminatedPlayers",
-									"sid": 880976128671044,
-									"parameters": {
-										"where": "front",
-										"value": "nr",
-										"axis": "x"
+										"message": "\"has winner\""
 									}
 								}
 							],
 							"sid": 242976000297889,
 							"children": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "Player",
-											"sid": 578992086230309,
-											"parameters": {
-												"instance-variable": "actorNr",
-												"comparison": 0,
-												"value": "nr"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "destroy",
-											"objectClass": "Player",
-											"sid": 436225334613299
-										}
-									],
-									"sid": 703107034276185
+									"eventType": "variable",
+									"name": "nr",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 924503316031803
 								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-eventvar",
+											"id": "repeat",
 											"objectClass": "System",
-											"sid": 299822985256648,
+											"sid": 865264697273397,
 											"parameters": {
-												"variable": "nr",
-												"comparison": 0,
-												"value": "Photon.MyActorNr"
+												"count": "eliminatedCount"
 											}
 										}
 									],
 									"actions": [
 										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 782569572935193,
+											"parameters": {
+												"variable": "nr",
+												"value": "int(tokenat(Photon.EventData, loopindex, \"|\"))"
+											}
+										},
+										{
 											"id": "log",
 											"objectClass": "Browser",
-											"sid": 746927984152225,
+											"sid": 258460673145015,
 											"parameters": {
 												"type": "log",
-												"message": "\"I Lose\""
+												"message": "\"eliminating \" & nr"
+											}
+										},
+										{
+											"id": "push",
+											"objectClass": "EliminatedPlayers",
+											"sid": 506077495339132,
+											"parameters": {
+												"where": "front",
+												"value": "nr",
+												"axis": "x"
 											}
 										}
 									],
-									"sid": 226107839828610
+									"sid": 504034487009616,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "Player",
+													"sid": 879410161083086,
+													"parameters": {
+														"instance-variable": "actorNr",
+														"comparison": 0,
+														"value": "nr"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "destroy",
+													"objectClass": "Player",
+													"sid": 832202972457882
+												}
+											],
+											"sid": 506770887261161
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 235650264364705,
+													"parameters": {
+														"variable": "nr",
+														"comparison": 0,
+														"value": "Photon.MyActorNr"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "log",
+													"objectClass": "Browser",
+													"sid": 603935783421372,
+													"parameters": {
+														"type": "log",
+														"message": "\"I Lose\""
+													}
+												}
+											],
+											"sid": 109370833651271
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "SpriteFontUI",
+											"sid": 786311035178998,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"countdown\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "SpriteFontUI",
+											"sid": 900116564636905,
+											"parameters": {
+												"text": "eliminatedCount & \" players eliminated\" & newline & \"waiting for question...\""
+											}
+										}
+									],
+									"sid": 302073177639989
 								}
 							]
 						},
@@ -2136,21 +2298,51 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "evaluate-expression",
+									"id": "else",
 									"objectClass": "System",
-									"sid": 204698477546088,
-									"parameters": {
-										"value": "Functions.isRoomMaster"
-									}
+									"sid": 703107469150136
 								}
 							],
 							"actions": [
 								{
-									"callFunction": "GenerateQuestion",
-									"sid": 980034337580268
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 587148380934991,
+									"parameters": {
+										"type": "log",
+										"message": "\"no winner\""
+									}
 								}
 							],
-							"sid": 847227803134487
+							"sid": 204678922485539,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "SpriteFontUI",
+											"sid": 518911415885076,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"countdown\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "SpriteFontUI",
+											"sid": 837203787349388,
+											"parameters": {
+												"text": "\"no players eliminated\" & newline & \"waiting for question...\""
+											}
+										}
+									],
+									"sid": 841823841840686
+								}
+							]
 						}
 					]
 				}
@@ -2240,6 +2432,27 @@
 						}
 					],
 					"sid": 920418464373520
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "TimeManager",
+							"sid": 514072636766388,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "WAITING_TAG"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "GenerateQuestion",
+							"sid": 725484583777772
+						}
+					],
+					"sid": 781983128739026
 				}
 			]
 		},
@@ -2441,6 +2654,15 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "is-timer-running",
+					"objectClass": "TimeManager",
+					"sid": 502840903181832,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "COUNTDOWN_TAG"
+					}
+				},
+				{
 					"id": "compare-instance-variable",
 					"objectClass": "SpriteFontUI",
 					"sid": 532575038890634,
@@ -2451,64 +2673,17 @@
 					}
 				}
 			],
-			"actions": [],
-			"sid": 878417978878340,
-			"children": [
+			"actions": [
 				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-timer-running",
-							"objectClass": "TimeManager",
-							"sid": 473823946198846,
-							"behaviorType": "Timer",
-							"parameters": {
-								"tag": "COUNTDOWN_TAG"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-visible",
-							"objectClass": "SpriteFontUI",
-							"sid": 991773679380432,
-							"parameters": {
-								"visibility": "visible"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "SpriteFontUI",
-							"sid": 534732654106449,
-							"parameters": {
-								"text": "floor(TimeManager.Timer.Duration(COUNTDOWN_TAG) - TimeManager.Timer.CurrentTime(COUNTDOWN_TAG))"
-							}
-						}
-					],
-					"sid": 498336271686600
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 336828402434043
-						}
-					],
-					"actions": [
-						{
-							"id": "set-visible",
-							"objectClass": "SpriteFontUI",
-							"sid": 543231242501071,
-							"parameters": {
-								"visibility": "invisible"
-							}
-						}
-					],
-					"sid": 320603307646717
+					"id": "set-text",
+					"objectClass": "SpriteFontUI",
+					"sid": 509200959591319,
+					"parameters": {
+						"text": "floor(TimeManager.Timer.Duration(COUNTDOWN_TAG) - TimeManager.Timer.CurrentTime(COUNTDOWN_TAG))"
+					}
 				}
-			]
+			],
+			"sid": 878417978878340
 		}
 	],
 	"sid": 410964794892231

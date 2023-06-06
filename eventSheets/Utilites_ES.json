@@ -814,32 +814,6 @@
 										{
 											"id": "is-overlapping-another-object",
 											"objectClass": "Player",
-											"sid": 677534790761035,
-											"parameters": {
-												"object": "Choice"
-											},
-											"isInverted": true
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 367613394294459,
-											"parameters": {
-												"variable": "eliminated",
-												"value": "JoinedPlayers.CurValue & \"|\""
-											}
-										}
-									],
-									"sid": 456747907271025
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "Player",
 											"sid": 106216437326325,
 											"parameters": {
 												"object": "Choice"
@@ -851,12 +825,38 @@
 											"sid": 911930537560279,
 											"parameters": {
 												"instance-variable": "correct"
-											},
-											"isInverted": true
+											}
 										}
 									],
-									"actions": [],
+									"actions": [
+										{
+											"type": "comment",
+											"text": "intentionally empty"
+										}
+									],
 									"sid": 338011327943109
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 265199239202866
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 419805917103868,
+											"parameters": {
+												"variable": "eliminated",
+												"value": "eliminated & JoinedPlayers.CurValue & \"|\""
+											}
+										}
+									],
+									"sid": 875509554934941
 								}
 							]
 						}
