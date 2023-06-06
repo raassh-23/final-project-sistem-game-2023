@@ -126,6 +126,16 @@
 			"sid": 908178313578923
 		},
 		{
+			"eventType": "variable",
+			"name": "SHOW_QUESTION_EVENT",
+			"type": "number",
+			"initialValue": "9",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 726663067756739
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},

@@ -834,6 +834,11 @@
 								"height": "1",
 								"depth": "1"
 							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Choice",
+							"sid": 875323879912624
 						}
 					],
 					"sid": 778012805779025
@@ -1018,7 +1023,12 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"callFunction": "GenerateQuestion",
+									"sid": 725484583777772
+								}
+							],
 							"sid": 630844337637174,
 							"children": [
 								{
@@ -1849,6 +1859,62 @@
 							"sid": 507542341259065
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 117536795359406,
+							"parameters": {
+								"code0": "SHOW_QUESTION_EVENT"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 997271300862210,
+							"parameters": {
+								"variable": "question",
+								"value": "tokenat(Photon.EventData, 0, \"|\")"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 720896489553776,
+							"parameters": {
+								"variable": "correctAnswer",
+								"value": "int(tokenat(Photon.EventData, 1, \"|\"))"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 379849678660622,
+							"parameters": {
+								"variable": "choices",
+								"value": "tokenat(Photon.EventData, 2, \"|\")"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 239620936493218,
+							"parameters": {
+								"variable": "choicesPosition",
+								"value": "tokenat(Photon.EventData, 3, \"|\")"
+							}
+						},
+						{
+							"callFunction": "ShowQuestion",
+							"sid": 924271220727531
+						}
+					],
+					"sid": 410533722790128
 				}
 			],
 			"sid": 371752309851478

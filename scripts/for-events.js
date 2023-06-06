@@ -128,3 +128,26 @@ function generateQuestion() {
 
     return [question, correctAnswer, choices];
 }
+
+/**
+ * 
+ * @param {number} layoutWidth 
+ * @param {number} layoutHeight 
+ * @param {number} choiceDiameter 
+ * @returns {[number, number][]}
+ */
+function generateChoicePositions(layoutWidth, layoutHeight, choiceDiameter) {
+    const positions = [];
+    const radius = choiceDiameter / 2;
+
+    while (positions.length < 4) {
+        const x = getRandomNumber(radius, layoutWidth - radius);
+        const y = getRandomNumber(radius, layoutHeight - radius);
+
+        if (!positions.some(([px, py]) => Math.abs(px - x) < choiceDiameter && Math.abs(py - y) < choiceDiameter)) {
+            positions.push([x, y]);
+        }
+    }
+
+    return positions;
+}

@@ -538,6 +538,198 @@
 					"sid": 479146902540556
 				}
 			]
+		},
+		{
+			"eventType": "variable",
+			"name": "question",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 695191570516222
+		},
+		{
+			"eventType": "variable",
+			"name": "choices",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 572485952028879
+		},
+		{
+			"eventType": "variable",
+			"name": "choicesPosition",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 270126540119333
+		},
+		{
+			"eventType": "variable",
+			"name": "correctAnswer",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 492771015655491
+		},
+		{
+			"functionName": "GenerateQuestion",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"type": "script",
+					"script": "const [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst choicePositions = generateChoicePositions(width, height, 512);\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");"
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 765607624517796
+				},
+				{
+					"id": "raiseevent17",
+					"objectClass": "Photon",
+					"sid": 998095803691824,
+					"parameters": {
+						"code0": "SHOW_QUESTION_EVENT",
+						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition",
+						"interestgroup2": "0",
+						"cache11": "donotcache",
+						"receivers15": "all",
+						"targetactors16": "\"\"",
+						"webforward19": "no"
+					}
+				}
+			],
+			"sid": 868708923240964
+		},
+		{
+			"functionName": "ShowQuestion",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 258035558091086,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 409346251904481,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"question\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 764421495827559,
+							"parameters": {
+								"text": "question"
+							}
+						}
+					],
+					"sid": 211381230625167
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "repeat",
+							"objectClass": "System",
+							"sid": 558723470794816,
+							"parameters": {
+								"count": "4"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 572659506721683,
+							"parameters": {
+								"object-to-create": "Choice",
+								"layer": "\"Game\"",
+								"x": "int(tokenat(tokenat(choicesPosition, loopindex, \",\"), 0, \":\"))",
+								"y": "int(tokenat(tokenat(choicesPosition, loopindex, \",\"), 1, \":\"))",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "Choice",
+							"sid": 308652404184770,
+							"parameters": {
+								"frame-number": "loopindex"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 232318705880272,
+							"parameters": {
+								"text": "tokenat(Choices, loopindex, \",\")"
+							}
+						}
+					],
+					"sid": 497799247569678,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 441138968377299,
+									"parameters": {
+										"variable": "correctAnswer",
+										"comparison": 0,
+										"value": "int(tokenat(Choices, loopindex, \",\"))"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "Choice",
+									"sid": 933665765642598,
+									"parameters": {
+										"instance-variable": "correct",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 446039781151000
+						}
+					]
+				}
+			]
 		}
 	],
 	"sid": 390058048203286
