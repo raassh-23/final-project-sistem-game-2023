@@ -1,6 +1,6 @@
 {
 	"projectFormatVersion": 1,
-	"savedWithRelease": 34400,
+	"savedWithRelease": 34402,
 	"name": "New project",
 	"runtime": "c3",
 	"useWorker": "auto",
@@ -317,7 +317,7 @@
 		"preloadSounds": true,
 		"cordovaiOSScheme": "app",
 		"cordovaAndroidScheme": "https",
-		"autoReloadScriptsOnPreview": false,
+		"autoReloadScriptsOnPreview": true,
 		"exportFileStructure": "folders"
 	},
 	"viewportWidth": 1280,
