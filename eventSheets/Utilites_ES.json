@@ -602,10 +602,10 @@
 				{
 					"id": "raiseevent17",
 					"objectClass": "Photon",
-					"sid": 998095803691824,
+					"sid": 175457247020727,
 					"parameters": {
 						"code0": "SHOW_QUESTION_EVENT",
-						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition",
+						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition & \"|\" & countdownDuration",
 						"interestgroup2": "0",
 						"cache11": "donotcache",
 						"receivers15": "all",
@@ -626,7 +626,13 @@
 			"functionParameters": [],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Choice",
+					"sid": 422860508534526
+				}
+			],
 			"sid": 258035558091086,
 			"children": [
 				{
@@ -744,6 +750,147 @@
 							"sid": 446039781151000
 						}
 					]
+				}
+			]
+		},
+		{
+			"functionName": "CheckPlayers",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 764285971301574,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "eliminated",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 313250393704069
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each-element",
+							"objectClass": "JoinedPlayers",
+							"sid": 667106931974135,
+							"parameters": {
+								"axes": "x"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 662517222024499,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Player",
+									"sid": 775665283026453,
+									"parameters": {
+										"instance-variable": "actorNr",
+										"comparison": 0,
+										"value": "JoinedPlayers.CurValue"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 178165837774919,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "Player",
+											"sid": 677534790761035,
+											"parameters": {
+												"object": "Choice"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 367613394294459,
+											"parameters": {
+												"variable": "eliminated",
+												"value": "JoinedPlayers.CurValue & \"|\""
+											}
+										}
+									],
+									"sid": 456747907271025
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "Player",
+											"sid": 106216437326325,
+											"parameters": {
+												"object": "Choice"
+											}
+										},
+										{
+											"id": "is-boolean-instance-variable-set",
+											"objectClass": "Choice",
+											"sid": 911930537560279,
+											"parameters": {
+												"instance-variable": "correct"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [],
+									"sid": 338011327943109
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 893493372303952,
+							"parameters": {
+								"code0": "ELIMINATE_PLAYER_EVENT",
+								"data1": "eliminated",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 408925018277007,
+							"parameters": {
+								"type": "log",
+								"message": "\"should eliminate \" & eliminated"
+							}
+						}
+					],
+					"sid": 496007814476016
 				}
 			]
 		}

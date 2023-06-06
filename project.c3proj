@@ -86,6 +86,13 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Timer",
+			"name": "Timer",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "Tween",
 			"name": "Tween",
 			"author": "Scirra",
@@ -129,8 +136,10 @@
 			"Blank",
 			"Bullet",
 			"Obstacle",
-			"Players",
-			"Choice"
+			"JoinedPlayers",
+			"Choice",
+			"TimeManager",
+			"EliminatedPlayers"
 		],
 		"subfolders": []
 	},

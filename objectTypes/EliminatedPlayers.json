@@ -1,7 +1,7 @@
 {
-	"name": "Players",
+	"name": "EliminatedPlayers",
 	"plugin-id": "Arr",
-	"sid": 197923561459718,
+	"sid": 333975299848640,
 	"isGlobal": true,
 	"instanceVariables": []
 }

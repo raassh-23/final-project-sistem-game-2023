@@ -136,6 +136,16 @@
 			"sid": 726663067756739
 		},
 		{
+			"eventType": "variable",
+			"name": "ELIMINATE_PLAYER_EVENT",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 542947731310142
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},
@@ -196,6 +206,60 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 440768919039781
+		},
+		{
+			"eventType": "variable",
+			"name": "INIT_CHOICE_SIZE",
+			"type": "number",
+			"initialValue": "512",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 294292041074626
+		},
+		{
+			"eventType": "variable",
+			"name": "INIT_COUNTDOWN_DURATION",
+			"type": "number",
+			"initialValue": "30",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 972402847719407
+		},
+		{
+			"eventType": "variable",
+			"name": "MIN_CHOICE_SIZE",
+			"type": "number",
+			"initialValue": "128",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 475672658220670
+		},
+		{
+			"eventType": "variable",
+			"name": "MIN_COUNTDOWN_DURATION",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 632939355263558
+		},
+		{
+			"eventType": "comment",
+			"text": "Timer"
+		},
+		{
+			"eventType": "variable",
+			"name": "COUNTDOWN_TAG",
+			"type": "string",
+			"initialValue": "countdown",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 768740438095497
 		}
 	],
 	"sid": 688673809868010

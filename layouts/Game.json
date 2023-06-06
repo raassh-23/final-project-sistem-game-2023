@@ -499,6 +499,39 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "TimeManager",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 33,
+					"instanceVariables": {},
+					"behaviors": {
+						"Timer": {
+							"properties": {}
+						}
+					},
+					"world": {
+						"x": -140.56753270899657,
+						"y": 298.43246729100343,
+						"width": 62.86493458200684,
+						"height": 62.86493458200684,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 149566903455847,
@@ -926,7 +959,59 @@
 					},
 					"world": {
 						"x": 641,
-						"y": 122,
+						"y": 92,
+						"width": 713,
+						"height": 77,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "SpriteFontUI",
+					"properties": {
+						"text": "Countdown",
+						"enable-bbcode": true,
+						"character-width": 16,
+						"character-height": 16,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
+						"spacing-data": "",
+						"scale": 1.5,
+						"character-spacing": 0,
+						"line-height": 0,
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "center",
+						"read-aloud": false
+					},
+					"uid": 32,
+					"instanceVariables": {
+						"id": "countdown"
+					},
+					"behaviors": {
+						"Fade": {
+							"properties": {
+								"fade-in-time": 0,
+								"wait-time": 0,
+								"fade-out-time": 1,
+								"destroy": false,
+								"enabled": false,
+								"live-preview": false
+							}
+						}
+					},
+					"world": {
+						"x": 641,
+						"y": 130,
 						"width": 713,
 						"height": 77,
 						"originX": 0.5,
@@ -1134,13 +1219,23 @@
 	"sid": 785519553583377,
 	"nonworld-instances": [
 		{
-			"type": "Players",
+			"type": "JoinedPlayers",
 			"properties": {
 				"width": 10,
 				"height": 1,
 				"depth": 1
 			},
 			"uid": 27,
+			"instanceVariables": {}
+		},
+		{
+			"type": "EliminatedPlayers",
+			"properties": {
+				"width": 10,
+				"height": 1,
+				"depth": 1
+			},
+			"uid": 34,
 			"instanceVariables": {}
 		}
 	],
