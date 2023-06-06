@@ -6,13 +6,6 @@
 	"instanceVariables": [
 		{
 			"name": "id",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 348428925630061
-		},
-		{
-			"name": "newId",
 			"type": "string",
 			"desc": "",
 			"show": true,

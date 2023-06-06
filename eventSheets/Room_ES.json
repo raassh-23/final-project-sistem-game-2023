@@ -46,11 +46,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "SpriteFontUI",
-					"sid": 798241303911999,
+					"sid": 852556302013699,
 					"parameters": {
 						"instance-variable": "id",
 						"comparison": 0,
-						"value": "1"
+						"value": "\"room_code\""
 					}
 				}
 			],

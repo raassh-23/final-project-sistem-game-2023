@@ -6,10 +6,10 @@
 	"instanceVariables": [
 		{
 			"name": "id",
-			"type": "number",
+			"type": "string",
 			"desc": "",
 			"show": true,
-			"sid": 957984781078634
+			"sid": 955112597162304
 		}
 	],
 	"behaviorTypes": []

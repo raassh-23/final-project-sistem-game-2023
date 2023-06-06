@@ -60,8 +60,7 @@
 					},
 					"uid": 9,
 					"instanceVariables": {
-						"id": 0,
-						"newId": ""
+						"id": "connecting"
 					},
 					"behaviors": {
 						"Fade": {
@@ -176,8 +175,7 @@
 					},
 					"uid": 11,
 					"instanceVariables": {
-						"id": 1,
-						"newId": ""
+						"id": "message"
 					},
 					"behaviors": {
 						"Fade": {
@@ -225,7 +223,7 @@
 					},
 					"uid": 12,
 					"instanceVariables": {
-						"id": 0
+						"id": "name"
 					},
 					"behaviors": {},
 					"world": {
@@ -318,7 +316,7 @@
 					},
 					"uid": 15,
 					"instanceVariables": {
-						"id": 1
+						"id": "room_code"
 					},
 					"behaviors": {},
 					"world": {

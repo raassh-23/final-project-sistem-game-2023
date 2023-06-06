@@ -2052,7 +2052,7 @@
 							"objectClass": "SpriteFontUI",
 							"sid": 464082217014502,
 							"parameters": {
-								"instance-variable": "newId",
+								"instance-variable": "id",
 								"comparison": 0,
 								"value": "\"heatlh\""
 							}
@@ -2092,7 +2092,7 @@
 							"objectClass": "SpriteFontUI",
 							"sid": 783384271947401,
 							"parameters": {
-								"instance-variable": "newId",
+								"instance-variable": "id",
 								"comparison": 0,
 								"value": "\"heatlh\""
 							}

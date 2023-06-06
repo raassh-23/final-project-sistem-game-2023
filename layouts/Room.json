@@ -27,8 +27,7 @@
 					},
 					"uid": 16,
 					"instanceVariables": {
-						"id": 1,
-						"newId": ""
+						"id": "room_code"
 					},
 					"behaviors": {
 						"Fade": {
@@ -80,8 +79,7 @@
 					},
 					"uid": 17,
 					"instanceVariables": {
-						"id": 2,
-						"newId": ""
+						"id": "player_list"
 					},
 					"behaviors": {
 						"Fade": {

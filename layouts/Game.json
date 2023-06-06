@@ -543,8 +543,7 @@
 					},
 					"uid": 25,
 					"instanceVariables": {
-						"id": 0,
-						"newId": "heatlh"
+						"id": "heatlh"
 					},
 					"behaviors": {
 						"Fade": {
@@ -704,8 +703,7 @@
 					},
 					"uid": 23,
 					"instanceVariables": {
-						"id": 0,
-						"newId": ""
+						"id": ""
 					},
 					"behaviors": {
 						"Fade": {

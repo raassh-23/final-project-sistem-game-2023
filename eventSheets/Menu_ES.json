@@ -58,9 +58,9 @@
 						{
 							"id": "evaluate-expression",
 							"objectClass": "System",
-							"sid": 314305255375978,
+							"sid": 257406771505674,
 							"parameters": {
-								"value": "Functions.isTextInputEmpty(0, \"Name cannot be empty\")"
+								"value": "Functions.isTextInputEmpty(\"name\", \"Name cannot be empty\")"
 							}
 						}
 					],
@@ -104,9 +104,9 @@
 						{
 							"id": "evaluate-expression",
 							"objectClass": "System",
-							"sid": 511475066044331,
+							"sid": 615630991775264,
 							"parameters": {
-								"value": "Functions.isTextInputEmpty(0, \"Name cannot be empty\")"
+								"value": "Functions.isTextInputEmpty(\"name\", \"Name cannot be empty\")"
 							}
 						}
 					],
@@ -142,27 +142,27 @@
 						{
 							"id": "evaluate-expression",
 							"objectClass": "System",
-							"sid": 259771764129326,
+							"sid": 353312690601744,
 							"parameters": {
-								"value": "Functions.isTextInputEmpty(0, \"Name cannot be empty\")"
+								"value": "Functions.isTextInputEmpty(\"name\", \"Name cannot be empty\")"
 							}
 						},
 						{
 							"id": "evaluate-expression",
 							"objectClass": "System",
-							"sid": 982677747759286,
+							"sid": 601278556540295,
 							"parameters": {
-								"value": "Functions.isTextInputEmpty(1, \"Room code cannot be empty\")"
+								"value": "Functions.isTextInputEmpty(\"room_code\", \"Room code cannot be empty\")"
 							}
 						},
 						{
 							"id": "compare-instance-variable",
 							"objectClass": "TextInput",
-							"sid": 183600085646305,
+							"sid": 996800339697219,
 							"parameters": {
 								"instance-variable": "id",
 								"comparison": 0,
-								"value": "1"
+								"value": "\"room_code\""
 							}
 						}
 					],
@@ -309,11 +309,11 @@
 				{
 					"id": "compare-instance-variable",
 					"objectClass": "SpriteFontUI",
-					"sid": 799165231071559,
+					"sid": 846140070468558,
 					"parameters": {
 						"instance-variable": "id",
 						"comparison": 0,
-						"value": "1"
+						"value": "\"message\""
 					}
 				}
 			],
