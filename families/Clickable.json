@@ -1,0 +1,54 @@
+{
+	"name": "Clickable",
+	"plugin-id": "Sprite",
+	"sid": 265027227057713,
+	"instanceVariables": [
+		{
+			"name": "initialWidth",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 503524877310522
+		},
+		{
+			"name": "initialHeight",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 718817321722475
+		},
+		{
+			"name": "isPressed",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 940830377197371
+		},
+		{
+			"name": "clickable",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 123193907219799
+		},
+		{
+			"name": "isDisabled",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 977301959761925
+		},
+		{
+			"name": "id",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 413838638904556
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"Button"
+	]
+}

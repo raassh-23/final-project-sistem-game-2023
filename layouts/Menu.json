@@ -135,7 +135,14 @@
 						"live-preview": false
 					},
 					"uid": 10,
-					"instanceVariables": {},
+					"instanceVariables": {
+						"initialWidth": 0,
+						"initialHeight": 0,
+						"isPressed": false,
+						"clickable": false,
+						"isDisabled": false,
+						"id": "join_random"
+					},
 					"behaviors": {},
 					"world": {
 						"x": 640,
@@ -251,7 +258,14 @@
 						"live-preview": false
 					},
 					"uid": 13,
-					"instanceVariables": {},
+					"instanceVariables": {
+						"initialWidth": 0,
+						"initialHeight": 0,
+						"isPressed": false,
+						"clickable": false,
+						"isDisabled": false,
+						"id": "create_room"
+					},
 					"behaviors": {},
 					"world": {
 						"x": 640,
@@ -280,7 +294,14 @@
 						"live-preview": false
 					},
 					"uid": 14,
-					"instanceVariables": {},
+					"instanceVariables": {
+						"initialWidth": 0,
+						"initialHeight": 0,
+						"isPressed": false,
+						"clickable": false,
+						"isDisabled": false,
+						"id": "join_room"
+					},
 					"behaviors": {},
 					"world": {
 						"x": 640,

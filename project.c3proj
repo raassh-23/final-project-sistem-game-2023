@@ -137,7 +137,8 @@
 	"containers": [],
 	"families": {
 		"items": [
-			"OtherObstacle"
+			"OtherObstacle",
+			"Clickable"
 		],
 		"subfolders": []
 	},
@@ -152,7 +153,7 @@
 	"eventSheets": {
 		"items": [
 			"Game_ES",
-			"Functions_ES",
+			"Utilites_ES",
 			"Room_ES",
 			"Menu_ES",
 			"Constants_ES",

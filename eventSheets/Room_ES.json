@@ -28,6 +28,16 @@
 						"targetactors16": "\"\"",
 						"webforward19": "no"
 					}
+				},
+				{
+					"id": "map-function",
+					"objectClass": "Functions",
+					"sid": 852508845918161,
+					"parameters": {
+						"name": "CLICKABLE_CLICKED",
+						"string": "LayoutName",
+						"function": "RoomButtonClicked"
+					}
 				}
 			],
 			"sid": 613150423103462
@@ -105,105 +115,6 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-touched-object",
-					"objectClass": "Touch",
-					"sid": 864832881057246,
-					"parameters": {
-						"object": "Button"
-					}
-				},
-				{
-					"id": "is-visible",
-					"objectClass": "Button",
-					"sid": 149587309020845
-				},
-				{
-					"id": "layer-is-visible",
-					"objectClass": "System",
-					"sid": 659617995430028,
-					"parameters": {
-						"layer": "Button.LayerName"
-					}
-				}
-			],
-			"actions": [],
-			"sid": 714119509837006,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-animation-frame",
-							"objectClass": "Button",
-							"sid": 380329159670705,
-							"parameters": {
-								"comparison": 0,
-								"number": "3"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "leaveroom16",
-							"objectClass": "Photon",
-							"sid": 266630388982303
-						},
-						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 706340329110311,
-							"parameters": {
-								"layout": "Menu"
-							}
-						}
-					],
-					"sid": 572964214898957
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-animation-frame",
-							"objectClass": "Button",
-							"sid": 123659687137744,
-							"parameters": {
-								"comparison": 0,
-								"number": "4"
-							}
-						},
-						{
-							"id": "evaluate-expression",
-							"objectClass": "System",
-							"sid": 602056153908338,
-							"parameters": {
-								"value": "Functions.isRoomMaster"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "raiseevent17",
-							"objectClass": "Photon",
-							"sid": 322411460820236,
-							"parameters": {
-								"code0": "GO_TO_GAME_EVENT",
-								"data1": "0",
-								"interestgroup2": "0",
-								"cache11": "donotcache",
-								"receivers15": "all",
-								"targetactors16": "\"\"",
-								"webforward19": "no"
-							}
-						}
-					],
-					"sid": 333939989958207
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
 					"id": "onevent3",
 					"objectClass": "Photon",
 					"sid": 378657471001459,
@@ -223,6 +134,109 @@
 				}
 			],
 			"sid": 244300663323527
+		},
+		{
+			"functionName": "RoomButtonClicked",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "uid",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 772916260636456
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [
+				{
+					"id": "pick-by-unique-id",
+					"objectClass": "Clickable",
+					"sid": 450232535548017,
+					"parameters": {
+						"unique-id": "uid"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 107028116387189,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Clickable",
+							"sid": 544788805870313,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"leave\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "leaveroom16",
+							"objectClass": "Photon",
+							"sid": 572133944969899
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 238658705629974,
+							"parameters": {
+								"layout": "Menu"
+							}
+						}
+					],
+					"sid": 941349738206026
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Clickable",
+							"sid": 547805299869160,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"start\""
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 461135449076424,
+							"parameters": {
+								"value": "Functions.isRoomMaster"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 363917513835657,
+							"parameters": {
+								"code0": "GO_TO_GAME_EVENT",
+								"data1": "0",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 425562006034836
+				}
+			]
 		}
 	],
 	"sid": 681630158831065
