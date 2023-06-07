@@ -150,8 +150,8 @@
 	"containers": [],
 	"families": {
 		"items": [
-			"OtherObstacle",
-			"Clickable"
+			"Clickable",
+			"Solids"
 		],
 		"subfolders": []
 	},

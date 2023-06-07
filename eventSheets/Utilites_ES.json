@@ -677,10 +677,10 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 572659506721683,
+							"sid": 441507795189016,
 							"parameters": {
 								"object-to-create": "Choice",
-								"layer": "\"Game\"",
+								"layer": "\"ChoiceArea\"",
 								"x": "int(tokenat(tokenat(choicesPosition, loopindex, \",\"), 0, \":\"))",
 								"y": "int(tokenat(tokenat(choicesPosition, loopindex, \",\"), 1, \":\"))",
 								"create-hierarchy": true,
@@ -701,22 +701,6 @@
 							"sid": 232318705880272,
 							"parameters": {
 								"text": "tokenat(Choices, loopindex, \",\")"
-							}
-						},
-						{
-							"id": "move-to-layer",
-							"objectClass": "Choice",
-							"sid": 688156357219404,
-							"parameters": {
-								"layer": "\"TopGame\""
-							}
-						},
-						{
-							"id": "move-to-layer",
-							"objectClass": "SpriteFontUI",
-							"sid": 593598859484567,
-							"parameters": {
-								"layer": "\"TopGame\""
 							}
 						}
 					],

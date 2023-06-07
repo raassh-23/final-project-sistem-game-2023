@@ -1360,9 +1360,9 @@
 								{
 									"id": "move-to-layer",
 									"objectClass": "SpriteFontUI",
-									"sid": 774641028095842,
+									"sid": 257901413906964,
 									"parameters": {
-										"layer": "\"TopGame\""
+										"layer": "\"Name\""
 									}
 								}
 							],
@@ -2036,7 +2036,63 @@
 									}
 								}
 							],
-							"sid": 507542341259065
+							"sid": 507542341259065,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "Obstacle",
+											"sid": 712476993165566,
+											"parameters": {
+												"object": "Solids"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "Obstacle",
+											"sid": 849091482372539
+										}
+									],
+									"sid": 985515825765346,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 745736361631123,
+													"parameters": {
+														"value": "Functions.isRoomMaster"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "raiseevent17",
+													"objectClass": "Photon",
+													"sid": 962389074540778,
+													"parameters": {
+														"code0": "ADD_OBSTACLE_EVENT",
+														"data1": "floor(random(Obstacle.AnimationFrameCount)) & \"|\" & Functions.getRandomPosition & \"|\" & random(360) & \"|\" & random(1,5) & \"|\" & random(1,5)",
+														"interestgroup2": "0",
+														"cache11": "donotcache",
+														"receivers15": "all",
+														"targetactors16": "\"\"",
+														"webforward19": "no"
+													}
+												}
+											],
+											"sid": 885458871029377
+										}
+									],
+									"isOrBlock": true
+								}
+							]
 						}
 					]
 				},
@@ -2519,13 +2575,69 @@
 								{
 									"id": "move-to-layer",
 									"objectClass": "TreeTop",
-									"sid": 972463648955907,
+									"sid": 607945537079966,
 									"parameters": {
-										"layer": "\"TopGame\""
+										"layer": "\"TreeTops\""
 									}
 								}
 							],
-							"sid": 397686797606644
+							"sid": 397686797606644,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "TreeTrunk",
+											"sid": 467021209603479,
+											"parameters": {
+												"object": "Solids"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "TreeTrunk",
+											"sid": 224953958786233
+										}
+									],
+									"sid": 842990511091149,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 192841002110800,
+													"parameters": {
+														"value": "Functions.isRoomMaster"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "raiseevent17",
+													"objectClass": "Photon",
+													"sid": 543881794613934,
+													"parameters": {
+														"code0": "ADD_TREE_EVENT",
+														"data1": "Functions.getRandomPosition & \"|\" & random(360) & \"|\" & random(1,1.75)",
+														"interestgroup2": "0",
+														"cache11": "donotcache",
+														"receivers15": "all",
+														"targetactors16": "\"\"",
+														"webforward19": "no"
+													}
+												}
+											],
+											"sid": 443158112913290
+										}
+									],
+									"isOrBlock": true
+								}
+							]
 						}
 					]
 				},
@@ -2608,17 +2720,9 @@
 										{
 											"id": "is-overlapping-another-object",
 											"objectClass": "AmmoBox",
-											"sid": 499652674705596,
+											"sid": 280121545835138,
 											"parameters": {
-												"object": "Obstacle"
-											}
-										},
-										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "AmmoBox",
-											"sid": 245366305721462,
-											"parameters": {
-												"object": "TreeTrunk"
+												"object": "Solids"
 											}
 										}
 									],
@@ -2965,9 +3069,9 @@
 				{
 					"id": "on-collision-with-another-object",
 					"objectClass": "Bullet",
-					"sid": 251514110195843,
+					"sid": 576527104084150,
 					"parameters": {
-						"object": "Obstacle"
+						"object": "Solids"
 					}
 				}
 			],
@@ -3023,40 +3127,6 @@
 				}
 			],
 			"sid": 368643912154334
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "Obstacle",
-					"sid": 584771188846250,
-					"parameters": {
-						"object": "OtherObstacle"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-position",
-					"objectClass": "Obstacle",
-					"sid": 549045999282611,
-					"parameters": {
-						"x": "Self.X - 5",
-						"y": "Self.Y - 5"
-					}
-				},
-				{
-					"id": "set-position",
-					"objectClass": "OtherObstacle",
-					"sid": 315231314293233,
-					"parameters": {
-						"x": "Self.X + 5",
-						"y": "Self.Y + 5"
-					}
-				}
-			],
-			"sid": 512143204262281
 		},
 		{
 			"eventType": "block",
@@ -3331,24 +3401,6 @@
 				}
 			],
 			"sid": 878417978878340
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-tick",
-					"objectClass": "System",
-					"sid": 399396740783100
-				}
-			],
-			"actions": [
-				{
-					"id": "move-to-top",
-					"objectClass": "TreeTop",
-					"sid": 480186281545704
-				}
-			],
-			"sid": 514778282966300
 		}
 	],
 	"sid": 410964794892231

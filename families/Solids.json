@@ -1,11 +1,12 @@
 {
-	"name": "OtherObstacle",
+	"name": "Solids",
 	"plugin-id": "Sprite",
-	"sid": 393064055962924,
+	"sid": 271499176808280,
 	"instanceVariables": [],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"members": [
+		"TreeTrunk",
 		"Obstacle"
 	]
 }
