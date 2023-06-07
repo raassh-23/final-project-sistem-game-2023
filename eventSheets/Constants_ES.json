@@ -146,6 +146,16 @@
 			"sid": 542947731310142
 		},
 		{
+			"eventType": "variable",
+			"name": "ADD_TREE_EVENT",
+			"type": "number",
+			"initialValue": "11",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 610723311573881
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},

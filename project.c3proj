@@ -139,7 +139,9 @@
 			"JoinedPlayers",
 			"Choice",
 			"TimeManager",
-			"EliminatedPlayers"
+			"EliminatedPlayers",
+			"TreeTrunk",
+			"TreeTop"
 		],
 		"subfolders": []
 	},

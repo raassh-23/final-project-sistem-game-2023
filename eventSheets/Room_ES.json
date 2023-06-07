@@ -220,6 +220,14 @@
 					],
 					"actions": [
 						{
+							"id": "setmyroomisopen106",
+							"objectClass": "Photon",
+							"sid": 582591089474449,
+							"parameters": {
+								"isopen2": "no"
+							}
+						},
+						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
 							"sid": 363917513835657,

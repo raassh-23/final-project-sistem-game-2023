@@ -517,27 +517,6 @@
 												}
 											],
 											"sid": 355495892018368
-										},
-										{
-											"eventType": "block",
-											"conditions": [],
-											"actions": [
-												{
-													"id": "raiseevent17",
-													"objectClass": "Photon",
-													"sid": 591368932477373,
-													"parameters": {
-														"code0": "SET_POSITION_PLAYER_EVENT",
-														"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
-														"interestgroup2": "0",
-														"cache11": "donotcache",
-														"receivers15": "others",
-														"targetactors16": "\"\"",
-														"webforward19": "no"
-													}
-												}
-											],
-											"sid": 333900821818611
 										}
 									]
 								}
@@ -897,6 +876,11 @@
 							"id": "destroy",
 							"objectClass": "Choice",
 							"sid": 875323879912624
+						},
+						{
+							"id": "destroy",
+							"objectClass": "TreeTrunk",
+							"sid": 758894289778319
 						}
 					],
 					"sid": 778012805779025,
@@ -1185,9 +1169,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 315026217040317,
+											"sid": 725368522298834,
 											"parameters": {
-												"count": "floor(random(15, 30))"
+												"count": "floor(random(10, 20))"
 											}
 										}
 									],
@@ -1208,6 +1192,36 @@
 										}
 									],
 									"sid": 887245703516431
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 477186735016222,
+											"parameters": {
+												"count": "floor(random(5, 10))"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "raiseevent17",
+											"objectClass": "Photon",
+											"sid": 143759660763897,
+											"parameters": {
+												"code0": "ADD_TREE_EVENT",
+												"data1": "Functions.getRandomPosition & \"|\" & random(360) & \"|\" & random(1,1.75)",
+												"interestgroup2": "0",
+												"cache11": "donotcache",
+												"receivers15": "all",
+												"targetactors16": "\"\"",
+												"webforward19": "no"
+											}
+										}
+									],
+									"sid": 552712230578574
 								}
 							]
 						}
@@ -2345,6 +2359,161 @@
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 679585278365979,
+							"parameters": {
+								"code0": "ADD_TREE_EVENT"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 799972933821750,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 439683876824397
+						},
+						{
+							"eventType": "variable",
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 297602725771223
+						},
+						{
+							"eventType": "variable",
+							"name": "treeAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 723636799941359
+						},
+						{
+							"eventType": "variable",
+							"name": "scale",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 544076501675233
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 778507009732879,
+									"parameters": {
+										"type": "log",
+										"message": "Photon.EventData"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 910472057593940,
+									"parameters": {
+										"variable": "x",
+										"value": "float(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 712681211839325,
+									"parameters": {
+										"variable": "y",
+										"value": "float(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 362393528287611,
+									"parameters": {
+										"variable": "treeAngle",
+										"value": "float(tokenat(Photon.EventData, 2, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 627075092334402,
+									"parameters": {
+										"variable": "scale",
+										"value": "float(tokenat(Photon.EventData, 3, \"|\"))"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 354605484175507,
+									"parameters": {
+										"type": "log",
+										"message": "x & \" \" & y & \" \" & treeAngle & \" \" & treeAngle"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 480437123138445,
+									"parameters": {
+										"object-to-create": "TreeTrunk",
+										"layer": "\"Game\"",
+										"x": "x",
+										"y": "y",
+										"create-hierarchy": true,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "TreeTrunk",
+									"sid": 622047260747036,
+									"parameters": {
+										"angle": "treeAngle"
+									}
+								},
+								{
+									"id": "set-scale",
+									"objectClass": "TreeTop",
+									"sid": 791351986805910,
+									"parameters": {
+										"scale": "scale"
+									}
+								},
+								{
+									"id": "move-to-layer",
+									"objectClass": "TreeTop",
+									"sid": 972463648955907,
+									"parameters": {
+										"layer": "\"TopGame\""
+									}
+								}
+							],
+							"sid": 397686797606644
+						}
+					]
 				}
 			],
 			"sid": 371752309851478
@@ -2569,6 +2738,108 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "TreeTop",
+					"sid": 830356700453443,
+					"parameters": {
+						"object": "Player"
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 395660158919083,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-opacity",
+					"objectClass": "TreeTop",
+					"sid": 347245289063835,
+					"parameters": {
+						"opacity": "50"
+					}
+				}
+			],
+			"sid": 547543297673142
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 581763250253043
+				}
+			],
+			"actions": [
+				{
+					"id": "set-opacity",
+					"objectClass": "TreeTop",
+					"sid": 411105224686037,
+					"parameters": {
+						"opacity": "100"
+					}
+				}
+			],
+			"sid": 884674428191219
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 826518840343764,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 852187036536630,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-moving",
+							"objectClass": "Player",
+							"sid": 198576781609986,
+							"behaviorType": "8Direction"
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 655572882786625,
+							"parameters": {
+								"code0": "SET_POSITION_PLAYER_EVENT",
+								"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "others",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 422698797070947
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
 					"sid": 911050976704625,
@@ -2588,7 +2859,7 @@
 						{
 							"id": "compare-instance-variable",
 							"objectClass": "SpriteFontUI",
-							"sid": 464082217014502,
+							"sid": 768568108185712,
 							"parameters": {
 								"instance-variable": "id",
 								"comparison": 0,
@@ -2684,6 +2955,24 @@
 				}
 			],
 			"sid": 878417978878340
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 399396740783100
+				}
+			],
+			"actions": [
+				{
+					"id": "move-to-top",
+					"objectClass": "TreeTop",
+					"sid": 480186281545704
+				}
+			],
+			"sid": 514778282966300
 		}
 	],
 	"sid": 410964794892231
