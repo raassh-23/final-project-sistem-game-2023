@@ -56,6 +56,16 @@
 			"sid": 459741054005510
 		},
 		{
+			"eventType": "variable",
+			"name": "isLost",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 547346207234339
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Control",
@@ -757,6 +767,24 @@
 							"sid": 169546017471373,
 							"parameters": {
 								"variable": "gameRunning",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 252870366605313,
+							"parameters": {
+								"group-name": "\"Pan\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 551376435809717,
+							"parameters": {
+								"variable": "isLost",
 								"value": "false"
 							}
 						},
@@ -2241,11 +2269,11 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 567723156401757,
+									"sid": 555353735514987,
 									"parameters": {
 										"variable": "eliminatedCount",
 										"comparison": 2,
-										"value": "JoinedPlayers.Width - EliminatedPlayers.Width"
+										"value": "JoinedPlayers.Width"
 									}
 								}
 							],
@@ -2312,6 +2340,15 @@
 												"value": "nr",
 												"axis": "x"
 											}
+										},
+										{
+											"id": "delete",
+											"objectClass": "JoinedPlayers",
+											"sid": 343729361309192,
+											"parameters": {
+												"index": "JoinedPlayers.IndexOf(nr)",
+												"axis": "x"
+											}
 										}
 									],
 									"sid": 504034487009616,
@@ -2355,12 +2392,21 @@
 											],
 											"actions": [
 												{
-													"id": "log",
-													"objectClass": "Browser",
-													"sid": 603935783421372,
+													"id": "set-boolean-eventvar",
+													"objectClass": "System",
+													"sid": 706005241163941,
 													"parameters": {
-														"type": "log",
-														"message": "\"I Lose\""
+														"variable": "isLost",
+														"value": "true"
+													}
+												},
+												{
+													"id": "set-group-active",
+													"objectClass": "System",
+													"sid": 362484076202434,
+													"parameters": {
+														"group-name": "\"Pan\"",
+														"state": "activated"
 													}
 												}
 											],
@@ -3029,6 +3075,33 @@
 						}
 					],
 					"sid": 513257455813380
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-size",
+							"objectClass": "JoinedPlayers",
+							"sid": 211365360725255,
+							"parameters": {
+								"axis": "x",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 611214453426759,
+							"parameters": {
+								"type": "log",
+								"message": "JoinedPlayers.Front & \" won\""
+							}
+						}
+					],
+					"sid": 548199946186988
 				}
 			]
 		},
@@ -3132,28 +3205,36 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "compare-instance-variable",
-					"objectClass": "Player",
-					"sid": 395660158919083,
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 202459691595537,
 					"parameters": {
-						"instance-variable": "actorNr",
-						"comparison": 0,
-						"value": "Photon.MyActorNr"
+						"object": "TreeTop"
 					}
 				}
 			],
 			"actions": [],
-			"sid": 547543297673142,
+			"sid": 879528206308977,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
 							"id": "is-overlapping-another-object",
-							"objectClass": "Player",
-							"sid": 540081375294815,
+							"objectClass": "TreeTop",
+							"sid": 471562797164967,
 							"parameters": {
-								"object": "TreeTop"
+								"object": "Player"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 936092388974597,
+							"parameters": {
+								"instance-variable": "actorNr",
+								"comparison": 0,
+								"value": "Photon.MyActorNr"
 							}
 						}
 					],
@@ -3161,13 +3242,13 @@
 						{
 							"id": "set-opacity",
 							"objectClass": "TreeTop",
-							"sid": 481807458062940,
+							"sid": 712803022504072,
 							"parameters": {
 								"opacity": "50"
 							}
 						}
 					],
-					"sid": 189927486912025
+					"sid": 479868882242562
 				},
 				{
 					"eventType": "block",
@@ -3175,20 +3256,20 @@
 						{
 							"id": "else",
 							"objectClass": "System",
-							"sid": 769042836756585
+							"sid": 509846658225799
 						}
 					],
 					"actions": [
 						{
 							"id": "set-opacity",
 							"objectClass": "TreeTop",
-							"sid": 554964053484704,
+							"sid": 345085589478580,
 							"parameters": {
 								"opacity": "100"
 							}
 						}
 					],
-					"sid": 742252426669078
+					"sid": 305944165440070
 				}
 			]
 		},
@@ -3410,6 +3491,185 @@
 				}
 			],
 			"sid": 878417978878340
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Pan",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "TouchPanID",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "ID of the touch using to pan",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 119511478860495
+				},
+				{
+					"eventType": "variable",
+					"name": "TouchLastX",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Initial X position of touch (for pan)",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 818197574260926
+				},
+				{
+					"eventType": "variable",
+					"name": "TouchLastY",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Initial Y position of touch (for pan)",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 897641084266756
+				},
+				{
+					"eventType": "comment",
+					"text": "If the user touches, and we're not already panning with a different touch, store the touch ID and the position of the touch. Note we get the position of the touch from a separate layer which has a parallax of 0, otherwise panning the view would alter the reported touch position, resulting in confusing feedback loops."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-touch-start",
+							"objectClass": "Touch",
+							"sid": 531825079636271
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 308990089882568,
+							"parameters": {
+								"variable": "TouchPanID",
+								"comparison": 0,
+								"value": "-1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 418238135414895,
+							"parameters": {
+								"variable": "TouchLastX",
+								"value": "Touch.X(\"UI\")"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 615739055174279,
+							"parameters": {
+								"variable": "TouchLastY",
+								"value": "Touch.Y(\"UI\")"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 686513600994252,
+							"parameters": {
+								"variable": "TouchPanID",
+								"value": "Touch.TouchID"
+							}
+						}
+					],
+					"sid": 687864686133170
+				},
+				{
+					"eventType": "comment",
+					"text": "While we have a touch to pan with, offset the scroll position by the change in position of the touch. This makes the view scroll with the touch."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 396724903771469,
+							"parameters": {
+								"variable": "TouchPanID",
+								"comparison": 1,
+								"value": "-1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "scroll-to-position",
+							"objectClass": "System",
+							"sid": 389239041833265,
+							"parameters": {
+								"x": "scrollx - (Touch.X(\"UI\") - TouchLastX) / LayerScale(\"Game\")",
+								"y": "scrolly - (Touch.Y(\"UI\") - TouchLastY) / LayerScale(\"Game\")"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 455030077979727,
+							"parameters": {
+								"variable": "TouchLastX",
+								"value": "Touch.X(\"UI\")"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 908878074068813,
+							"parameters": {
+								"variable": "TouchLastY",
+								"value": "Touch.Y(\"UI\")"
+							}
+						}
+					],
+					"sid": 285587031730156
+				},
+				{
+					"eventType": "comment",
+					"text": "When the touch we are panning with ends, reset the stored touch ID so we stop panning."
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-touch-end",
+							"objectClass": "Touch",
+							"sid": 334175511854916
+						},
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 185325136919249,
+							"parameters": {
+								"variable": "TouchPanID",
+								"comparison": 0,
+								"value": "Touch.TouchID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 957098116703942,
+							"parameters": {
+								"variable": "TouchPanID",
+								"value": "-1"
+							}
+						}
+					],
+					"sid": 743742800568772
+				}
+			],
+			"sid": 661926732972576
 		}
 	],
 	"sid": 410964794892231
