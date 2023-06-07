@@ -430,6 +430,27 @@
 				}
 			],
 			"sid": 201640348295348
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 574631136948787,
+					"parameters": {
+						"interval-seconds": "0.5"
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "script",
+					"script": "const expression = getComplexArithmeticExpression(getRandomNumber(2, 5));\nconsole.log(\"expression\", expression, \"=\", eval(expression));\nconsole.log(\"\");"
+				}
+			],
+			"sid": 402891161482082,
+			"disabled": true
 		}
 	],
 	"sid": 750548703589974
