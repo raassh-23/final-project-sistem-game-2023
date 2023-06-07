@@ -3132,14 +3132,6 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "TreeTop",
-					"sid": 830356700453443,
-					"parameters": {
-						"object": "Player"
-					}
-				},
-				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
 					"sid": 395660158919083,
@@ -3150,38 +3142,55 @@
 					}
 				}
 			],
-			"actions": [
+			"actions": [],
+			"sid": 547543297673142,
+			"children": [
 				{
-					"id": "set-opacity",
-					"objectClass": "TreeTop",
-					"sid": 347245289063835,
-					"parameters": {
-						"opacity": "50"
-					}
-				}
-			],
-			"sid": 547543297673142
-		},
-		{
-			"eventType": "block",
-			"conditions": [
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Player",
+							"sid": 540081375294815,
+							"parameters": {
+								"object": "TreeTop"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-opacity",
+							"objectClass": "TreeTop",
+							"sid": 481807458062940,
+							"parameters": {
+								"opacity": "50"
+							}
+						}
+					],
+					"sid": 189927486912025
+				},
 				{
-					"id": "else",
-					"objectClass": "System",
-					"sid": 581763250253043
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 769042836756585
+						}
+					],
+					"actions": [
+						{
+							"id": "set-opacity",
+							"objectClass": "TreeTop",
+							"sid": 554964053484704,
+							"parameters": {
+								"opacity": "100"
+							}
+						}
+					],
+					"sid": 742252426669078
 				}
-			],
-			"actions": [
-				{
-					"id": "set-opacity",
-					"objectClass": "TreeTop",
-					"sid": 411105224686037,
-					"parameters": {
-						"opacity": "100"
-					}
-				}
-			],
-			"sid": 884674428191219
+			]
 		},
 		{
 			"eventType": "block",
