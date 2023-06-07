@@ -9997,6 +9997,22 @@ map.set(this,IBehaviorInstance._GetInitInst().GetSdkInstance())}set isEnabled(e)
 }
 
 {
+'use strict';{const C3=self.C3;C3.Behaviors.Timer=class TimerBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}}}{const C3=self.C3;C3.Behaviors.Timer.Type=class TimerType extends C3.SDKBehaviorTypeBase{constructor(behaviorType){super(behaviorType)}Release(){super.Release()}OnCreate(){}}}
+{const C3=self.C3;const C3X=self.C3X;const IBehaviorInstance=self.IBehaviorInstance;C3.Behaviors.Timer.SingleTimer=class SingleTimer{constructor(current,total,duration,isRegular){this._current=C3.New(C3.KahanSum);this._current.Set(current||0);this._total=C3.New(C3.KahanSum);this._total.Set(total||0);this._duration=duration||0;this._isRegular=!!isRegular;this._isPaused=false}GetCurrentTime(){return this._current.Get()}GetTotalTime(){return this._total.Get()}GetDuration(){return this._duration}SetPaused(p){this._isPaused=
+!!p}IsPaused(){return this._isPaused}Add(t){this._current.Add(t);this._total.Add(t)}HasFinished(){return this._current.Get()>=this._duration}Update(){if(this.HasFinished())if(this._isRegular)this._current.Subtract(this._duration);else return true;return false}SaveToJson(){return{"c":this._current.Get(),"t":this._total.Get(),"d":this._duration,"r":this._isRegular,"p":this._isPaused}}LoadFromJson(o){this._current.Set(o["c"]);this._total.Set(o["t"]);this._duration=o["d"];this._isRegular=!!o["r"];this._isPaused=
+!!o["p"]}};C3.Behaviors.Timer.Instance=class TimerInstance extends C3.SDKBehaviorInstanceBase{constructor(behInst,properties){super(behInst);this._timers=new Map}Release(){this._timers.clear();super.Release()}_StartTimer(duration,name,isRegular){const timer=new C3.Behaviors.Timer.SingleTimer(0,0,duration,isRegular);this._timers.set(name.toLowerCase(),timer);this._UpdateTickState()}_StopTimer(name){this._timers.delete(name.toLowerCase());this._UpdateTickState()}_StopAllTimers(){this._timers.clear();
+this._UpdateTickState()}_IsTimerRunning(name){return this._timers.has(name.toLowerCase())}_GetTimerCurrentTime(name){const timer=this._timers.get(name.toLowerCase());return timer?timer.GetCurrentTime():0}_GetTimerTotalTime(name){const timer=this._timers.get(name.toLowerCase());return timer?timer.GetTotalTime():0}_GetTimerDuration(name){const timer=this._timers.get(name.toLowerCase());return timer?timer.GetDuration():0}_HasTimerFinished(name){const timer=this._timers.get(name.toLowerCase());return timer?
+timer.HasFinished():false}_SetTimerPaused(name,isPaused){const timer=this._timers.get(name.toLowerCase());if(timer)timer.SetPaused(isPaused)}_IsTimerPaused(name){const timer=this._timers.get(name.toLowerCase());return timer?timer.IsPaused():false}_UpdateTickState(){if(this._timers.size>0){this._StartTicking();this._StartTicking2()}else{this._StopTicking();this._StopTicking2()}}SaveToJson(){const ret={};for(const [name,timer]of this._timers.entries())ret[name]=timer.SaveToJson();return ret}LoadFromJson(o){this._timers.clear();
+for(const [name,data]of Object.entries(o)){const timer=new C3.Behaviors.Timer.SingleTimer;timer.LoadFromJson(data);this._timers.set(name,timer)}this._UpdateTickState()}Tick(){const dt=this._runtime.GetDt(this._inst);for(const [name,timer]of this._timers)if(!timer.IsPaused()){timer.Add(dt);if(timer.HasFinished())this.DispatchScriptEvent("timer",false,{tag:name})}}Tick2(){for(const [name,timer]of this._timers.entries()){const shouldDelete=timer.Update();if(shouldDelete)this._timers.delete(name)}}GetDebuggerProperties(){return[{title:"behaviors.timer.debugger.timers",
+properties:[...this._timers.entries()].map(entry=>({name:"$"+entry[0],value:`${Math.round(entry[1].GetCurrentTime()*10)/10} / ${Math.round(entry[1].GetDuration()*10)/10}`}))}]}GetScriptInterfaceClass(){return self.ITimerBehaviorInstance}};const map=new WeakMap;const VALID_TIMER_TYPES=["once","regular"];self.ITimerBehaviorInstance=class ITimerBehaviorInstance extends IBehaviorInstance{constructor(){super();map.set(this,IBehaviorInstance._GetInitInst().GetSdkInstance())}startTimer(duration,name,type=
+"once"){C3X.RequireFiniteNumber(duration);C3X.RequireString(name);const i=VALID_TIMER_TYPES.indexOf(type);if(i===-1)throw new Error("invalid type");map.get(this)._StartTimer(duration,name,i===1)}setTimerPaused(name,isPaused){C3X.RequireString(name);map.get(this)._SetTimerPaused(name,!!isPaused)}stopTimer(name){C3X.RequireString(name);map.get(this)._StopTimer(name)}stopAllTimers(){map.get(this)._StopAllTimers()}isTimerRunning(name){C3X.RequireString(name);return map.get(this)._IsTimerRunning(name)}isTimerPaused(name){C3X.RequireString(name);
+return map.get(this)._IsTimerPaused(name)}getCurrentTime(name){C3X.RequireString(name);return map.get(this)._GetTimerCurrentTime(name)}getTotalTime(name){C3X.RequireString(name);return map.get(this)._GetTimerTotalTime(name)}getDuration(name){C3X.RequireString(name);return map.get(this)._GetTimerDuration(name)}hasFinished(name){C3X.RequireString(name);return map.get(this)._HasTimerFinished(name)}}}
+{const C3=self.C3;C3.Behaviors.Timer.Cnds={OnTimer(name){return this._HasTimerFinished(name)},IsTimerRunning(name){return this._IsTimerRunning(name)},IsTimerPaused(name){return this._IsTimerPaused(name)}}}{const C3=self.C3;C3.Behaviors.Timer.Acts={StartTimer(duration,type,name){this._StartTimer(duration,name,type===1)},StopTimer(name){this._StopTimer(name)},StopAllTimers(){this._StopAllTimers()},PauseResumeTimer(name,state){this._SetTimerPaused(name,state===0)}}}
+{const C3=self.C3;C3.Behaviors.Timer.Exps={CurrentTime(name){return this._GetTimerCurrentTime(name)},TotalTime(name){return this._GetTimerTotalTime(name)},Duration(name){return this._GetTimerDuration(name)}}};
+
+}
+
+{
 const C3 = self.C3;
 self.C3_GetObjectRefTable = function () {
 	return [
@@ -10015,6 +10031,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.Bullet,
 		C3.Behaviors.solid,
 		C3.Plugins.Arr,
+		C3.Behaviors.Timer,
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Plugins.Sprite.Cnds.CompareInstanceVar,
@@ -10036,9 +10053,9 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.Photon.Exps.MyActorNr,
 		C3.Behaviors.EightDir.Acts.SimulateControl,
+		C3.Plugins.Sprite.Acts.SetAngle,
 		C3.Plugins.Photon.Acts.raiseEvent,
 		C3.Plugins.Sprite.Exps.Angle,
-		C3.Plugins.Sprite.Acts.SetAngle,
 		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.System.Acts.SetBoolVar,
@@ -10046,6 +10063,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.SetLayerVisible,
 		C3.Plugins.System.Acts.SetLayerInteractive,
 		C3.Plugins.Arr.Acts.SetSize,
+		C3.Plugins.Spritefont2.Cnds.CompareInstanceVar,
+		C3.Plugins.Spritefont2.Acts.SetText,
 		C3.Plugins.Photon.Cnds.onEvent,
 		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.Browser.Acts.ConsoleLog,
@@ -10054,6 +10073,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Photon.Exps.ActorCount,
 		C3.Plugins.System.Cnds.EvaluateExpression,
 		C3.Plugins.Photon.Acts.setPropertyOfMyRoom,
+		C3.Behaviors.Timer.Acts.StartTimer,
 		C3.Plugins.Arr.Cnds.ArrForEach,
 		C3.Plugins.Arr.Exps.CurValue,
 		C3.Plugins.System.Cnds.Repeat,
@@ -10065,20 +10085,35 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Exps.float,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.Sprite.Acts.SetAnim,
+		C3.Plugins.Photon.Exps.PropertyOfActorByNr,
+		C3.Plugins.Spritefont2.Acts.MoveToLayer,
 		C3.Behaviors.scrollto.Acts.SetEnabled,
 		C3.Behaviors.Tween.Acts.TweenTwoProperties,
 		C3.Behaviors.Tween.Acts.TweenOneProperty,
 		C3.Plugins.Sprite.Acts.Spawn,
+		C3.Plugins.Sprite.Acts.SubInstanceVar,
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.Sprite.Acts.SetSize,
 		C3.Plugins.Sprite.Exps.Height,
-		C3.Plugins.Sprite.Cnds.OnCollision,
-		C3.Behaviors.Bullet.Cnds.CompareTravelled,
 		C3.Plugins.Sprite.Cnds.IsOverlapping,
-		C3.Plugins.Spritefont2.Cnds.CompareInstanceVar,
-		C3.Plugins.Spritefont2.Acts.SetText,
+		C3.Plugins.System.Exps.tokencount,
+		C3.Plugins.Arr.Exps.Width,
+		C3.Plugins.System.Exps.loopindex,
 		C3.Plugins.System.Cnds.Else,
-		C3.ScriptsInEvents.Functions_es_Event1_Act1,
+		C3.Plugins.Sprite.Acts.SetScale,
+		C3.Plugins.Sprite.Acts.MoveToLayer,
+		C3.Plugins.Sprite.Acts.AddInstanceVar,
+		C3.Plugins.Sprite.Cnds.OnCollision,
+		C3.Behaviors.Timer.Cnds.OnTimer,
+		C3.Plugins.System.Cnds.Compare,
+		C3.Plugins.Sprite.Exps.Count,
+		C3.Behaviors.Bullet.Cnds.CompareTravelled,
+		C3.Plugins.Sprite.Acts.SetOpacity,
+		C3.Behaviors.EightDir.Cnds.IsMoving,
+		C3.Behaviors.Timer.Cnds.IsTimerRunning,
+		C3.Behaviors.Timer.Exps.Duration,
+		C3.Behaviors.Timer.Exps.CurrentTime,
+		C3.ScriptsInEvents.Utilites_es_Event1_Act1,
 		C3.Plugins.System.Acts.SetFunctionReturnValue,
 		C3.Plugins.System.Exps.layoutwidth,
 		C3.Plugins.System.Exps.layoutheight,
@@ -10088,23 +10123,21 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.TextBox.Cnds.CompareInstanceVar,
 		C3.Plugins.TextBox.Cnds.CompareText,
 		C3.Plugins.Photon.Exps.ActorNrAt,
-		C3.Plugins.System.Exps.loopindex,
-		C3.Plugins.Photon.Exps.PropertyOfActorByNr,
 		C3.Plugins.Spritefont2.Acts.AppendText,
-		C3.Plugins.System.Cnds.Compare,
-		C3.Plugins.Sprite.Cnds.CompareFrame,
 		C3.Plugins.Sprite.Acts.SetVisible,
+		C3.ScriptsInEvents.Utilites_es_Event18_Act1,
+		C3.Plugins.System.Acts.WaitForPreviousActions,
+		C3.Plugins.Sprite.Acts.SetBoolInstanceVar,
+		C3.Plugins.Sprite.Cnds.IsBoolInstanceVarSet,
+		C3.Plugins.System.Acts.MapFunction,
+		C3.Plugins.System.Exps.layoutname,
 		C3.Plugins.Photon.Exps.MyRoomName,
 		C3.Plugins.Photon.Cnds.onActorLeave,
 		C3.Plugins.Photon.Cnds.onActorPropertiesChange,
-		C3.Plugins.Sprite.Cnds.IsVisible,
-		C3.Plugins.System.Cnds.LayerVisible,
-		C3.Plugins.Sprite.Exps.LayerName,
-		C3.Plugins.Photon.Acts.leaveRoom,
 		C3.Plugins.System.Acts.GoToLayout,
-		C3.Plugins.Photon.Acts.joinRandomRoom,
-		C3.Plugins.Photon.Acts.joinRoom,
-		C3.Plugins.TextBox.Exps.Text,
+		C3.Plugins.Sprite.Cnds.PickByUID,
+		C3.Plugins.Photon.Acts.leaveRoom,
+		C3.Plugins.Photon.Acts.setMyRoomIsOpen,
 		C3.Plugins.TextBox.Acts.SetCSSStyle,
 		C3.Plugins.Photon.Cnds.isConnectedToNameServer,
 		C3.Plugins.Photon.Acts.connect,
@@ -10112,15 +10145,30 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Photon.Cnds.onJoinRandomRoomNoMatchFound,
 		C3.Plugins.Photon.Cnds.onJoinRoom,
 		C3.Plugins.Photon.Acts.setPropertyOfActorByNr,
+		C3.Plugins.TextBox.Exps.Text,
+		C3.Plugins.Photon.Acts.joinRandomRoom,
+		C3.Plugins.Photon.Acts.joinRoom,
+		C3.Plugins.System.Exps.time,
 		C3.Plugins.Photon.Cnds.onError,
 		C3.Plugins.Photon.Exps.ErrorMessage,
-		C3.Plugins.Photon.Cnds.onDisconnected
+		C3.Plugins.Photon.Cnds.onDisconnected,
+		C3.Plugins.Sprite.Cnds.OnCreated,
+		C3.Plugins.System.Cnds.ForEach,
+		C3.Plugins.Touch.Cnds.IsTouchingObject,
+		C3.Plugins.System.Cnds.LayerInteractive,
+		C3.Plugins.Sprite.Exps.LayerName,
+		C3.Plugins.Sprite.Cnds.IsVisible,
+		C3.Plugins.Sprite.Cnds.IsCollisionEnabled,
+		C3.Plugins.Sprite.Exps.UID,
+		C3.Plugins.Touch.Cnds.OnTouchStart,
+		C3.Plugins.System.Acts.CallMappedFunction
 	];
 };
 self.C3_JsPropNameTable = [
 	{TiledBackground: 0},
 	{actorNr: 0},
 	{health: 0},
+	{ammo: 0},
 	{"8Direction": 0},
 	{BoundToLayout: 0},
 	{ScrollTo: 0},
@@ -10133,9 +10181,13 @@ self.C3_JsPropNameTable = [
 	{Small: 0},
 	{Touch: 0},
 	{TextInput: 0},
-	{newId: 0},
 	{Fade: 0},
 	{SpriteFontUI: 0},
+	{initialWidth: 0},
+	{initialHeight: 0},
+	{isPressed: 0},
+	{clickable: 0},
+	{isDisabled: 0},
 	{Button: 0},
 	{Photon: 0},
 	{Browser: 0},
@@ -10144,12 +10196,24 @@ self.C3_JsPropNameTable = [
 	{Bullet: 0},
 	{Solid: 0},
 	{Obstacle: 0},
-	{Players: 0},
-	{OtherObstacle: 0},
+	{JoinedPlayers: 0},
+	{correct: 0},
+	{Choice: 0},
+	{Timer: 0},
+	{TimeManager: 0},
+	{EliminatedPlayers: 0},
+	{TreeTrunk: 0},
+	{TreeTop: 0},
+	{AmmoBox: 0},
+	{Clickable: 0},
+	{Solids: 0},
 	{gameRunning: 0},
+	{choiceSize: 0},
+	{countdownDuration: 0},
+	{joinedPlayer: 0},
+	{currentQuestion: 0},
 	{moveTouchID: 0},
 	{aimTouchID: 0},
-	{joinedPlayer: 0},
 	{x: 0},
 	{y: 0},
 	{nr: 0},
@@ -10159,11 +10223,20 @@ self.C3_JsPropNameTable = [
 	{obstacleAngle: 0},
 	{xScale: 0},
 	{yScale: 0},
+	{eliminatedCount: 0},
+	{treeAngle: 0},
+	{scale: 0},
 	{length: 0},
 	{errorMsg: 0},
 	{playerName: 0},
 	{playerActorNr: 0},
 	{nameSuffix: 0},
+	{question: 0},
+	{choices: 0},
+	{choicesPosition: 0},
+	{correctAnswer: 0},
+	{eliminated: 0},
+	{uid: 0},
 	{message: 0},
 	{MAX_PLAYER: 0},
 	{MIN_PLAYER: 0},
@@ -10177,11 +10250,31 @@ self.C3_JsPropNameTable = [
 	{SHOOT_PLAYER_EVENT: 0},
 	{BULLET_HIT_EVENT: 0},
 	{ADD_OBSTACLE_EVENT: 0},
+	{SHOW_QUESTION_EVENT: 0},
+	{ELIMINATE_PLAYER_EVENT: 0},
+	{ADD_TREE_EVENT: 0},
+	{ADD_AMMO_BOX_EVENT: 0},
+	{USE_AMMO_BOX_EVENT: 0},
 	{GAME_TIME: 0},
 	{MOVE_PLAYER: 0},
 	{ROTATE_PLAYER: 0},
 	{SHOOT_RATE: 0},
-	{BULLET_MAX_DISTANCE: 0}
+	{BULLET_MAX_DISTANCE: 0},
+	{INIT_CHOICE_SIZE: 0},
+	{INIT_COUNTDOWN_DURATION: 0},
+	{MIN_CHOICE_SIZE: 0},
+	{MIN_COUNTDOWN_DURATION: 0},
+	{WAITING_DURATION: 0},
+	{MIN_AMMO_SPAWN_TIME: 0},
+	{MAX_AMMO_SPAWN_TIME: 0},
+	{MAX_AMMO_BOX: 0},
+	{MIN_DELTA_AMMO: 0},
+	{MAX_DELTA_AMMO: 0},
+	{COUNTDOWN_TAG: 0},
+	{WAITING_TAG: 0},
+	{SFX_TAG: 0},
+	{CLICKABLE_CLICKED: 0},
+	{touchedUid: 0}
 ];
 }
 
@@ -10337,6 +10430,11 @@ self.C3_ExpressionFuncs = [
 		() => 150,
 		() => -30,
 		() => -150,
+		() => 10,
+		p => {
+			const n0 = p._GetNode(0);
+			return () => n0.ExpInstVar();
+		},
 		() => 5,
 		p => {
 			const n0 = p._GetNode(0);
@@ -10345,22 +10443,25 @@ self.C3_ExpressionFuncs = [
 			return () => and((and(and(n0.ExpObject(), "|"), n1.ExpObject()) + "|"), n2.ExpObject());
 		},
 		() => "",
-		() => 10,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => n0.ExpInstVar();
-		},
 		() => 0.33,
 		() => 6,
 		() => "Multiplayer",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => v0.GetValue();
+		},
 		() => 2,
 		() => "Waiting",
 		() => "UI",
 		() => 1,
+		() => "countdown",
+		() => "waiting for question...",
+		() => "question",
 		() => "Join event",
 		() => 3,
 		() => "Start event",
 		() => "isStarted",
+		() => "waiting",
 		() => 4,
 		p => {
 			const n0 = p._GetNode(0);
@@ -10369,7 +10470,7 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => Math.floor(f0(15, 30));
+			return () => Math.floor(f0(10, 20));
 		},
 		() => 8,
 		p => {
@@ -10380,6 +10481,17 @@ self.C3_ExpressionFuncs = [
 			const f4 = p._GetNode(4).GetBoundMethod();
 			const f5 = p._GetNode(5).GetBoundMethod();
 			return () => and((and((and(((and(Math.floor(f0(n1.ExpObject())), "|") + f2()) + "|"), f3(360)) + "|"), f4(1, 5)) + "|"), f5(1, 5));
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => Math.floor(f0(5, 10));
+		},
+		() => 11,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			const f2 = p._GetNode(2).GetBoundMethod();
+			return () => and((and((f0() + "|"), f1(360)) + "|"), f2(1, 1.75));
 		},
 		() => "Spawn event",
 		p => {
@@ -10403,12 +10515,14 @@ self.C3_ExpressionFuncs = [
 		() => "Game",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
-			return () => v0.GetValue();
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
 			return () => and("Player", v0.GetValue());
 		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const v1 = p._GetNode(1).GetVar();
+			return () => f0(v1.GetValue(), "name");
+		},
+		() => "Name",
 		() => "move_player",
 		() => 0.05,
 		() => "rotate_player",
@@ -10448,26 +10562,105 @@ self.C3_ExpressionFuncs = [
 			const v1 = p._GetNode(1).GetVar();
 			return () => (n0.ExpObject() * v1.GetValue());
 		},
+		() => 9,
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => f0(f1(), 0, "|");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => f0(f1(), 2, "|");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => f0(f1(), 3, "|");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => ("Eliminate event " + f0());
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => (f0(f1(), "|") - 1);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			const n1 = p._GetNode(1);
+			return () => (n0.ExpObject() - n1.ExpObject());
+		},
+		() => "has winner",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			const f2 = p._GetNode(2).GetBoundMethod();
+			const f3 = p._GetNode(3).GetBoundMethod();
+			return () => f0(f1(f2(), f3(), "|"));
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => and("eliminating ", v0.GetValue());
+		},
+		() => "I Lose",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => ((and(v0.GetValue(), " players eliminated") + "\n") + "waiting for question...");
+		},
+		() => "no winner",
+		() => "no players eliminated\nwaiting for question...",
+		() => "TreeTops",
+		() => 12,
+		() => 13,
+		() => "use ammo box event",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const v1 = p._GetNode(1).GetVar();
+			const v2 = p._GetNode(2).GetVar();
+			return () => Math.floor(f0(v1.GetValue(), v2.GetValue()));
+		},
 		p => {
 			const n0 = p._GetNode(0);
 			const n1 = p._GetNode(1);
 			return () => and(and(n0.ExpInstVar(), "|"), (n1.ExpInstVar() - 1));
 		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => and(n0.ExpInstVar(), "|");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const v1 = p._GetNode(1).GetVar();
+			const v2 = p._GetNode(2).GetVar();
+			return () => f0(v1.GetValue(), v2.GetValue());
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => n0.ExpObject();
+		},
 		() => 800,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 5);
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 5);
-		},
+		() => 50,
+		() => 100,
 		() => "heatlh",
 		p => {
 			const n0 = p._GetNode(0);
 			return () => and("Health: ", n0.ExpInstVar());
 		},
+		() => "ammo",
+		p => {
+			const n0 = p._GetNode(0);
+			return () => and("Ammo: ", n0.ExpInstVar());
+		},
 		() => "Health: 0",
+		() => "Ammo",
+		() => "Ammo: 0",
+		p => {
+			const n0 = p._GetNode(0);
+			const n1 = p._GetNode(1);
+			return () => Math.floor((n0.ExpBehavior("countdown") - n1.ExpBehavior("countdown")));
+		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
@@ -10485,17 +10678,13 @@ self.C3_ExpressionFuncs = [
 			return () => f0(6);
 		},
 		() => "lobby",
+		() => "player_list",
 		() => "update player",
-		() => "List Players: ",
+		() => "Players: ",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => f0(f1());
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const v1 = p._GetNode(1).GetVar();
-			return () => f0(v1.GetValue(), "name");
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -10506,40 +10695,97 @@ self.C3_ExpressionFuncs = [
 		() => " (you)",
 		() => " (room master)",
 		() => " (you, room master)",
+		() => "start",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			const v1 = p._GetNode(1).GetVar();
+			const v2 = p._GetNode(2).GetVar();
+			const v3 = p._GetNode(3).GetVar();
+			const v4 = p._GetNode(4).GetVar();
+			return () => and((((((and((v0.GetValue() + "|"), v1.GetValue()) + "|") + v2.GetValue()) + "|") + v3.GetValue()) + "|"), v4.GetValue());
+		},
+		() => "ChoiceArea",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			const f2 = p._GetNode(2).GetBoundMethod();
+			const v3 = p._GetNode(3).GetVar();
+			const f4 = p._GetNode(4).GetBoundMethod();
+			return () => f0(f1(f2(v3.GetValue(), f4(), ","), 0, ":"));
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			const f2 = p._GetNode(2).GetBoundMethod();
+			const v3 = p._GetNode(3).GetVar();
+			const f4 = p._GetNode(4).GetBoundMethod();
+			return () => f0(f1(f2(v3.GetValue(), f4(), ","), 1, ":"));
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const v1 = p._GetNode(1).GetVar();
+			const f2 = p._GetNode(2).GetBoundMethod();
+			return () => f0(v1.GetValue(), f2(), ",");
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			const v2 = p._GetNode(2).GetVar();
+			const f3 = p._GetNode(3).GetBoundMethod();
+			return () => f0(f1(v2.GetValue(), f3(), ","));
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			const n1 = p._GetNode(1);
+			return () => (and(v0.GetValue(), n1.ExpObject()) + "|");
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => ("should eliminate " + v0.GetValue());
+		},
+		() => "ClickableClicked",
+		() => "room_code",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => ("Room Code: " + f0());
 		},
-		p => {
-			const n0 = p._GetNode(0);
-			return () => n0.ExpObject();
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0(0, "Name cannot be empty");
-		},
-		() => "Joining a random room",
-		() => "Creating a room",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => f0(1, "Room code cannot be empty");
-		},
-		() => "Joining a room",
+		() => "leave",
 		() => "Loading",
 		() => "font-size",
 		() => "1.5vw",
+		() => "message",
 		() => "name",
+		() => "join_random",
 		p => {
-			const n0 = p._GetNode(0);
-			const n1 = p._GetNode(1);
-			const f2 = p._GetNode(2).GetBoundMethod();
-			return () => ((((n0.ExpObject()) !== ("") ? 1 : 0)) ? (n1.ExpObject()) : (f2(4)));
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("name", "Name cannot be empty");
+		},
+		() => "Joining a random room",
+		() => "create_room",
+		() => "Creating a room",
+		() => "join_room",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("room_code", "Room code cannot be empty");
+		},
+		() => "Joining a room",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0(1, 5);
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => ("Error: " + f0());
 		},
-		() => "Disconnected"
+		() => "Disconnected",
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (0.9 * n0.ExpInstVar_Family());
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => n0.ExpInstVar_Family();
+		}
 ];
 
 
