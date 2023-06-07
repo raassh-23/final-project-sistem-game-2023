@@ -156,6 +156,26 @@
 			"sid": 610723311573881
 		},
 		{
+			"eventType": "variable",
+			"name": "ADD_AMMO_BOX_EVENT",
+			"type": "number",
+			"initialValue": "12",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 919895143648822
+		},
+		{
+			"eventType": "variable",
+			"name": "USE_AMMO_BOX_EVENT",
+			"type": "number",
+			"initialValue": "13",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 858280586110146
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},
@@ -266,6 +286,56 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 347934913345191
+		},
+		{
+			"eventType": "variable",
+			"name": "MIN_AMMO_SPAWN_TIME",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 680166188868288
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_AMMO_SPAWN_TIME",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 948942518047077
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_AMMO_BOX",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 318277110252498
+		},
+		{
+			"eventType": "variable",
+			"name": "MIN_DELTA_AMMO",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 318116691769633
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_DELTA_AMMO",
+			"type": "number",
+			"initialValue": "15",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 132193941831328
 		},
 		{
 			"eventType": "comment",

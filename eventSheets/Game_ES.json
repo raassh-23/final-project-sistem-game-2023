@@ -790,6 +790,11 @@
 						},
 						{
 							"id": "destroy",
+							"objectClass": "AmmoBox",
+							"sid": 318888560764273
+						},
+						{
+							"id": "destroy",
 							"objectClass": "Bullet",
 							"sid": 763806720803367
 						},
@@ -1632,11 +1637,29 @@
 									"parameters": {
 										"angle": "newAngle"
 									}
-								},
+								}
+							],
+							"sid": 539453537712997
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Player",
+									"sid": 703995856650793,
+									"parameters": {
+										"instance-variable": "ammo",
+										"comparison": 4,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
 								{
 									"id": "spawn-another-object",
 									"objectClass": "Player",
-									"sid": 392386332942936,
+									"sid": 153293250339546,
 									"parameters": {
 										"object": "Bullet",
 										"layer": "\"Game\"",
@@ -1647,14 +1670,23 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "Bullet",
-									"sid": 498582786521049,
+									"sid": 497987890390406,
 									"parameters": {
 										"instance-variable": "shotBy",
 										"value": "Photon.ActorNr"
 									}
+								},
+								{
+									"id": "subtract-from-instvar",
+									"objectClass": "Player",
+									"sid": 766105961491267,
+									"parameters": {
+										"instance-variable": "ammo",
+										"value": "1"
+									}
 								}
 							],
-							"sid": 539453537712997
+							"sid": 223531080855680
 						}
 					]
 				},
@@ -2420,15 +2452,6 @@
 							"conditions": [],
 							"actions": [
 								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 778507009732879,
-									"parameters": {
-										"type": "log",
-										"message": "Photon.EventData"
-									}
-								},
-								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
 									"sid": 910472057593940,
@@ -2462,15 +2485,6 @@
 									"parameters": {
 										"variable": "scale",
 										"value": "float(tokenat(Photon.EventData, 3, \"|\"))"
-									}
-								},
-								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 354605484175507,
-									"parameters": {
-										"type": "log",
-										"message": "x & \" \" & y & \" \" & treeAngle & \" \" & treeAngle"
 									}
 								},
 								{
@@ -2512,6 +2526,225 @@
 								}
 							],
 							"sid": 397686797606644
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 856294369533442,
+							"parameters": {
+								"code0": "ADD_AMMO_BOX_EVENT"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 972331171387175,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 355775780744037
+						},
+						{
+							"eventType": "variable",
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 514373353715037
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 745314241433663,
+									"parameters": {
+										"variable": "x",
+										"value": "float(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 438860742430611,
+									"parameters": {
+										"variable": "y",
+										"value": "float(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 371610923986128,
+									"parameters": {
+										"object-to-create": "AmmoBox",
+										"layer": "\"Game\"",
+										"x": "x",
+										"y": "y",
+										"create-hierarchy": true,
+										"template-name": "\"\""
+									}
+								}
+							],
+							"sid": 449570728444120,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "AmmoBox",
+											"sid": 499652674705596,
+											"parameters": {
+												"object": "Obstacle"
+											}
+										},
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "AmmoBox",
+											"sid": 245366305721462,
+											"parameters": {
+												"object": "TreeTrunk"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "AmmoBox",
+											"sid": 376771322001815
+										}
+									],
+									"sid": 990433962975485,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 266939936907166,
+													"parameters": {
+														"value": "Functions.isRoomMaster"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "raiseevent17",
+													"objectClass": "Photon",
+													"sid": 408087749775366,
+													"parameters": {
+														"code0": "ADD_AMMO_BOX_EVENT",
+														"data1": "Functions.getRandomPosition",
+														"interestgroup2": "0",
+														"cache11": "donotcache",
+														"receivers15": "all",
+														"targetactors16": "\"\"",
+														"webforward19": "no"
+													}
+												}
+											],
+											"sid": 683336264655988
+										}
+									],
+									"isOrBlock": true
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 302212142941904,
+							"parameters": {
+								"code0": "USE_AMMO_BOX_EVENT"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 603636135754706,
+							"parameters": {
+								"type": "log",
+								"message": "\"use ammo box event\""
+							}
+						}
+					],
+					"sid": 431243936381675,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "nr",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 980070625071456
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 810159228914470,
+									"parameters": {
+										"variable": "nr",
+										"value": "int(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								}
+							],
+							"sid": 735907088931474
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Player",
+									"sid": 891642717491349,
+									"parameters": {
+										"instance-variable": "actorNr",
+										"comparison": 0,
+										"value": "nr"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-instvar",
+									"objectClass": "Player",
+									"sid": 108547294217858,
+									"parameters": {
+										"instance-variable": "ammo",
+										"value": "floor(random(MIN_DELTA_AMMO, MAX_DELTA_AMMO))"
+									}
+								}
+							],
+							"sid": 526270655103589
 						}
 					]
 				}
@@ -2585,6 +2818,36 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "AmmoBox",
+							"sid": 751447062081967,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 625335187855256,
+							"parameters": {
+								"code0": "USE_AMMO_BOX_EVENT",
+								"data1": "Player.actorNr & \"|\"",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 983694585502679
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-timer",
 							"objectClass": "TimeManager",
 							"sid": 422535838069666,
@@ -2622,6 +2885,46 @@
 						}
 					],
 					"sid": 781983128739026
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 947377928579188,
+							"parameters": {
+								"interval-seconds": "random(MIN_AMMO_SPAWN_TIME, MAX_AMMO_SPAWN_TIME)"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 177802136662281,
+							"parameters": {
+								"first-value": "AmmoBox.Count",
+								"comparison": 2,
+								"second-value": "MAX_AMMO_BOX"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 725152105494928,
+							"parameters": {
+								"code0": "ADD_AMMO_BOX_EVENT",
+								"data1": "Functions.getRandomPosition",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 513257455813380
 				}
 			]
 		},
@@ -2676,6 +2979,27 @@
 				}
 			],
 			"sid": 684424086364947
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "AmmoBox",
+					"sid": 263456848166310,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "AmmoBox",
+					"sid": 797806999767537
+				}
+			],
+			"sid": 785863250686642
 		},
 		{
 			"eventType": "block",
@@ -2878,6 +3202,32 @@
 						}
 					],
 					"sid": 923803175320892
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 260795732536973,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"ammo\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 481222304488335,
+							"parameters": {
+								"text": "\"Ammo: \" & Player.ammo"
+							}
+						}
+					],
+					"sid": 168167941112859
 				}
 			]
 		},
@@ -2918,6 +3268,32 @@
 						}
 					],
 					"sid": 522001736943960
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 116164377593285,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"Ammo\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 810841181368537,
+							"parameters": {
+								"text": "\"Ammo: \" & 0"
+							}
+						}
+					],
+					"sid": 195233376959837
 				}
 			]
 		},

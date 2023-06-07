@@ -405,6 +405,31 @@
 					"sid": 722521339211224
 				}
 			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 613622621449401,
+					"parameters": {
+						"interval-seconds": "random(1, 5)"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "log",
+					"objectClass": "Browser",
+					"sid": 864329676205853,
+					"parameters": {
+						"type": "log",
+						"message": "time"
+					}
+				}
+			],
+			"sid": 201640348295348
 		}
 	],
 	"sid": 750548703589974

@@ -91,7 +91,8 @@
 					"uid": 3,
 					"instanceVariables": {
 						"actorNr": 0,
-						"health": 5
+						"health": 5,
+						"ammo": 30
 					},
 					"behaviors": {
 						"8Direction": {
@@ -704,6 +705,35 @@
 						"angle": 0,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "AmmoBox",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 38,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 378.5503640744091,
+						"y": 384.47359342774246,
+						"width": 32,
+						"height": 27.5,
+						"originX": 0.5,
+						"originY": 0.4223300970873786,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 222535368166016,
@@ -1153,6 +1183,58 @@
 						"y": 130,
 						"width": 985,
 						"height": 77,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "SpriteFontUI",
+					"properties": {
+						"text": "Ammo",
+						"enable-bbcode": true,
+						"character-width": 16,
+						"character-height": 16,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
+						"spacing-data": "",
+						"scale": 1.5,
+						"character-spacing": 0,
+						"line-height": 0,
+						"horizontal-alignment": "right",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "center",
+						"read-aloud": false
+					},
+					"uid": 37,
+					"instanceVariables": {
+						"id": "ammo"
+					},
+					"behaviors": {
+						"Fade": {
+							"properties": {
+								"fade-in-time": 0,
+								"wait-time": 0,
+								"fade-out-time": 1,
+								"destroy": false,
+								"enabled": false,
+								"live-preview": false
+							}
+						}
+					},
+					"world": {
+						"x": 920,
+						"y": 489,
+						"width": 692,
+						"height": 36,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

@@ -17,6 +17,13 @@
 			"desc": "",
 			"show": true,
 			"sid": 785591527530673
+		},
+		{
+			"name": "ammo",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 902348920645355
 		}
 	],
 	"behaviorTypes": [

@@ -141,7 +141,8 @@
 			"TimeManager",
 			"EliminatedPlayers",
 			"TreeTrunk",
-			"TreeTop"
+			"TreeTop",
+			"AmmoBox"
 		],
 		"subfolders": []
 	},

@@ -1,43 +1,29 @@
 {
-	"name": "Bullet",
+	"name": "AmmoBox",
 	"plugin-id": "Sprite",
-	"sid": 810059738691364,
+	"sid": 968944721051196,
 	"isGlobal": false,
-	"instanceVariables": [
-		{
-			"name": "shotBy",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 133152591139485
-		}
-	],
-	"behaviorTypes": [
-		{
-			"behaviorId": "Bullet",
-			"name": "Bullet",
-			"sid": 265090612883116
-		}
-	],
+	"instanceVariables": [],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
 			{
 				"frames": [
 					{
-						"width": 16,
-						"height": 8,
+						"width": 64,
+						"height": 55,
 						"originX": 0.5,
-						"originY": 0.5,
+						"originY": 0.4223300970873786,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 5652448,
+						"imageSpriteId": 1205815,
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 179820532914458,
+				"sid": 469781857346367,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
