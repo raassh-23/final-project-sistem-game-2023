@@ -1,7 +1,7 @@
 {
 	"projectFormatVersion": 1,
 	"savedWithRelease": 34500,
-	"name": "New project",
+	"name": "Arithmetic Rumble",
 	"runtime": "c3",
 	"useWorker": "auto",
 	"bundleAddons": false,
@@ -282,12 +282,12 @@
 		]
 	},
 	"properties": {
-		"description": "",
+		"description": "Battle Royale and Arithmetic Quiz",
 		"version": "1.0.0.0",
 		"author": "RushHourDream",
 		"authorEmail": "",
 		"authorWebsite": "",
-		"appId": "",
+		"appId": "com.rushhourdream.arithmeticrumble",
 		"pixelRounding": false,
 		"zAxisScale": "normalized",
 		"fov": 0.7853981633974483,
