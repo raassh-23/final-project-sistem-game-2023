@@ -41,9 +41,9 @@
 				{
 					"id": "set-function-return-value",
 					"objectClass": "Functions",
-					"sid": 171425767533939,
+					"sid": 651732406233533,
 					"parameters": {
-						"value": "random(100, LayoutWidth-100) & \"|\" & random(100, LayoutHeight-100)"
+						"value": "random(LayoutWidth) & \"|\" & random(LayoutHeight)"
 					}
 				}
 			],

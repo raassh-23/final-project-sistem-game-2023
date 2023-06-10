@@ -40,7 +40,33 @@
 					}
 				}
 			],
-			"sid": 613150423103462
+			"sid": 613150423103462,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 188013664820371,
+							"parameters": {
+								"value": "Functions.isRoomMaster"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "setmyroomisopen106",
+							"objectClass": "Photon",
+							"sid": 196353781486714,
+							"parameters": {
+								"isopen2": "yes"
+							}
+						}
+					],
+					"sid": 217613622925451
+				}
+			]
 		},
 		{
 			"eventType": "block",

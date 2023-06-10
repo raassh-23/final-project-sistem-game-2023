@@ -1230,9 +1230,9 @@
 										{
 											"id": "repeat",
 											"objectClass": "System",
-											"sid": 477186735016222,
+											"sid": 253809055613406,
 											"parameters": {
-												"count": "floor(random(5, 10))"
+												"count": "floor(random(5, 15))"
 											}
 										}
 									],
