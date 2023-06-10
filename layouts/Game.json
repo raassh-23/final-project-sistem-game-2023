@@ -1646,7 +1646,7 @@
 					},
 					"world": {
 						"x": 640,
-						"y": 138,
+						"y": 71,
 						"width": 732.0526582622479,
 						"height": 173,
 						"originX": 0.5,
@@ -1682,7 +1682,7 @@
 					"behaviors": {},
 					"world": {
 						"x": 640,
-						"y": 539,
+						"y": 472,
 						"width": 335.9821423825975,
 						"height": 83.99553559564937,
 						"originX": 0.5,
@@ -1761,8 +1761,8 @@
 						}
 					},
 					"world": {
-						"x": 639.796561370177,
-						"y": 226.5299920415937,
+						"x": 640,
+						"y": 160,
 						"width": 732.0526582622479,
 						"height": 82.05907387729906,
 						"originX": 0.5,
@@ -1842,7 +1842,7 @@
 					},
 					"world": {
 						"x": 640,
-						"y": 310,
+						"y": 243,
 						"width": 732.0526582622479,
 						"height": 82.05907387729906,
 						"originX": 0.5,
@@ -1922,7 +1922,7 @@
 					},
 					"world": {
 						"x": 640,
-						"y": 392,
+						"y": 325,
 						"width": 732.0526582622479,
 						"height": 82.05907387729906,
 						"originX": 0.5,
@@ -1934,6 +1934,42 @@
 							1
 						],
 						"angle": 6.278711209164046,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "Button",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 3,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 46,
+					"instanceVariables": {
+						"initialWidth": 0,
+						"initialHeight": 0,
+						"isPressed": false,
+						"clickable": false,
+						"isDisabled": false,
+						"id": "leave"
+					},
+					"behaviors": {},
+					"world": {
+						"x": 640,
+						"y": 613,
+						"width": 335.9821423825975,
+						"height": 83.99553559564937,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
 						"zElevation": 0
 					}
 				}
@@ -2050,6 +2086,42 @@
 						"angle": 6.278711209164046,
 						"zElevation": 0
 					}
+				},
+				{
+					"type": "Button",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 3,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 47,
+					"instanceVariables": {
+						"initialWidth": 0,
+						"initialHeight": 0,
+						"isPressed": false,
+						"clickable": false,
+						"isDisabled": false,
+						"id": "leave"
+					},
+					"behaviors": {},
+					"world": {
+						"x": 640,
+						"y": 615,
+						"width": 335.9821423825975,
+						"height": 83.99553559564937,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
 				}
 			],
 			"sid": 571026699403390,
@@ -2084,7 +2156,7 @@
 	"sid": 785519553583377,
 	"nonworld-instances": [
 		{
-			"type": "JoinedPlayers",
+			"type": "ActivePlayers",
 			"properties": {
 				"width": 10,
 				"height": 1,

@@ -136,7 +136,7 @@
 			"Blank",
 			"Bullet",
 			"Obstacle",
-			"JoinedPlayers",
+			"ActivePlayers",
 			"Choice",
 			"TimeManager",
 			"EliminatedPlayers",

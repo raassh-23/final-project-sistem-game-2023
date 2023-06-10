@@ -971,7 +971,7 @@
 						},
 						{
 							"id": "push",
-							"objectClass": "JoinedPlayers",
+							"objectClass": "ActivePlayers",
 							"sid": 898453832046044,
 							"parameters": {
 								"where": "back",
@@ -1137,7 +1137,7 @@
 									"conditions": [
 										{
 											"id": "for-each-element",
-											"objectClass": "JoinedPlayers",
+											"objectClass": "ActivePlayers",
 											"sid": 227682711811532,
 											"parameters": {
 												"axes": "x"
@@ -1151,7 +1151,7 @@
 											"sid": 964122196768874,
 											"parameters": {
 												"code0": "SPAWN_PLAYER_EVENT",
-												"data1": "JoinedPlayers.CurValue & \"|\" & Functions.getRandomPosition",
+												"data1": "ActivePlayers.CurValue & \"|\" & Functions.getRandomPosition",
 												"interestgroup2": "0",
 												"cache11": "donotcache",
 												"receivers15": "all",
@@ -2239,7 +2239,7 @@
 									"parameters": {
 										"variable": "eliminatedCount",
 										"comparison": 2,
-										"value": "JoinedPlayers.Width"
+										"value": "ActivePlayers.Width"
 									}
 								}
 							],
@@ -2289,91 +2289,14 @@
 											}
 										},
 										{
-											"id": "log",
-											"objectClass": "Browser",
-											"sid": 258460673145015,
-											"parameters": {
-												"type": "log",
-												"message": "\"eliminating \" & nr"
-											}
-										},
-										{
-											"id": "push",
-											"objectClass": "EliminatedPlayers",
-											"sid": 150459564504203,
-											"parameters": {
-												"where": "back",
-												"value": "nr",
-												"axis": "x"
-											}
-										},
-										{
-											"id": "delete",
-											"objectClass": "JoinedPlayers",
-											"sid": 343729361309192,
-											"parameters": {
-												"index": "JoinedPlayers.IndexOf(nr)",
-												"axis": "x"
-											}
+											"callFunction": "EliminatePlayer",
+											"sid": 695751623476990,
+											"parameters": [
+												"nr"
+											]
 										}
 									],
-									"sid": 504034487009616,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-instance-variable",
-													"objectClass": "Player",
-													"sid": 879410161083086,
-													"parameters": {
-														"instance-variable": "actorNr",
-														"comparison": 0,
-														"value": "nr"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "destroy",
-													"objectClass": "Player",
-													"sid": 832202972457882
-												}
-											],
-											"sid": 506770887261161
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-eventvar",
-													"objectClass": "System",
-													"sid": 235650264364705,
-													"parameters": {
-														"variable": "nr",
-														"comparison": 0,
-														"value": "Photon.MyActorNr"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-boolean-eventvar",
-													"objectClass": "System",
-													"sid": 706005241163941,
-													"parameters": {
-														"variable": "isLost",
-														"value": "true"
-													}
-												},
-												{
-													"callFunction": "ShowLoseScreen",
-													"sid": 819936063621939
-												}
-											],
-											"sid": 109370833651271
-										}
-									]
+									"sid": 504034487009616
 								},
 								{
 									"eventType": "block",
@@ -2858,6 +2781,44 @@
 							"sid": 526270655103589
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onactorleave16",
+							"objectClass": "Photon",
+							"sid": 987543738000831
+						}
+					],
+					"actions": [],
+					"sid": 929126531662547,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "contains-value",
+									"objectClass": "ActivePlayers",
+									"sid": 105469288725635,
+									"parameters": {
+										"value": "Photon.ActorNr"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "EliminatePlayer",
+									"sid": 188741317799848,
+									"parameters": [
+										"Photon.ActorNr"
+									]
+								}
+							],
+							"sid": 934944129756158
+						}
+					],
+					"isOrBlock": true
 				}
 			],
 			"sid": 371752309851478
@@ -3052,7 +3013,7 @@
 				},
 				{
 					"id": "set-size",
-					"objectClass": "JoinedPlayers",
+					"objectClass": "ActivePlayers",
 					"sid": 873809485333284,
 					"parameters": {
 						"width": "0",
@@ -3306,7 +3267,7 @@
 					"conditions": [
 						{
 							"id": "compare-size",
-							"objectClass": "JoinedPlayers",
+							"objectClass": "ActivePlayers",
 							"sid": 211365360725255,
 							"parameters": {
 								"axis": "x",
@@ -3322,7 +3283,7 @@
 							"sid": 611214453426759,
 							"parameters": {
 								"type": "log",
-								"message": "JoinedPlayers.Front & \" won\""
+								"message": "ActivePlayers.Front & \" won\""
 							}
 						}
 					],
@@ -3869,6 +3830,29 @@
 						}
 					],
 					"sid": 189988868140104
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Clickable",
+							"sid": 555539747272410,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"leave\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "leaveroom16",
+							"objectClass": "Photon",
+							"sid": 878889639070030
+						}
+					],
+					"sid": 759172717554873
 				}
 			]
 		},
