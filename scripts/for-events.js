@@ -125,7 +125,7 @@ function getOperator(
     );
 
     // Prevent consecutive use of ^ and / operators and the use of / after a prime number
-    // because they can make the expression not ineteresting, too large, or non-integer
+    // because they can make the expression not interesting, too large, or non-integer
     let prevOperator = expressionTokens[expressionTokens.length - 2] ?? "";
     let prevNumber = expressionTokens[expressionTokens.length - 1];
     if (prevOperator === "^" || prevOperator === "/" || prevNumber > maxExpBase) {
