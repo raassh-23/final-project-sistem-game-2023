@@ -767,7 +767,7 @@
 		{
 			"eventType": "group",
 			"disabled": false,
-			"title": "Pan",
+			"title": "Spectating",
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
@@ -927,6 +927,58 @@
 						}
 					],
 					"sid": 622127156869317
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 940173633411369,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"spectating-winner\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 516697873165486,
+							"parameters": {
+								"text": "ActivePlayers.Width = 1 ? \"Winner: \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\") : \"\""
+							}
+						}
+					],
+					"sid": 951681011498009
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 761284265253026,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"spectate-title\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 563467688454580,
+							"parameters": {
+								"text": "ActivePlayers.Width = 1 ? \"Game over\" : \"Spectating\""
+							}
+						}
+					],
+					"sid": 972592641864548
 				}
 			],
 			"sid": 759148459072924
@@ -2845,9 +2897,9 @@
 				{
 					"id": "set-group-active",
 					"objectClass": "System",
-					"sid": 109841152839288,
+					"sid": 609084487249439,
 					"parameters": {
-						"group-name": "\"Pan\"",
+						"group-name": "\"Spectating\"",
 						"state": "deactivated"
 					}
 				},
@@ -2990,6 +3042,24 @@
 					"sid": 725603093592797,
 					"parameters": {
 						"layer": "\"Lost\"",
+						"interactive": false
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 151578778788462,
+					"parameters": {
+						"layer": "\"Won\"",
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 217747938193251,
+					"parameters": {
+						"layer": "\"Won\"",
 						"interactive": false
 					}
 				},
@@ -3261,33 +3331,68 @@
 						}
 					],
 					"sid": 513257455813380
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 342919698396822,
+					"parameters": {
+						"variable": "gameRunning"
+					}
 				},
+				{
+					"id": "compare-size",
+					"objectClass": "ActivePlayers",
+					"sid": 861390929939171,
+					"parameters": {
+						"axis": "x",
+						"comparison": 0,
+						"value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 552798917918894,
+					"parameters": {
+						"variable": "gameRunning",
+						"value": "false"
+					}
+				}
+			],
+			"sid": 562107528735348,
+			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-size",
+							"id": "compare-at-x",
 							"objectClass": "ActivePlayers",
-							"sid": 211365360725255,
+							"sid": 461359959897870,
 							"parameters": {
-								"axis": "x",
+								"x": "0",
 								"comparison": 0,
-								"value": "1"
+								"value": "Photon.MyActorNr"
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "log",
-							"objectClass": "Browser",
-							"sid": 611214453426759,
-							"parameters": {
-								"type": "log",
-								"message": "ActivePlayers.Front & \" won\""
-							}
+							"callFunction": "ShowGameOverScreen",
+							"sid": 764371761122660,
+							"parameters": [
+								true
+							]
 						}
 					],
-					"sid": 548199946186988
+					"sid": 403118954597523
 				}
 			]
 		},
@@ -3822,9 +3927,9 @@
 						{
 							"id": "set-group-active",
 							"objectClass": "System",
-							"sid": 955103667329313,
+							"sid": 333690992865507,
 							"parameters": {
-								"group-name": "\"Pan\"",
+								"group-name": "\"Spectating\"",
 								"state": "activated"
 							}
 						}
@@ -3847,6 +3952,15 @@
 					],
 					"actions": [
 						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 502732854762318,
+							"parameters": {
+								"variable": "message",
+								"value": "\"Leave\""
+							}
+						},
+						{
 							"id": "leaveroom16",
 							"objectClass": "Photon",
 							"sid": 878889639070030
@@ -3857,34 +3971,24 @@
 			]
 		},
 		{
-			"functionName": "ShowLoseScreen",
+			"functionName": "ShowGameOverScreen",
 			"functionDescription": "",
 			"functionCategory": "",
 			"functionReturnType": "none",
 			"functionCopyPicked": false,
 			"functionIsAsync": false,
-			"functionParameters": [],
+			"functionParameters": [
+				{
+					"name": "win",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "",
+					"sid": 303590827047072
+				}
+			],
 			"eventType": "function-block",
 			"conditions": [],
 			"actions": [
-				{
-					"id": "set-layer-visible",
-					"objectClass": "System",
-					"sid": 517669604981659,
-					"parameters": {
-						"layer": "\"Lost\"",
-						"visibility": "visible"
-					}
-				},
-				{
-					"id": "set-layer-interactive",
-					"objectClass": "System",
-					"sid": 493727993205091,
-					"parameters": {
-						"layer": "\"Lost\"",
-						"interactive": true
-					}
-				},
 				{
 					"id": "set-layer-visible",
 					"objectClass": "System",
@@ -3901,6 +4005,24 @@
 					"parameters": {
 						"layer": "\"UI\"",
 						"interactive": false
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 309927744228554,
+					"parameters": {
+						"layer": "win ? \"Won\" : \"Lost\"",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 304416537912096,
+					"parameters": {
+						"layer": "win ? \"Won\" : \"Lost\"",
+						"interactive": true
 					}
 				}
 			],
@@ -3924,9 +4046,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 627471296289567,
+							"sid": 206288395270199,
 							"parameters": {
-								"text": "\"Ranked #\" & joinedPlayer - EliminatedPlayers.IndexOf(Photon.MyActorNr) & \"/\" & joinedPlayer "
+								"text": "\"Ranked #\" & (win ? 1 : joinedPlayer - EliminatedPlayers.IndexOf(Photon.MyActorNr)) & \"/\" & joinedPlayer "
 							}
 						}
 					],

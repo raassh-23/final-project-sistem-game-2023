@@ -57,18 +57,60 @@
 					"parameters": {
 						"layout": "Menu"
 					}
-				},
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 677832376400659,
-					"parameters": {
-						"variable": "message",
-						"value": "\"Disconnected\""
-					}
 				}
 			],
-			"sid": 840663895601246
+			"sid": 840663895601246,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 402902627904431,
+							"parameters": {
+								"variable": "message",
+								"comparison": 0,
+								"value": "\"Leave\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 250967683874718,
+							"parameters": {
+								"variable": "message",
+								"value": "\"\""
+							}
+						}
+					],
+					"sid": 710267063269896
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 679881053069056
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 222501225705193,
+							"parameters": {
+								"variable": "message",
+								"value": "\"Disconnected\""
+							}
+						}
+					],
+					"sid": 559984818199226
+				}
+			]
 		},
 		{
 			"eventType": "variable",

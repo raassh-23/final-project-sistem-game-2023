@@ -1005,8 +1005,11 @@
 							}
 						},
 						{
-							"callFunction": "ShowLoseScreen",
-							"sid": 819936063621939
+							"callFunction": "ShowGameOverScreen",
+							"sid": 819936063621939,
+							"parameters": [
+								false
+							]
 						}
 					],
 					"sid": 109370833651271
