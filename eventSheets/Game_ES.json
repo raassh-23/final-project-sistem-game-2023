@@ -17,26 +17,6 @@
 		},
 		{
 			"eventType": "variable",
-			"name": "choiceSize",
-			"type": "number",
-			"initialValue": "512",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 792920891550539
-		},
-		{
-			"eventType": "variable",
-			"name": "countdownDuration",
-			"type": "number",
-			"initialValue": "30",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 703103122257914
-		},
-		{
-			"eventType": "variable",
 			"name": "joinedPlayer",
 			"type": "number",
 			"initialValue": "0",
@@ -2192,17 +2172,6 @@
 							}
 						},
 						{
-							"id": "start-timer",
-							"objectClass": "TimeManager",
-							"sid": 930929267007791,
-							"behaviorType": "Timer",
-							"parameters": {
-								"duration": "float(tokenat(Photon.EventData, 4, \"|\"))",
-								"type": "once",
-								"tag": "COUNTDOWN_TAG"
-							}
-						},
-						{
 							"callFunction": "ShowQuestion",
 							"sid": 924271220727531
 						}
@@ -2915,10 +2884,10 @@
 				{
 					"id": "set-eventvar-value",
 					"objectClass": "System",
-					"sid": 843353625844217,
+					"sid": 813618693794505,
 					"parameters": {
-						"variable": "choiceSize",
-						"value": "INIT_CHOICE_SIZE"
+						"variable": "currentQuestion",
+						"value": "0"
 					}
 				},
 				{
@@ -2937,15 +2906,6 @@
 					"parameters": {
 						"variable": "answered",
 						"value": "0"
-					}
-				},
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 521890361107998,
-					"parameters": {
-						"variable": "countdownDuration",
-						"value": "INIT_COUNTDOWN_DURATION"
 					}
 				},
 				{

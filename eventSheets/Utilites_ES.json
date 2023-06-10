@@ -690,7 +690,7 @@
 			"actions": [
 				{
 					"type": "script",
-					"script": "const [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst choicePositions = generateChoicePositions(width, height, 512);\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");"
+					"script": "const [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconst multiplier = runtime.callFunction(\"GetMultiplier\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");"
 				},
 				{
 					"id": "wait-for-previous-actions",
@@ -700,10 +700,10 @@
 				{
 					"id": "raiseevent17",
 					"objectClass": "Photon",
-					"sid": 175457247020727,
+					"sid": 962875553643542,
 					"parameters": {
 						"code0": "SHOW_QUESTION_EVENT",
-						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition & \"|\" & countdownDuration",
+						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition",
 						"interestgroup2": "0",
 						"cache11": "donotcache",
 						"receivers15": "all",
@@ -726,6 +726,15 @@
 			"conditions": [],
 			"actions": [
 				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 737710378630127,
+					"parameters": {
+						"variable": "currentQuestion",
+						"value": "1"
+					}
+				},
+				{
 					"id": "destroy",
 					"objectClass": "Choice",
 					"sid": 422860508534526
@@ -733,6 +742,62 @@
 			],
 			"sid": 258035558091086,
 			"children": [
+				{
+					"eventType": "variable",
+					"name": "multiplier",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 689709221921434
+				},
+				{
+					"eventType": "variable",
+					"name": "choiceSize",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 161597531836301
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 841190864756629,
+							"parameters": {
+								"variable": "multiplier",
+								"value": "Functions.GetMultiplier(currentQuestion)"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 377483835454484,
+							"parameters": {
+								"variable": "choiceSize",
+								"value": "MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE)"
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "TimeManager",
+							"sid": 998973143603890,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "round(MAX_COUNTDOWN_DURATION - multiplier * (MAX_COUNTDOWN_DURATION - MIN_COUNTDOWN_DURATION))",
+								"type": "once",
+								"tag": "COUNTDOWN_TAG"
+							}
+						}
+					],
+					"sid": 274870722360712
+				},
 				{
 					"eventType": "block",
 					"conditions": [
@@ -799,6 +864,15 @@
 							"sid": 232318705880272,
 							"parameters": {
 								"text": "tokenat(Choices, loopindex, \",\")"
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "Choice",
+							"sid": 989295495163071,
+							"parameters": {
+								"width": "choiceSize",
+								"height": "choiceSize"
 							}
 						}
 					],
@@ -1113,6 +1187,36 @@
 					"sid": 109370833651271
 				}
 			]
+		},
+		{
+			"functionName": "GetMultiplier",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "x",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 972474092411753
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 953154382248056,
+					"parameters": {
+						"value": "clamp(0.75 * log10(x), 0, 1)"
+					}
+				}
+			],
+			"sid": 885638949940821
 		}
 	],
 	"sid": 390058048203286
