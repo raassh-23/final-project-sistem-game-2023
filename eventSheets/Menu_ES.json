@@ -200,6 +200,18 @@
 			],
 			"actions": [
 				{
+					"type": "comment",
+					"text": "add wait here because photon wont update properties correctly without it"
+				},
+				{
+					"id": "wait",
+					"objectClass": "System",
+					"sid": 681435573464522,
+					"parameters": {
+						"seconds": "0.1"
+					}
+				},
+				{
 					"id": "setpropertyofactorbynr102",
 					"objectClass": "Photon",
 					"sid": 296271205374192,
@@ -273,6 +285,14 @@
 							"parameters": {
 								"value": "Functions.isTextInputEmpty(\"name\", \"Name cannot be empty\")"
 							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 404864557618181,
+							"parameters": {
+								"value": "Functions.isTextInputValidText(\"name\", \"Name can only contain latin alphabets and number\")"
+							}
 						}
 					],
 					"actions": [
@@ -320,6 +340,14 @@
 							"parameters": {
 								"value": "Functions.isTextInputEmpty(\"name\", \"Name cannot be empty\")"
 							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 668986846011681,
+							"parameters": {
+								"value": "Functions.isTextInputValidText(\"name\", \"Name can only contain latin alphabets and number\")"
+							}
 						}
 					],
 					"actions": [
@@ -358,6 +386,14 @@
 							"sid": 353312690601744,
 							"parameters": {
 								"value": "Functions.isTextInputEmpty(\"name\", \"Name cannot be empty\")"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 328131281962038,
+							"parameters": {
+								"value": "Functions.isTextInputValidText(\"name\", \"Name can only contain latin alphabets and number\")"
 							}
 						},
 						{
@@ -405,31 +441,6 @@
 					"sid": 722521339211224
 				}
 			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-x-seconds",
-					"objectClass": "System",
-					"sid": 613622621449401,
-					"parameters": {
-						"interval-seconds": "random(1, 5)"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "log",
-					"objectClass": "Browser",
-					"sid": 864329676205853,
-					"parameters": {
-						"type": "log",
-						"message": "time"
-					}
-				}
-			],
-			"sid": 201640348295348
 		},
 		{
 			"eventType": "block",

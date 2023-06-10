@@ -181,17 +181,18 @@
 					],
 					"actions": [
 						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 757814772908045,
+							"parameters": {
+								"variable": "message",
+								"value": "\"Leave\""
+							}
+						},
+						{
 							"id": "leaveroom16",
 							"objectClass": "Photon",
 							"sid": 572133944969899
-						},
-						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 238658705629974,
-							"parameters": {
-								"layout": "Menu"
-							}
 						}
 					],
 					"sid": 941349738206026

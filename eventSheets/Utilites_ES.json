@@ -167,14 +167,14 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-text",
-							"objectClass": "TextInput",
-							"sid": 836757201087877,
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 882795589354375,
 							"parameters": {
-								"text": "\"\"",
-								"case": "case-insensitive"
-							},
-							"isInverted": true
+								"first-value": "trim(TextInput.Text)",
+								"comparison": 1,
+								"second-value": "\"\""
+							}
 						}
 					],
 					"actions": [
@@ -210,6 +210,104 @@
 						}
 					],
 					"sid": 118944749400838
+				}
+			]
+		},
+		{
+			"functionName": "isTextInputValidText",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "id",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 665237150118199
+				},
+				{
+					"name": "errorMsg",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 474980762149330
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "TextInput",
+					"sid": 563977992962541,
+					"parameters": {
+						"instance-variable": "id",
+						"comparison": 0,
+						"value": "id"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 447910399725210,
+					"parameters": {
+						"value": "0"
+					}
+				}
+			],
+			"sid": 465661519133942,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 330630679892899,
+							"parameters": {
+								"first-value": "RegexMatchCount(TextInput.Text, \"^[a-z0-9]+$\", \"i\")",
+								"comparison": 0,
+								"second-value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 409268517804482,
+							"parameters": {
+								"value": "1"
+							}
+						}
+					],
+					"sid": 999279735356126
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 474387914405683
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 277661125184276,
+							"parameters": {
+								"variable": "message",
+								"value": "errorMsg"
+							}
+						}
+					],
+					"sid": 681598960183353
 				}
 			]
 		},
