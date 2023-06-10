@@ -66,6 +66,26 @@
 			"sid": 547346207234339
 		},
 		{
+			"eventType": "variable",
+			"name": "kill",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 987827274275106
+		},
+		{
+			"eventType": "variable",
+			"name": "answered",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 827036037109704
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Control",
@@ -2280,9 +2300,9 @@
 										{
 											"id": "push",
 											"objectClass": "EliminatedPlayers",
-											"sid": 506077495339132,
+											"sid": 150459564504203,
 											"parameters": {
-												"where": "front",
+												"where": "back",
 												"value": "nr",
 												"axis": "x"
 											}
@@ -2347,40 +2367,8 @@
 													}
 												},
 												{
-													"id": "set-layer-visible",
-													"objectClass": "System",
-													"sid": 517669604981659,
-													"parameters": {
-														"layer": "\"Lost\"",
-														"visibility": "visible"
-													}
-												},
-												{
-													"id": "set-layer-interactive",
-													"objectClass": "System",
-													"sid": 493727993205091,
-													"parameters": {
-														"layer": "\"Lost\"",
-														"interactive": true
-													}
-												},
-												{
-													"id": "set-layer-visible",
-													"objectClass": "System",
-													"sid": 859201565786860,
-													"parameters": {
-														"layer": "\"UI\"",
-														"visibility": "invisible"
-													}
-												},
-												{
-													"id": "set-layer-interactive",
-													"objectClass": "System",
-													"sid": 527647243132828,
-													"parameters": {
-														"layer": "\"UI\"",
-														"interactive": false
-													}
+													"callFunction": "ShowLoseScreen",
+													"sid": 819936063621939
 												}
 											],
 											"sid": 109370833651271
@@ -2923,6 +2911,24 @@
 				{
 					"id": "set-eventvar-value",
 					"objectClass": "System",
+					"sid": 794910865329244,
+					"parameters": {
+						"variable": "kill",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 251267491032269,
+					"parameters": {
+						"variable": "answered",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
 					"sid": 521890361107998,
 					"parameters": {
 						"variable": "countdownDuration",
@@ -3240,27 +3246,6 @@
 						{
 							"id": "on-timer",
 							"objectClass": "TimeManager",
-							"sid": 422535838069666,
-							"behaviorType": "Timer",
-							"parameters": {
-								"tag": "COUNTDOWN_TAG"
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "CheckPlayers",
-							"sid": 196018707635938
-						}
-					],
-					"sid": 920418464373520
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-timer",
-							"objectClass": "TimeManager",
 							"sid": 514072636766388,
 							"behaviorType": "Timer",
 							"parameters": {
@@ -3349,6 +3334,27 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "on-timer",
+					"objectClass": "TimeManager",
+					"sid": 459170450067006,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "COUNTDOWN_TAG"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "CheckPlayers",
+					"sid": 151454819362920
+				}
+			],
+			"sid": 220865438145794
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "on-collision-with-another-object",
 					"objectClass": "Bullet",
 					"sid": 616751207835365,
@@ -3374,7 +3380,46 @@
 					"sid": 684284959602079
 				}
 			],
-			"sid": 135436596549512
+			"sid": 135436596549512,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 346879483392517,
+							"parameters": {
+								"instance-variable": "health",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Bullet",
+							"sid": 407530395940984,
+							"parameters": {
+								"instance-variable": "shotBy",
+								"comparison": 0,
+								"value": "Photon.MyActorNr"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 283717476706936,
+							"parameters": {
+								"variable": "kill",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 708711694099939
+				}
+			]
 		},
 		{
 			"eventType": "block",
@@ -3824,6 +3869,136 @@
 						}
 					],
 					"sid": 189988868140104
+				}
+			]
+		},
+		{
+			"functionName": "ShowLoseScreen",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 517669604981659,
+					"parameters": {
+						"layer": "\"Lost\"",
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 493727993205091,
+					"parameters": {
+						"layer": "\"Lost\"",
+						"interactive": true
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 859201565786860,
+					"parameters": {
+						"layer": "\"UI\"",
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 527647243132828,
+					"parameters": {
+						"layer": "\"UI\"",
+						"interactive": false
+					}
+				}
+			],
+			"sid": 192806792949922,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 441511921332035,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"rank\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 627471296289567,
+							"parameters": {
+								"text": "\"Ranked #\" & joinedPlayer - EliminatedPlayers.IndexOf(Photon.MyActorNr) & \"/\" & joinedPlayer "
+							}
+						}
+					],
+					"sid": 219494554571465
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 719134820103777,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"answered\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 470495902956850,
+							"parameters": {
+								"text": "\"Answered \" & answered & \" questions correctly\""
+							}
+						}
+					],
+					"sid": 804706847871200
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 554893708577783,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"kill\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 924713738191129,
+							"parameters": {
+								"text": "\"Killed \" & kill & \" times\""
+							}
+						}
+					],
+					"sid": 157760543258094
 				}
 			]
 		}

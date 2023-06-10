@@ -818,7 +818,36 @@
 											"text": "intentionally empty"
 										}
 									],
-									"sid": 338011327943109
+									"sid": 338011327943109,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 642769399270888,
+													"parameters": {
+														"first-value": "JoinedPlayers.CurValue",
+														"comparison": 0,
+														"second-value": "Photon.MyActorNr"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "add-to-eventvar",
+													"objectClass": "System",
+													"sid": 836068568024351,
+													"parameters": {
+														"variable": "answered",
+														"value": "1"
+													}
+												}
+											],
+											"sid": 240073857636089
+										}
+									]
 								},
 								{
 									"eventType": "block",
@@ -848,7 +877,16 @@
 				},
 				{
 					"eventType": "block",
-					"conditions": [],
+					"conditions": [
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 601499179145708,
+							"parameters": {
+								"value": "Functions.isRoomMaster"
+							}
+						}
+					],
 					"actions": [
 						{
 							"id": "raiseevent17",
