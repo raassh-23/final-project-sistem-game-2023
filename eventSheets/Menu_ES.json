@@ -282,7 +282,15 @@
 							"objectClass": "System",
 							"sid": 404864557618181,
 							"parameters": {
-								"value": "Functions.isTextInputValidText(\"name\", \"Name can only contain latin alphabets and number\")"
+								"value": "Functions.isTextInputCharValidText(\"name\", \"Name can only contain latin alphabets and number\")"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 429384536138480,
+							"parameters": {
+								"value": "Functions.isTextInputLengthValid(\"name\", \"Name cannot be longer than 15 characters \", 15)"
 							}
 						}
 					],
@@ -337,7 +345,15 @@
 							"objectClass": "System",
 							"sid": 668986846011681,
 							"parameters": {
-								"value": "Functions.isTextInputValidText(\"name\", \"Name can only contain latin alphabets and number\")"
+								"value": "Functions.isTextInputCharValidText(\"name\", \"Name can only contain latin alphabets and number\")"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 831652323874862,
+							"parameters": {
+								"value": "Functions.isTextInputLengthValid(\"name\", \"Name cannot be longer than 15 characters \", 15)"
 							}
 						}
 					],
@@ -384,7 +400,15 @@
 							"objectClass": "System",
 							"sid": 328131281962038,
 							"parameters": {
-								"value": "Functions.isTextInputValidText(\"name\", \"Name can only contain latin alphabets and number\")"
+								"value": "Functions.isTextInputCharValidText(\"name\", \"Name can only contain latin alphabets and number\")"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 665238709215206,
+							"parameters": {
+								"value": "Functions.isTextInputLengthValid(\"name\", \"Name cannot be longer than 15 characters \", 15)"
 							}
 						},
 						{
