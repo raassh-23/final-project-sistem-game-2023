@@ -3588,6 +3588,77 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 385925031217352,
+					"parameters": {
+						"object": "Player"
+					}
+				},
+				{
+					"id": "pick-children",
+					"objectClass": "Player",
+					"sid": 351609155355074,
+					"parameters": {
+						"child": "SpriteFontUI",
+						"which": "own"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 760113492082598,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "Player",
+							"sid": 561635739050267,
+							"parameters": {
+								"object": "TreeTop"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "SpriteFontUI",
+							"sid": 776856658559373,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 770376317923900
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 496561945477653
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "SpriteFontUI",
+							"sid": 935484356829194,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 803463698841716
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "compare-instance-variable",
 					"objectClass": "Player",
 					"sid": 826518840343764,
