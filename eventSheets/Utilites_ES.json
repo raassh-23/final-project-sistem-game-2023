@@ -214,7 +214,7 @@
 			]
 		},
 		{
-			"functionName": "isTextInputValidText",
+			"functionName": "isTextInputCharValidText",
 			"functionDescription": "",
 			"functionCategory": "",
 			"functionReturnType": "number",
@@ -308,6 +308,111 @@
 						}
 					],
 					"sid": 681598960183353
+				}
+			]
+		},
+		{
+			"functionName": "isTextInputLengthValid",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "id",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 352789205619014
+				},
+				{
+					"name": "errorMsg",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 359672865882568
+				},
+				{
+					"name": "length",
+					"type": "number",
+					"initialValue": "15",
+					"comment": "",
+					"sid": 577990721983768
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "TextInput",
+					"sid": 164038512313497,
+					"parameters": {
+						"instance-variable": "id",
+						"comparison": 0,
+						"value": "id"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 217752985644031,
+					"parameters": {
+						"value": "0"
+					}
+				}
+			],
+			"sid": 183159093853606,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 840102063856820,
+							"parameters": {
+								"first-value": "len(TextInput.Text)",
+								"comparison": 3,
+								"second-value": "length"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-function-return-value",
+							"objectClass": "Functions",
+							"sid": 500287211628587,
+							"parameters": {
+								"value": "1"
+							}
+						}
+					],
+					"sid": 561452472098519
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 352838107817475
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 964809901094181,
+							"parameters": {
+								"variable": "message",
+								"value": "errorMsg"
+							}
+						}
+					],
+					"sid": 728020962297947
 				}
 			]
 		},
