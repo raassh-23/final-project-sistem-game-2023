@@ -7,45 +7,51 @@
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "SpriteFontUI",
+					"type": "BG",
 					"properties": {
-						"text": "Room Code: ",
-						"enable-bbcode": true,
-						"character-width": 16,
-						"character-height": 16,
-						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
-						"spacing-data": "",
-						"scale": 2,
-						"character-spacing": 0,
-						"line-height": 0,
-						"horizontal-alignment": "left",
-						"vertical-alignment": "center",
-						"wrapping": "word",
 						"initially-visible": true,
-						"origin": "center",
-						"read-aloud": false
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
 					},
-					"uid": 16,
-					"instanceVariables": {
-						"id": "room_code"
-					},
-					"behaviors": {
-						"Fade": {
-							"properties": {
-								"fade-in-time": 0,
-								"wait-time": 0,
-								"fade-out-time": 1,
-								"destroy": false,
-								"enabled": false,
-								"live-preview": false
-							}
-						}
-					},
+					"uid": 59,
+					"instanceVariables": {},
+					"behaviors": {},
 					"world": {
-						"x": 360,
-						"y": 41,
-						"width": 692,
-						"height": 53,
+						"x": 640,
+						"y": 360,
+						"width": 1280,
+						"height": 720,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "Panel",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 2,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 60,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 433,
+						"y": 372,
+						"width": 686,
+						"height": 612,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -61,13 +67,13 @@
 				{
 					"type": "SpriteFontUI",
 					"properties": {
-						"text": "List Players:",
+						"text": "Players",
 						"enable-bbcode": true,
-						"character-width": 16,
-						"character-height": 16,
+						"character-width": 66,
+						"character-height": 70,
 						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
-						"spacing-data": "",
-						"scale": 2,
+						"spacing-data": "[[15,\" \"],[14,\"|\"],[15,\"i\"],[16,\"I.,;:!\"],[17,\"l'\"],[19,\"J`\"],[20,\"j1[]°\"],[23,\"r\"],[24,\"()\"],[25,\"ft?-~\"],[26,\"Lc>\"],[27,\"s<\"],[28,\"EF=\"],[29,\"5\"],[30,\"z\\/+\"],[31,\"CS23_\\\"*$\"],[32,\"Pabehnpu7\"],[33,\"Tkoqx8\"],[34,\"BRZgv069\"],[35,\"GKNUdy#€\"],[36,\"DHY\"],[37,\"VX\"],[38,\"AO4\"],[40,\"Q\"],[42,\"£\"],[43,\"&\"],[44,\"w\"],[47,\"M\"],[49,\"Wm\"],[57,\"%\"],[64,\"@\"]]",
+						"scale": 0.8,
 						"character-spacing": 0,
 						"line-height": 0,
 						"horizontal-alignment": "left",
@@ -94,10 +100,10 @@
 						}
 					},
 					"world": {
-						"x": 360,
-						"y": 382,
-						"width": 692,
-						"height": 592,
+						"x": 426,
+						"y": 398,
+						"width": 632,
+						"height": 490,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -130,10 +136,10 @@
 					},
 					"behaviors": {},
 					"world": {
-						"x": 1093,
-						"y": 657,
-						"width": 335.9821423825975,
-						"height": 83.99553559564937,
+						"x": 1004,
+						"y": 363,
+						"width": 208,
+						"height": 58,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -166,10 +172,91 @@
 					},
 					"behaviors": {},
 					"world": {
-						"x": 1093,
-						"y": 559,
-						"width": 335.9821423825975,
-						"height": 83.99553559564937,
+						"x": 1004,
+						"y": 446,
+						"width": 208,
+						"height": 58,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "Panel",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 3,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 61,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 1004,
+						"y": 188.5,
+						"width": 345,
+						"height": 245,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "SpriteFontUI",
+					"properties": {
+						"text": "Room Code: ",
+						"enable-bbcode": true,
+						"character-width": 66,
+						"character-height": 70,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
+						"spacing-data": "[[15,\" \"],[14,\"|\"],[15,\"i\"],[16,\"I.,;:!\"],[17,\"l'\"],[19,\"J`\"],[20,\"j1[]°\"],[23,\"r\"],[24,\"()\"],[25,\"ft?-~\"],[26,\"Lc>\"],[27,\"s<\"],[28,\"EF=\"],[29,\"5\"],[30,\"z\\/+\"],[31,\"CS23_\\\"*$\"],[32,\"Pabehnpu7\"],[33,\"Tkoqx8\"],[34,\"BRZgv069\"],[35,\"GKNUdy#€\"],[36,\"DHY\"],[37,\"VX\"],[38,\"AO4\"],[40,\"Q\"],[42,\"£\"],[43,\"&\"],[44,\"w\"],[47,\"M\"],[49,\"Wm\"],[57,\"%\"],[64,\"@\"]]",
+						"scale": 0.8,
+						"character-spacing": 0,
+						"line-height": 0,
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "center",
+						"read-aloud": false
+					},
+					"uid": 16,
+					"instanceVariables": {
+						"id": "room_code"
+					},
+					"behaviors": {
+						"Fade": {
+							"properties": {
+								"fade-in-time": 0,
+								"wait-time": 0,
+								"fade-out-time": 1,
+								"destroy": false,
+								"enabled": false,
+								"live-preview": false
+							}
+						}
+					},
+					"world": {
+						"x": 1004,
+						"y": 208,
+						"width": 275,
+						"height": 53,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

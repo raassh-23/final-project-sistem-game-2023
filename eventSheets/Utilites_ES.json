@@ -345,9 +345,9 @@
 				{
 					"id": "set-text",
 					"objectClass": "SpriteFontUI",
-					"sid": 363461676846946,
+					"sid": 776193985773631,
 					"parameters": {
-						"text": "\"Players: \""
+						"text": "\"\""
 					}
 				}
 			],
@@ -407,9 +407,9 @@
 						{
 							"id": "append-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 619413178689220,
+							"sid": 705595444530623,
 							"parameters": {
-								"text": "newline & playerName & Functions.getNameSuffix(playerActorNr)"
+								"text": "playerName & Functions.getNameSuffix(playerActorNr) & newline"
 							}
 						}
 					],

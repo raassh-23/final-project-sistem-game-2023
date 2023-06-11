@@ -94,9 +94,9 @@
 				{
 					"id": "set-text",
 					"objectClass": "SpriteFontUI",
-					"sid": 661254050334276,
+					"sid": 380756871772591,
 					"parameters": {
-						"text": "\"Room Code: \" & Photon.MyRoomName"
+						"text": "Photon.MyRoomName"
 					}
 				},
 				{
