@@ -1,0 +1,14 @@
+.text-input {
+	font-size: 1.5vw;
+	border-radius: 0.5vw;
+	padding-left: 0.5vw;
+	padding-right: 0.5vw;
+}
+
+#name {
+	border: 0.2vw solid #633592;
+}
+
+#room-code {
+	border: 0.2vw solid #d2b832;
+}

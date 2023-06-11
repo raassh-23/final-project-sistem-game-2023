@@ -61,15 +61,6 @@
 						"layer": "\"Loading\"",
 						"visibility": "visible"
 					}
-				},
-				{
-					"id": "set-css-style",
-					"objectClass": "TextInput",
-					"sid": 908732247706503,
-					"parameters": {
-						"property-name": "\"font-size\"",
-						"value": "\"1.5vw\""
-					}
 				}
 			],
 			"sid": 918199405317389,
