@@ -284,8 +284,8 @@
 						"spell-check": false,
 						"type": "text",
 						"auto-font-size": false,
-						"id": "",
-						"class": ""
+						"id": "name",
+						"class": "text-input"
 					},
 					"uid": 12,
 					"instanceVariables": {
@@ -420,8 +420,8 @@
 						"spell-check": false,
 						"type": "text",
 						"auto-font-size": false,
-						"id": "",
-						"class": ""
+						"id": "room-code",
+						"class": "text-input"
 					},
 					"uid": 15,
 					"instanceVariables": {
