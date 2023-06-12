@@ -2172,6 +2172,23 @@
 							}
 						},
 						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 169684328256697,
+							"parameters": {
+								"type": "log",
+								"message": "\"Show question event \" & Photon.EventData"
+							}
+						},
+						{
+							"callFunction": "ShowQualifiedScreen",
+							"sid": 166199385478477,
+							"parameters": [
+								false,
+								"0"
+							]
+						},
+						{
 							"callFunction": "ShowQuestion",
 							"sid": 924271220727531
 						}
@@ -2315,6 +2332,14 @@
 											"parameters": [
 												"nr"
 											]
+										},
+										{
+											"callFunction": "ShowQualifiedScreen",
+											"sid": 915820173620149,
+											"parameters": [
+												true,
+												"eliminatedCount"
+											]
 										}
 									],
 									"sid": 504034487009616
@@ -2365,6 +2390,14 @@
 										"type": "log",
 										"message": "\"no winner\""
 									}
+								},
+								{
+									"callFunction": "ShowQualifiedScreen",
+									"sid": 127572552415921,
+									"parameters": [
+										true,
+										"eliminatedCount"
+									]
 								}
 							],
 							"sid": 204678922485539,
@@ -4002,6 +4035,217 @@
 			]
 		},
 		{
+			"functionName": "ShowQualifiedScreen",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "show",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "",
+					"sid": 548560767341282
+				},
+				{
+					"name": "playersEliminated",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 868225269337250
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [
+				{
+					"id": "compare-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 288232237641860,
+					"parameters": {
+						"variable": "isLost"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "log",
+					"objectClass": "Browser",
+					"sid": 115338706577092,
+					"parameters": {
+						"type": "log",
+						"message": "\"qualscr game run\" & gameRunning"
+					}
+				},
+				{
+					"id": "log",
+					"objectClass": "Browser",
+					"sid": 775502268614687,
+					"parameters": {
+						"type": "log",
+						"message": "\"qualscr is lost\" & isLost"
+					}
+				}
+			],
+			"sid": 859310761289151,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 773073345542635,
+							"parameters": {
+								"variable": "show"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 784061277547677,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"players_left\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 653431181572968,
+							"parameters": {
+								"layer": "\"Qualified\"",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 842774873471818,
+							"parameters": {
+								"layer": "\"UI\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 659745119881390,
+							"parameters": {
+								"layer": "\"UI\"",
+								"interactive": false
+							}
+						}
+					],
+					"sid": 528169288982222,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 856353519921203,
+									"parameters": {
+										"first-value": "playersEliminated",
+										"comparison": 4,
+										"second-value": "0"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 208117310313771,
+									"parameters": {
+										"first-value": "playersEliminated",
+										"comparison": 2,
+										"second-value": "ActivePlayers.Width"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 587172941481644,
+									"parameters": {
+										"text": "playersEliminated & \" players remained\""
+									}
+								}
+							],
+							"sid": 794265337213580
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 839980607654636
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 490376438281926,
+									"parameters": {
+										"text": "\"All players qualified\""
+									}
+								}
+							],
+							"sid": 700479215788320
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 751238651849573
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 731283289556562,
+							"parameters": {
+								"layer": "\"Qualified\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 840006601871046,
+							"parameters": {
+								"layer": "\"UI\"",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 150294422006439,
+							"parameters": {
+								"layer": "\"UI\"",
+								"interactive": true
+							}
+						}
+					],
+					"sid": 382389913484007
+				}
+			]
+		},
+		{
 			"functionName": "ShowGameOverScreen",
 			"functionDescription": "",
 			"functionCategory": "",
@@ -4020,6 +4264,14 @@
 			"eventType": "function-block",
 			"conditions": [],
 			"actions": [
+				{
+					"callFunction": "ShowQualifiedScreen",
+					"sid": 469775504800855,
+					"parameters": [
+						false,
+						"0"
+					]
+				},
 				{
 					"id": "set-layer-visible",
 					"objectClass": "System",
@@ -4054,6 +4306,15 @@
 					"parameters": {
 						"layer": "win ? \"Won\" : \"Lost\"",
 						"interactive": true
+					}
+				},
+				{
+					"id": "log",
+					"objectClass": "Browser",
+					"sid": 352332798215867,
+					"parameters": {
+						"type": "log",
+						"message": "\"player\" & win ? \"won\" : \"lost\""
 					}
 				}
 			],

@@ -28,6 +28,16 @@
 					"uid": 2,
 					"instanceVariables": {},
 					"behaviors": {},
+					"effects": {
+						"AdjustHSL": {
+							"isEnabled": true,
+							"parameters": {
+								"hue": 0.85,
+								"saturation": 1,
+								"luminosity": 1
+							}
+						}
+					},
 					"world": {
 						"x": 0,
 						"y": 0,
@@ -40,6 +50,35 @@
 							1,
 							1,
 							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "BGOverlay",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 64,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 1280,
+						"y": 720,
+						"width": 2560,
+						"height": 1440,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							0,
+							0,
+							0,
+							0.06
 						],
 						"angle": 0,
 						"zElevation": 0
@@ -2517,8 +2556,8 @@
 					"world": {
 						"x": 640,
 						"y": 615,
-						"width": 136.49274534293022,
-						"height": 38.060477066778624,
+						"width": 208,
+						"height": 58,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -2536,6 +2575,274 @@
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": true,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.3686274509803922,
+				0.3686274509803922,
+				0.3686274509803922,
+				1
+			],
+			"isTransparent": true,
+			"parallaxX": 0,
+			"parallaxY": 0,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
+		{
+			"name": "Qualified",
+			"overriden": 0,
+			"subLayers": [
+				{
+					"name": "QualifiedBG",
+					"overriden": 0,
+					"subLayers": [],
+					"instances": [
+						{
+							"type": "Blank",
+							"properties": {
+								"initially-visible": true,
+								"origin": "top-left",
+								"wrap-horizontal": "repeat",
+								"wrap-vertical": "repeat",
+								"image-offset-x": 0,
+								"image-offset-y": 0,
+								"image-scale-x": 1,
+								"image-scale-y": 1,
+								"image-angle": 0,
+								"enable-tile-randomization": false,
+								"x-random": 1,
+								"y-random": 1,
+								"angle-random": 1,
+								"blend-margin-x": 0.1,
+								"blend-margin-y": 0.1
+							},
+							"uid": 65,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": -126,
+								"y": -153,
+								"width": 1530,
+								"height": 1027,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									0.75
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						}
+					],
+					"sid": 919349966942583,
+					"effectTypes": [],
+					"isInitiallyVisible": true,
+					"isInitiallyInteractive": false,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						0.3686274509803922,
+						0.3686274509803922,
+						0.3686274509803922,
+						1
+					],
+					"isTransparent": true,
+					"parallaxX": 0,
+					"parallaxY": 0,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
+				}
+			],
+			"instances": [
+				{
+					"type": "SpriteFontUI",
+					"properties": {
+						"text": "QUALIFIED!",
+						"enable-bbcode": true,
+						"character-width": 66,
+						"character-height": 70,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
+						"spacing-data": "[[15,\" \"],[14,\"|\"],[15,\"i\"],[16,\"I.,;:!\"],[17,\"l'\"],[19,\"J`\"],[20,\"j1[]°\"],[23,\"r\"],[24,\"()\"],[25,\"ft?-~\"],[26,\"Lc>\"],[27,\"s<\"],[28,\"EF=\"],[29,\"5\"],[30,\"z\\/+\"],[31,\"CS23_\\\"*$\"],[32,\"Pabehnpu7\"],[33,\"Tkoqx8\"],[34,\"BRZgv069\"],[35,\"GKNUdy#€\"],[36,\"DHY\"],[37,\"VX\"],[38,\"AO4\"],[40,\"Q\"],[42,\"£\"],[43,\"&\"],[44,\"w\"],[47,\"M\"],[49,\"Wm\"],[57,\"%\"],[64,\"@\"]]",
+						"scale": 1.5,
+						"character-spacing": 0,
+						"line-height": 0,
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "center",
+						"read-aloud": false
+					},
+					"uid": 66,
+					"instanceVariables": {
+						"id": ""
+					},
+					"behaviors": {
+						"Fade": {
+							"properties": {
+								"fade-in-time": 0,
+								"wait-time": 0,
+								"fade-out-time": 1,
+								"destroy": false,
+								"enabled": false,
+								"live-preview": false
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": null,
+						"uid": 66,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 646,
+						"y": 144,
+						"width": 526.9339098146153,
+						"height": 173,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 6.278711209164046,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "SpriteFontUI",
+					"properties": {
+						"text": "3 players remained!",
+						"enable-bbcode": true,
+						"character-width": 66,
+						"character-height": 70,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
+						"spacing-data": "[[15,\" \"],[14,\"|\"],[15,\"i\"],[16,\"I.,;:!\"],[17,\"l'\"],[19,\"J`\"],[20,\"j1[]°\"],[23,\"r\"],[24,\"()\"],[25,\"ft?-~\"],[26,\"Lc>\"],[27,\"s<\"],[28,\"EF=\"],[29,\"5\"],[30,\"z\\/+\"],[31,\"CS23_\\\"*$\"],[32,\"Pabehnpu7\"],[33,\"Tkoqx8\"],[34,\"BRZgv069\"],[35,\"GKNUdy#€\"],[36,\"DHY\"],[37,\"VX\"],[38,\"AO4\"],[40,\"Q\"],[42,\"£\"],[43,\"&\"],[44,\"w\"],[47,\"M\"],[49,\"Wm\"],[57,\"%\"],[64,\"@\"]]",
+						"scale": 1,
+						"character-spacing": 0,
+						"line-height": 0,
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "center",
+						"read-aloud": false
+					},
+					"uid": 67,
+					"instanceVariables": {
+						"id": "players_left"
+					},
+					"behaviors": {
+						"Fade": {
+							"properties": {
+								"fade-in-time": 0,
+								"wait-time": 0,
+								"fade-out-time": 1,
+								"destroy": false,
+								"enabled": false,
+								"live-preview": false
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": null,
+						"uid": 67,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"o": false,
+							"v": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"transformO": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 653,
+						"y": 321,
+						"width": 884.8408450168198,
+						"height": 173,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 6.278711209164046,
+						"zElevation": 0
+					}
+				}
+			],
+			"sid": 284166381992721,
+			"effectTypes": [],
+			"isInitiallyVisible": false,
+			"isInitiallyInteractive": false,
 			"color": [
 				1,
 				1,
