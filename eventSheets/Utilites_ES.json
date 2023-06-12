@@ -1104,6 +1104,22 @@
 										"comparison": 0,
 										"value": "ActivePlayers.CurValue"
 									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "Player",
+									"sid": 444252537854285,
+									"parameters": {
+										"object": "Choice"
+									}
+								},
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "Choice",
+									"sid": 920657664283288,
+									"parameters": {
+										"instance-variable": "correct"
+									}
 								}
 							],
 							"actions": [],
@@ -1113,82 +1129,52 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "Player",
-											"sid": 106216437326325,
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 631282370385455,
 											"parameters": {
-												"object": "Choice"
-											}
-										},
-										{
-											"id": "is-boolean-instance-variable-set",
-											"objectClass": "Choice",
-											"sid": 911930537560279,
-											"parameters": {
-												"instance-variable": "correct"
+												"first-value": "ActivePlayers.CurValue",
+												"comparison": 0,
+												"second-value": "Photon.MyActorNr"
 											}
 										}
 									],
 									"actions": [
 										{
-											"type": "comment",
-											"text": "intentionally empty"
-										}
-									],
-									"sid": 338011327943109,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "compare-two-values",
-													"objectClass": "System",
-													"sid": 642769399270888,
-													"parameters": {
-														"first-value": "ActivePlayers.CurValue",
-														"comparison": 0,
-														"second-value": "Photon.MyActorNr"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "add-to-eventvar",
-													"objectClass": "System",
-													"sid": 836068568024351,
-													"parameters": {
-														"variable": "answered",
-														"value": "1"
-													}
-												}
-											],
-											"sid": 240073857636089
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
+											"id": "add-to-eventvar",
 											"objectClass": "System",
-											"sid": 265199239202866
-										}
-									],
-									"actions": [
-										{
-											"id": "set-eventvar-value",
-											"objectClass": "System",
-											"sid": 419805917103868,
+											"sid": 895990738273799,
 											"parameters": {
-												"variable": "eliminated",
-												"value": "eliminated & ActivePlayers.CurValue & \"|\""
+												"variable": "answered",
+												"value": "1"
 											}
 										}
 									],
-									"sid": 875509554934941
+									"sid": 710314918432299
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 701304260189916
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 944192423076194,
+									"parameters": {
+										"variable": "eliminated",
+										"value": "eliminated & ActivePlayers.CurValue & \"|\""
+									}
+								}
+							],
+							"sid": 859133081760138
 						}
 					]
 				},

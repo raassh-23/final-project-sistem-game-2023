@@ -196,6 +196,16 @@
 			"sid": 805632076399409
 		},
 		{
+			"eventType": "variable",
+			"name": "KILL_EVENT",
+			"type": "number",
+			"initialValue": "16",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 563455353737599
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},
@@ -428,6 +438,16 @@
 			"sid": 493088231080297
 		},
 		{
+			"eventType": "variable",
+			"name": "RESPAWN_COUNTDOWN",
+			"type": "number",
+			"initialValue": "3",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 732369476190677
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},
@@ -450,6 +470,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 268967549545074
+		},
+		{
+			"eventType": "variable",
+			"name": "RESPAWN_TAG",
+			"type": "string",
+			"initialValue": "respawn",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 953479100756976
 		}
 	],
 	"sid": 688673809868010

@@ -1829,6 +1829,16 @@
 						},
 						{
 							"eventType": "variable",
+							"name": "shotBy",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 807053558121378
+						},
+						{
+							"eventType": "variable",
 							"name": "newHealth",
 							"type": "number",
 							"initialValue": "0",
@@ -1860,21 +1870,12 @@
 									}
 								},
 								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 827971024756311,
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 135021859966840,
 									"parameters": {
-										"type": "log",
-										"message": "Photon.EventData"
-									}
-								},
-								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 391956686835495,
-									"parameters": {
-										"type": "log",
-										"message": "nr & \" \" & newHealth"
+										"variable": "shotBy",
+										"value": "int(tokenat(Photon.EventData, 2, \"|\"))"
 									}
 								}
 							],
@@ -1934,9 +1935,74 @@
 											"eventType": "block",
 											"conditions": [
 												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 327530428275933,
+													"parameters": {
+														"variable": "nr",
+														"comparison": 0,
+														"value": "Photon.MyActorNr"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "start-timer",
+													"objectClass": "TimeManager",
+													"sid": 355879798217007,
+													"behaviorType": "Timer",
+													"parameters": {
+														"duration": "RESPAWN_COUNTDOWN",
+														"type": "once",
+														"tag": "RESPAWN_TAG"
+													}
+												},
+												{
+													"id": "set-layer-visible",
+													"objectClass": "System",
+													"sid": 430563182935622,
+													"parameters": {
+														"layer": "\"UI\"",
+														"visibility": "invisible"
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 234341925980200,
+													"parameters": {
+														"layer": "\"UI\"",
+														"interactive": false
+													}
+												},
+												{
+													"id": "set-layer-visible",
+													"objectClass": "System",
+													"sid": 628338244154214,
+													"parameters": {
+														"layer": "\"Respawn\"",
+														"visibility": "visible"
+													}
+												},
+												{
+													"id": "set-layer-interactive",
+													"objectClass": "System",
+													"sid": 289134343544740,
+													"parameters": {
+														"layer": "\"Respawn\"",
+														"interactive": true
+													}
+												}
+											],
+											"sid": 258406334795200
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
 													"id": "evaluate-expression",
 													"objectClass": "System",
-													"sid": 397055017625464,
+													"sid": 275221698738927,
 													"parameters": {
 														"value": "Functions.isRoomMaster"
 													}
@@ -1946,25 +2012,59 @@
 												{
 													"id": "raiseevent17",
 													"objectClass": "Photon",
-													"sid": 218226885974749,
+													"sid": 491611873969992,
 													"parameters": {
-														"code0": "SPAWN_PLAYER_EVENT",
-														"data1": "nr & \"|\" & Functions.getRandomPosition",
+														"code0": "KILL_EVENT",
+														"data1": "0",
 														"interestgroup2": "0",
 														"cache11": "donotcache",
 														"receivers15": "all",
-														"targetactors16": "\"\"",
+														"targetactors16": "str(shotBy)",
 														"webforward19": "no"
 													}
 												}
 											],
-											"sid": 258406334795200
+											"sid": 775267824373199
 										}
 									]
 								}
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 163501839650979,
+							"parameters": {
+								"code0": "KILL_EVENT"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 768528550252156,
+							"parameters": {
+								"type": "log",
+								"message": "\"kill event\""
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 267816136336214,
+							"parameters": {
+								"variable": "kill",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 135062367270935
 				},
 				{
 					"eventType": "block",
@@ -3216,6 +3316,82 @@
 						}
 					],
 					"isOrBlock": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "TimeManager",
+							"sid": 389364643377913,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "RESPAWN_TAG"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 734375666641005,
+							"parameters": {
+								"variable": "isLost"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 182134448035489,
+							"parameters": {
+								"code0": "SPAWN_PLAYER_EVENT",
+								"data1": "Photon.MyActorNr & \"|\" & Functions.getRandomPosition",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 837530757048487,
+							"parameters": {
+								"layer": "\"UI\"",
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 719261700792255,
+							"parameters": {
+								"layer": "\"UI\"",
+								"interactive": true
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 505934683993382,
+							"parameters": {
+								"layer": "\"Respawn\"",
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-layer-interactive",
+							"objectClass": "System",
+							"sid": 770289469873883,
+							"parameters": {
+								"layer": "\"Respawn\"",
+								"interactive": false
+							}
+						}
+					],
+					"sid": 373261534278957
 				}
 			],
 			"sid": 371752309851478
@@ -3230,6 +3406,24 @@
 				}
 			],
 			"actions": [
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 870369275032517,
+					"parameters": {
+						"layer": "\"Respawn\"",
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 471059972509846,
+					"parameters": {
+						"layer": "\"Respawn\"",
+						"interactive": false
+					}
+				},
 				{
 					"id": "set-boolean-eventvar",
 					"objectClass": "System",
@@ -3577,10 +3771,10 @@
 						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
-							"sid": 308209292548880,
+							"sid": 635242545134561,
 							"parameters": {
 								"code0": "BULLET_HIT_EVENT",
-								"data1": "Player.actorNr & \"|\" & Player.health - random(MIN_AMMO_DAMAGE, MAX_AMMO_DAMAGE)",
+								"data1": "Player.actorNr & \"|\" & Player.health - random(MIN_AMMO_DAMAGE, MAX_AMMO_DAMAGE) & \"|\" & Bullet.shotBy",
 								"interestgroup2": "0",
 								"cache11": "donotcache",
 								"receivers15": "all",
@@ -3898,46 +4092,7 @@
 					"sid": 684284959602079
 				}
 			],
-			"sid": 135436596549512,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Player",
-							"sid": 346879483392517,
-							"parameters": {
-								"instance-variable": "health",
-								"comparison": 0,
-								"value": "1"
-							}
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Bullet",
-							"sid": 407530395940984,
-							"parameters": {
-								"instance-variable": "shotBy",
-								"comparison": 0,
-								"value": "Photon.MyActorNr"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "add-to-eventvar",
-							"objectClass": "System",
-							"sid": 283717476706936,
-							"parameters": {
-								"variable": "kill",
-								"value": "1"
-							}
-						}
-					],
-					"sid": 708711694099939
-				}
-			]
+			"sid": 135436596549512
 		},
 		{
 			"eventType": "block",
@@ -4378,7 +4533,7 @@
 			"actions": [
 				{
 					"type": "comment",
-					"text": "sometimes it shows -1, show we'll just clamp it to 0"
+					"text": "sometimes it shows -1, so we'll just clamp it to 0"
 				},
 				{
 					"id": "set-text",
@@ -4390,6 +4545,45 @@
 				}
 			],
 			"sid": 878417978878340
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-timer-running",
+					"objectClass": "TimeManager",
+					"sid": 113655974526055,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "RESPAWN_TAG"
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "SpriteFontUI",
+					"sid": 219261715172980,
+					"parameters": {
+						"instance-variable": "id",
+						"comparison": 0,
+						"value": "\"respawn\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"type": "comment",
+					"text": "sometimes it shows -1, so we'll just clamp it to 0"
+				},
+				{
+					"id": "set-text",
+					"objectClass": "SpriteFontUI",
+					"sid": 412505487882408,
+					"parameters": {
+						"text": "\"Respawning in \" & clamp(floor(TimeManager.Timer.Duration(RESPAWN_TAG) - TimeManager.Timer.CurrentTime(RESPAWN_TAG)), 0, RESPAWN_COUNTDOWN) & \" seconds\""
+					}
+				}
+			],
+			"sid": 461254322304355
 		},
 		{
 			"functionName": "GameButtonClicked",
@@ -4771,6 +4965,24 @@
 					"sid": 527647243132828,
 					"parameters": {
 						"layer": "\"UI\"",
+						"interactive": false
+					}
+				},
+				{
+					"id": "set-layer-visible",
+					"objectClass": "System",
+					"sid": 235784347795861,
+					"parameters": {
+						"layer": "\"Respawn\"",
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-layer-interactive",
+					"objectClass": "System",
+					"sid": 430018541356025,
+					"parameters": {
+						"layer": "\"Respawn\"",
 						"interactive": false
 					}
 				},
