@@ -849,10 +849,10 @@
 						{
 							"id": "scroll-to-position",
 							"objectClass": "System",
-							"sid": 197428575810267,
+							"sid": 308522478914796,
 							"parameters": {
-								"x": "scrollx - (Touch.X(\"Spectate\") - TouchLastX) / LayerScale(\"Game\")",
-								"y": "scrolly - (Touch.Y(\"Spectate\") - TouchLastY) / LayerScale(\"Game\")"
+								"x": "scrollx - (Touch.X(\"Spectate\") - TouchLastX) / LayerScale(\"GameObjects\")",
+								"y": "scrolly - (Touch.Y(\"Spectate\") - TouchLastY) / LayerScale(\"GameObjects\")"
 							}
 						},
 						{
@@ -926,9 +926,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 516697873165486,
+							"sid": 621692626479016,
 							"parameters": {
-								"text": "ActivePlayers.Width = 1 ? \"Winner: \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\") : \"\""
+								"text": "ActivePlayers.Width = 1 ? \"The winner is \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\") : \"\""
 							}
 						}
 					],
@@ -952,9 +952,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 563467688454580,
+							"sid": 324335277899854,
 							"parameters": {
-								"text": "ActivePlayers.Width = 1 ? \"Game over\" : \"Spectating\""
+								"text": "ActivePlayers.Width = 1 ? \"Game Over\" : \"Spectating\""
 							}
 						}
 					],
@@ -1347,10 +1347,10 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 985383172897920,
+									"sid": 967759772028849,
 									"parameters": {
 										"object-to-create": "Player",
-										"layer": "\"Game\"",
+										"layer": "\"Players\"",
 										"x": "x",
 										"y": "y",
 										"create-hierarchy": true,
@@ -1685,10 +1685,10 @@
 								{
 									"id": "spawn-another-object",
 									"objectClass": "Player",
-									"sid": 153293250339546,
+									"sid": 333586149230735,
 									"parameters": {
 										"object": "Bullet",
-										"layer": "\"Game\"",
+										"layer": "\"GameObjects\"",
 										"image-point": "1",
 										"create-hierarchy": false
 									}
@@ -2026,10 +2026,10 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 537340838316810,
+									"sid": 487724017945613,
 									"parameters": {
 										"object-to-create": "Obstacle",
-										"layer": "\"Game\"",
+										"layer": "\"GameObjects\"",
 										"x": "x",
 										"y": "y",
 										"create-hierarchy": false,
@@ -2337,9 +2337,9 @@
 										{
 											"id": "set-text",
 											"objectClass": "SpriteFontUI",
-											"sid": 900116564636905,
+											"sid": 914616662644979,
 											"parameters": {
-												"text": "eliminatedCount & \" players eliminated\" & newline & \"waiting for question...\""
+												"text": "eliminatedCount & \" players eliminated\" & newline & \"waiting for the next question...\""
 											}
 										}
 									],
@@ -2387,9 +2387,9 @@
 										{
 											"id": "set-text",
 											"objectClass": "SpriteFontUI",
-											"sid": 837203787349388,
+											"sid": 960101308491162,
 											"parameters": {
-												"text": "\"no players eliminated\" & newline & \"waiting for question...\""
+												"text": "\"no players eliminated\" & newline & \"waiting for the next question...\""
 											}
 										}
 									],
@@ -2497,10 +2497,10 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 480437123138445,
+									"sid": 846918620856928,
 									"parameters": {
 										"object-to-create": "TreeTrunk",
-										"layer": "\"Game\"",
+										"layer": "\"GameObjects\"",
 										"x": "x",
 										"y": "y",
 										"create-hierarchy": true,
@@ -2652,10 +2652,10 @@
 								{
 									"id": "create-object",
 									"objectClass": "System",
-									"sid": 371610923986128,
+									"sid": 511134589347743,
 									"parameters": {
 										"object-to-create": "AmmoBox",
-										"layer": "\"Game\"",
+										"layer": "\"GameObjects\"",
 										"x": "x",
 										"y": "y",
 										"create-hierarchy": true,
@@ -3737,9 +3737,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 486538922177460,
+							"sid": 528375042002730,
 							"parameters": {
-								"text": "\"Health: \" & Player.health"
+								"text": "Player.health"
 							}
 						}
 					],
@@ -3763,9 +3763,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 481222304488335,
+							"sid": 474462510734552,
 							"parameters": {
-								"text": "\"Ammo: \" & Player.ammo"
+								"text": "Player.ammo"
 							}
 						}
 					],
@@ -3803,9 +3803,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 274784463400739,
+							"sid": 535200706789073,
 							"parameters": {
-								"text": "\"Health: \" & 0"
+								"text": "0"
 							}
 						}
 					],
@@ -3829,9 +3829,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 810841181368537,
+							"sid": 629465392815509,
 							"parameters": {
-								"text": "\"Ammo: \" & 0"
+								"text": "0"
 							}
 						}
 					],
@@ -3864,11 +3864,15 @@
 			],
 			"actions": [
 				{
+					"type": "comment",
+					"text": "sometimes it shows -1, show we'll just clamp it to 0"
+				},
+				{
 					"id": "set-text",
 					"objectClass": "SpriteFontUI",
-					"sid": 509200959591319,
+					"sid": 488457099969613,
 					"parameters": {
-						"text": "floor(TimeManager.Timer.Duration(COUNTDOWN_TAG) - TimeManager.Timer.CurrentTime(COUNTDOWN_TAG))"
+						"text": "clamp(floor(TimeManager.Timer.Duration(COUNTDOWN_TAG) - TimeManager.Timer.CurrentTime(COUNTDOWN_TAG)), 0, MAX_COUNTDOWN_DURATION)"
 					}
 				}
 			],

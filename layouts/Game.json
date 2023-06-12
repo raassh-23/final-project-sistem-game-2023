@@ -75,7 +75,7 @@
 			"global": false
 		},
 		{
-			"name": "Game",
+			"name": "GameObjects",
 			"overriden": 0,
 			"subLayers": [],
 			"instances": [
@@ -518,8 +518,8 @@
 						}
 					},
 					"world": {
-						"x": -140.56753270899657,
-						"y": 298.43246729100343,
+						"x": -295,
+						"y": 312,
 						"width": 62.864934582006846,
 						"height": 62.864934582006846,
 						"originX": 0.5,
@@ -617,6 +617,39 @@
 				}
 			],
 			"sid": 149566903455847,
+			"effectTypes": [],
+			"isInitiallyVisible": true,
+			"isInitiallyInteractive": true,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.3686274509803922,
+				0.3686274509803922,
+				0.3686274509803922,
+				1
+			],
+			"isTransparent": true,
+			"parallaxX": 1,
+			"parallaxY": 1,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
+		{
+			"name": "Players",
+			"overriden": 0,
+			"subLayers": [],
+			"instances": [],
+			"sid": 182415885890843,
 			"effectTypes": [],
 			"isInitiallyVisible": true,
 			"isInitiallyInteractive": true,
@@ -1170,7 +1203,7 @@
 						"character-spacing": 0,
 						"line-height": 0,
 						"horizontal-alignment": "center",
-						"vertical-alignment": "center",
+						"vertical-alignment": "top",
 						"wrapping": "word",
 						"initially-visible": true,
 						"origin": "center",
@@ -1194,7 +1227,7 @@
 					},
 					"world": {
 						"x": 642,
-						"y": 140,
+						"y": 161.64988543209867,
 						"width": 985,
 						"height": 77,
 						"originX": 0.5,
@@ -1642,7 +1675,7 @@
 				{
 					"type": "SpriteFontUI",
 					"properties": {
-						"text": "You Lose",
+						"text": "You Lose!",
 						"enable-bbcode": true,
 						"character-width": 66,
 						"character-height": 70,
@@ -2516,9 +2549,9 @@
 					"behaviors": {},
 					"world": {
 						"x": 640,
-						"y": 615,
-						"width": 136.49274534293022,
-						"height": 38.060477066778624,
+						"y": 613,
+						"width": 208,
+						"height": 58,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -2694,7 +2727,7 @@
 						"character-spacing": 0,
 						"line-height": 0,
 						"horizontal-alignment": "center",
-						"vertical-alignment": "center",
+						"vertical-alignment": "top",
 						"wrapping": "word",
 						"initially-visible": true,
 						"origin": "center",
@@ -2745,10 +2778,10 @@
 						}
 					},
 					"world": {
-						"x": 640,
-						"y": 329,
-						"width": 732.0526582622479,
-						"height": 173,
+						"x": 640.2007553580496,
+						"y": 204.595947696676,
+						"width": 1203.7003623780465,
+						"height": 157.4188735962433,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
