@@ -231,7 +231,8 @@
 			"BG",
 			"Panel",
 			"BGOverlay",
-			"VSCodePlugin"
+			"VSCodePlugin",
+			"HealthBox"
 		],
 		"subfolders": []
 	},

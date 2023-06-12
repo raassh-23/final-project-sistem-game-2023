@@ -176,6 +176,26 @@
 			"sid": 858280586110146
 		},
 		{
+			"eventType": "variable",
+			"name": "ADD_HEALTH_BOX_EVENT",
+			"type": "number",
+			"initialValue": "14",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 516189536062641
+		},
+		{
+			"eventType": "variable",
+			"name": "USE_HEALTH_BOX_EVENT",
+			"type": "number",
+			"initialValue": "15",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 805632076399409
+		},
+		{
 			"eventType": "comment",
 			"text": "Timer"
 		},
@@ -336,6 +356,76 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 132193941831328
+		},
+		{
+			"eventType": "variable",
+			"name": "MIN_AMMO_DAMAGE",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 780002720652127
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_AMMO_DAMAGE",
+			"type": "number",
+			"initialValue": "20",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 349461745803478
+		},
+		{
+			"eventType": "variable",
+			"name": "MIN_HEALTH_SPAWN_TIME",
+			"type": "number",
+			"initialValue": "7",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 927237233694997
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_HEALTH_SPAWN_TIME",
+			"type": "number",
+			"initialValue": "15",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 789315548791298
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_HEALTH_BOX",
+			"type": "number",
+			"initialValue": "3",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 913593519644190
+		},
+		{
+			"eventType": "variable",
+			"name": "MIN_DELTA_HEALTH",
+			"type": "number",
+			"initialValue": "25",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 648194990971190
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_DELTA_HEALTH",
+			"type": "number",
+			"initialValue": "50",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 493088231080297
 		},
 		{
 			"eventType": "comment",

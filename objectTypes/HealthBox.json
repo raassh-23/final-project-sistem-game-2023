@@ -1,7 +1,7 @@
 {
-	"name": "AmmoBox",
+	"name": "HealthBox",
 	"plugin-id": "Sprite",
-	"sid": 968944721051196,
+	"sid": 201487632252947,
 	"isGlobal": false,
 	"instanceVariables": [],
 	"behaviorTypes": [],
@@ -18,12 +18,12 @@
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 4000270,
+						"imageSpriteId": 8066442,
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 469781857346367,
+				"sid": 710776230930901,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

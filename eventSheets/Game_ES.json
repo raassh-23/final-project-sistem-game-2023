@@ -17,6 +17,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "isFinished",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 893089452470117
+		},
+		{
+			"eventType": "variable",
 			"name": "joinedPlayer",
 			"type": "number",
 			"initialValue": "0",
@@ -725,6 +735,16 @@
 											"eventType": "block",
 											"conditions": [
 												{
+													"id": "compare-instance-variable",
+													"objectClass": "Player",
+													"sid": 451020909357991,
+													"parameters": {
+														"instance-variable": "ammo",
+														"comparison": 4,
+														"value": "0"
+													}
+												},
+												{
 													"id": "every-x-seconds",
 													"objectClass": "System",
 													"sid": 766831728370010,
@@ -735,15 +755,44 @@
 											],
 											"actions": [
 												{
+													"id": "spawn-another-object",
+													"objectClass": "Player",
+													"sid": 869234926399849,
+													"parameters": {
+														"object": "Bullet",
+														"layer": "\"GameObjects\"",
+														"image-point": "1",
+														"create-hierarchy": false
+													}
+												},
+												{
+													"id": "set-instvar-value",
+													"objectClass": "Bullet",
+													"sid": 811451477580478,
+													"parameters": {
+														"instance-variable": "shotBy",
+														"value": "Player.ActorNr"
+													}
+												},
+												{
+													"id": "subtract-from-instvar",
+													"objectClass": "Player",
+													"sid": 583495356624423,
+													"parameters": {
+														"instance-variable": "ammo",
+														"value": "1"
+													}
+												},
+												{
 													"id": "raiseevent17",
 													"objectClass": "Photon",
-													"sid": 231509107469228,
+													"sid": 290430966073205,
 													"parameters": {
 														"code0": "SHOOT_PLAYER_EVENT",
-														"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+														"data1": "Bullet.X & \"|\" & Bullet.Y & \"|\" & Bullet.Angle",
 														"interestgroup2": "0",
 														"cache11": "donotcache",
-														"receivers15": "all",
+														"receivers15": "others",
 														"targetactors16": "\"\"",
 														"webforward19": "no"
 													}
@@ -1063,6 +1112,15 @@
 							"sid": 772925853499795,
 							"parameters": {
 								"variable": "gameRunning"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 236422836564828,
+							"parameters": {
+								"variable": "isFinished"
 							},
 							"isInverted": true
 						},
@@ -1691,71 +1749,46 @@
 									}
 								},
 								{
-									"id": "set-position",
-									"objectClass": "Player",
-									"sid": 246758201005647,
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 238639517663439,
 									"parameters": {
+										"object-to-create": "Bullet",
+										"layer": "\"GameObjects\"",
 										"x": "x",
-										"y": "y"
+										"y": "y",
+										"create-hierarchy": false,
+										"template-name": "\"\""
 									}
 								},
 								{
 									"id": "set-angle",
-									"objectClass": "Player",
-									"sid": 890266504461880,
+									"objectClass": "Bullet",
+									"sid": 227751491217809,
 									"parameters": {
 										"angle": "newAngle"
-									}
-								}
-							],
-							"sid": 539453537712997
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-instance-variable",
-									"objectClass": "Player",
-									"sid": 703995856650793,
-									"parameters": {
-										"instance-variable": "ammo",
-										"comparison": 4,
-										"value": "0"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "spawn-another-object",
-									"objectClass": "Player",
-									"sid": 333586149230735,
-									"parameters": {
-										"object": "Bullet",
-										"layer": "\"GameObjects\"",
-										"image-point": "1",
-										"create-hierarchy": false
 									}
 								},
 								{
 									"id": "set-instvar-value",
 									"objectClass": "Bullet",
-									"sid": 497987890390406,
+									"sid": 862263786636499,
 									"parameters": {
 										"instance-variable": "shotBy",
-										"value": "Photon.ActorNr"
+										"value": "Player.actorNr"
 									}
 								},
 								{
 									"id": "subtract-from-instvar",
 									"objectClass": "Player",
-									"sid": 766105961491267,
+									"sid": 449352962912031,
 									"parameters": {
 										"instance-variable": "ammo",
 										"value": "1"
 									}
 								}
 							],
-							"sid": 223531080855680
+							"sid": 539453537712997
 						}
 					]
 				},
@@ -2853,6 +2886,16 @@
 							"sid": 980070625071456
 						},
 						{
+							"eventType": "variable",
+							"name": "deltaAmmo",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 881812742531337
+						},
+						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
@@ -2863,6 +2906,15 @@
 									"parameters": {
 										"variable": "nr",
 										"value": "int(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 555692986240758,
+									"parameters": {
+										"variable": "deltaAmmo",
+										"value": "int(tokenat(Photon.EventData, 1, \"|\"))"
 									}
 								}
 							],
@@ -2886,14 +2938,244 @@
 								{
 									"id": "add-to-instvar",
 									"objectClass": "Player",
-									"sid": 108547294217858,
+									"sid": 697390058737588,
 									"parameters": {
 										"instance-variable": "ammo",
-										"value": "floor(random(MIN_DELTA_AMMO, MAX_DELTA_AMMO))"
+										"value": "deltaAmmo"
 									}
 								}
 							],
 							"sid": 526270655103589
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 416370083541244,
+							"parameters": {
+								"code0": "ADD_HEALTH_BOX_EVENT"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 991811182851643,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "x",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 209547340198218
+						},
+						{
+							"eventType": "variable",
+							"name": "y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 396499723095269
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 678396237609822,
+									"parameters": {
+										"variable": "x",
+										"value": "float(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 583316038482706,
+									"parameters": {
+										"variable": "y",
+										"value": "float(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 301575421322989,
+									"parameters": {
+										"object-to-create": "HealthBox",
+										"layer": "\"GameObjects\"",
+										"x": "x",
+										"y": "y",
+										"create-hierarchy": true,
+										"template-name": "\"\""
+									}
+								}
+							],
+							"sid": 891911493112862,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "HealthBox",
+											"sid": 295249247753512,
+											"parameters": {
+												"object": "Solids"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "HealthBox",
+											"sid": 468381721086948
+										}
+									],
+									"sid": 119819817219421,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "evaluate-expression",
+													"objectClass": "System",
+													"sid": 926922895750914,
+													"parameters": {
+														"value": "Functions.isRoomMaster"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "raiseevent17",
+													"objectClass": "Photon",
+													"sid": 359225595073730,
+													"parameters": {
+														"code0": "ADD_HEALTH_BOX_EVENT",
+														"data1": "Functions.getRandomPosition",
+														"interestgroup2": "0",
+														"cache11": "donotcache",
+														"receivers15": "all",
+														"targetactors16": "\"\"",
+														"webforward19": "no"
+													}
+												}
+											],
+											"sid": 279460064358394
+										}
+									],
+									"isOrBlock": true
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 909249778686127,
+							"parameters": {
+								"code0": "USE_HEALTH_BOX_EVENT"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 801661114791068,
+							"parameters": {
+								"type": "log",
+								"message": "\"use health box event\""
+							}
+						}
+					],
+					"sid": 745590783907615,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "nr",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 336723269010793
+						},
+						{
+							"eventType": "variable",
+							"name": "deltaHealth",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 945535559094736
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 163693911583078,
+									"parameters": {
+										"variable": "nr",
+										"value": "int(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 701968419310449,
+									"parameters": {
+										"variable": "deltaHealth",
+										"value": "int(tokenat(Photon.EventData, 1, \"|\"))"
+									}
+								}
+							],
+							"sid": 441160246534200
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Player",
+									"sid": 722290307852738,
+									"parameters": {
+										"instance-variable": "actorNr",
+										"comparison": 0,
+										"value": "nr"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-instvar",
+									"objectClass": "Player",
+									"sid": 363704402580679,
+									"parameters": {
+										"instance-variable": "health",
+										"value": "deltaHealth"
+									}
+								}
+							],
+							"sid": 972599478407324
 						}
 					]
 				},
@@ -2958,6 +3240,15 @@
 					}
 				},
 				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 405349103677313,
+					"parameters": {
+						"variable": "isFinished",
+						"value": "false"
+					}
+				},
+				{
 					"id": "set-group-active",
 					"objectClass": "System",
 					"sid": 609084487249439,
@@ -3016,6 +3307,11 @@
 					"id": "destroy",
 					"objectClass": "AmmoBox",
 					"sid": 485974795085716
+				},
+				{
+					"id": "destroy",
+					"objectClass": "HealthBox",
+					"sid": 607678263259355
 				},
 				{
 					"id": "destroy",
@@ -3281,10 +3577,10 @@
 						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
-							"sid": 726952859723868,
+							"sid": 308209292548880,
 							"parameters": {
 								"code0": "BULLET_HIT_EVENT",
-								"data1": "Player.actorNr & \"|\" & Player.health - random(10, 20)",
+								"data1": "Player.actorNr & \"|\" & Player.health - random(MIN_AMMO_DAMAGE, MAX_AMMO_DAMAGE)",
 								"interestgroup2": "0",
 								"cache11": "donotcache",
 								"receivers15": "all",
@@ -3311,10 +3607,10 @@
 						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
-							"sid": 625335187855256,
+							"sid": 134024037605832,
 							"parameters": {
 								"code0": "USE_AMMO_BOX_EVENT",
-								"data1": "Player.actorNr & \"|\"",
+								"data1": "Player.actorNr & \"|\" & floor(random(MIN_DELTA_AMMO, MAX_DELTA_AMMO))",
 								"interestgroup2": "0",
 								"cache11": "donotcache",
 								"receivers15": "all",
@@ -3324,6 +3620,36 @@
 						}
 					],
 					"sid": 983694585502679
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "HealthBox",
+							"sid": 704500104287174,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 292865786843363,
+							"parameters": {
+								"code0": "USE_HEALTH_BOX_EVENT",
+								"data1": "Player.actorNr & \"|\" & floor(random(MIN_DELTA_HEALTH, MAX_DELTA_HEALTH))",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 891056289531768
 				},
 				{
 					"eventType": "block",
@@ -3385,6 +3711,46 @@
 						}
 					],
 					"sid": 513257455813380
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 170574421282447,
+							"parameters": {
+								"interval-seconds": "random(MIN_HEALTH_SPAWN_TIME, MAX_HEALTH_SPAWN_TIME)"
+							}
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 258389772675804,
+							"parameters": {
+								"first-value": "AmmoBox.Count",
+								"comparison": 2,
+								"second-value": "MAX_HEALTH_BOX"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 881221090160908,
+							"parameters": {
+								"code0": "ADD_HEALTH_BOX_EVENT",
+								"data1": "Functions.getRandomPosition",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 102220610911168
 				}
 			]
 		},
@@ -3418,6 +3784,15 @@
 					"parameters": {
 						"variable": "gameRunning",
 						"value": "false"
+					}
+				},
+				{
+					"id": "set-boolean-eventvar",
+					"objectClass": "System",
+					"sid": 347131197481784,
+					"parameters": {
+						"variable": "isFinished",
+						"value": "true"
 					}
 				},
 				{
@@ -3605,6 +3980,27 @@
 				}
 			],
 			"sid": 785863250686642
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "HealthBox",
+					"sid": 240867559798170,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "HealthBox",
+					"sid": 833445226435128
+				}
+			],
+			"sid": 838529619899111
 		},
 		{
 			"eventType": "block",
