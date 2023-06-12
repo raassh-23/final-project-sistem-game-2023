@@ -46,17 +46,18 @@ function getOperand(
     prevNumber,
     prevNumber2,
     prevOperator,
-    maxMultiplier,
-    maxAddend,
-    maxSubtrahend
+    multiplierRange,
+    addendRange,
+    subtrahendRange,
+    minExponent,
 ) {
     let number = 0;
     switch (operator) {
         case "+":
-            number = getRandomNumber(1, maxAddend);
+            number = getRandomNumber(...addendRange);
             break;
         case "-":
-            number = getRandomNumber(1, maxSubtrahend);
+            number = getRandomNumber(...subtrahendRange);
             break;
         case "*":
             // Limit the multiplier based on the previous number
@@ -66,7 +67,7 @@ function getOperand(
             } else if (prevNumber > 5) {
                 number = getRandomNumber(1, 5);
             } else {
-                number = getRandomNumber(1, maxMultiplier);
+                number = getRandomNumber(...multiplierRange);
             }
             break;
         case "/":
@@ -97,7 +98,7 @@ function getOperand(
             } else {
                 upperBound = 5;
             }
-            number = getRandomNumber(1, upperBound);
+            number = getRandomNumber(minExponent, upperBound);
             break;
     }
 
@@ -176,9 +177,11 @@ function getComplexArithmeticExpression(
     operators = ["+", "-", "*", "/", "^"],
     operatorLimits = [-1, -1, 3, 2, 1],
     maxExpBase = 5,
-    maxMultiplier = 10,
-    maxAddend = 30,
-    maxSubtrahend = 30
+    multiplierRange = [1, 10],
+    addendRange = [1, 30],
+    subtrahendRange = [1, 30],
+    minExponent = 1,
+    parenthesesProbability = 0,
 ) {
     let expressionTokens = [getRandomNumber(1, 20)];
 
@@ -206,15 +209,16 @@ function getComplexArithmeticExpression(
             prevNumber,
             prevNumber2,
             prevOperator,
-            maxMultiplier,
-            maxAddend,
-            maxSubtrahend
+            multiplierRange,
+            addendRange,
+            subtrahendRange,
+            minExponent
         );
         expressionTokens.push(number);
     }
 
     // Add parentheses to the expression
-    if (getRandomNumber(0, 1) === 0 && expressionTokens.length >= 5) {
+    if (getRandomNumber(0, 100) < parenthesesProbability && expressionTokens.length >= 5) {
         // Find a random index to open the parentheses
         // and make sure the opening parentheses appear before a number
         let openingIndexUpperBound = expressionTokens.length - 2 - 1;
@@ -574,6 +578,20 @@ function generateChoicePositions(layoutWidth, layoutHeight, choiceDiameter) {
 
     return positions;
 }
+
+export const currentLevelVariables = {
+	"addendRange": [0, 30],
+	"subtrahendRange": [0, 30],
+	"multiplierRange": [1, 2],
+	"maxExpBase": 20,
+    "minExponent": 1,
+	"operandCount": 2,
+	"operators": ['+', '-'],
+	"operatorLimits": [-1, -1],
+	"countdownSecond": 30
+}
+
+export const level = 0;
 
 /**
  * Converts an HSL color value to RGB.

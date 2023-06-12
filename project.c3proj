@@ -22,6 +22,14 @@
 		},
 		{
 			"type": "plugin",
+			"id": "EdwardBonnett_VsCodePlugin",
+			"name": "VS Code Plugin",
+			"author": "Edward Bonnett",
+			"bundled": false,
+			"version": "1.0.0.1"
+		},
+		{
+			"type": "plugin",
 			"id": "Photon",
 			"name": "Photon",
 			"author": "Exit Games",
@@ -222,7 +230,8 @@
 			"AmmoBox",
 			"BG",
 			"Panel",
-			"BGOverlay"
+			"BGOverlay",
+			"VSCodePlugin"
 		],
 		"subfolders": []
 	},
@@ -263,6 +272,14 @@
 					"sid": 439901364315930,
 					"script-info": {
 						"purpose": "imports-for-events"
+					}
+				},
+				{
+					"name": "level-data.js",
+					"type": "application/javascript",
+					"sid": 299196019854999,
+					"script-info": {
+						"purpose": "none"
 					}
 				}
 			],
