@@ -783,6 +783,46 @@
 			"sid": 492771015655491
 		},
 		{
+			"eventType": "variable",
+			"name": "backgroundColorRed",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 658785089931063
+		},
+		{
+			"eventType": "variable",
+			"name": "backgroundColorGreen",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 504188539797811
+		},
+		{
+			"eventType": "variable",
+			"name": "backgroundColorBlue",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 226627971661482
+		},
+		{
+			"eventType": "variable",
+			"name": "backgroundOverlay",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 658213642004367
+		},
+		{
 			"functionName": "GenerateQuestion",
 			"functionDescription": "",
 			"functionCategory": "",
@@ -795,7 +835,7 @@
 			"actions": [
 				{
 					"type": "script",
-					"script": "const [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconst multiplier = runtime.callFunction(\"GetMultiplier\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");"
+					"script": "const [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconst multiplier = runtime.callFunction(\"GetMultiplier\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\nconsole.log(backgroundColorHue, backgroundColorRgb);\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);"
 				},
 				{
 					"id": "wait-for-previous-actions",
@@ -805,10 +845,10 @@
 				{
 					"id": "raiseevent17",
 					"objectClass": "Photon",
-					"sid": 962875553643542,
+					"sid": 472040858123810,
 					"parameters": {
 						"code0": "SHOW_QUESTION_EVENT",
-						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition",
+						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition & \"|\" & backgroundOverlay & \"|\" & backgroundColorRed & \"|\" & backgroundColorGreen & \"|\" & backgroundColorBlue",
 						"interestgroup2": "0",
 						"cache11": "donotcache",
 						"receivers15": "all",

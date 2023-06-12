@@ -2172,6 +2172,24 @@
 							}
 						},
 						{
+							"id": "set-animation-frame",
+							"objectClass": "BGOverlay",
+							"sid": 483091851942558,
+							"parameters": {
+								"frame-number": "int(tokenat(Photon.EventData, 4, \"|\"))"
+							}
+						},
+						{
+							"id": "set-effect-parameter",
+							"objectClass": "TiledBackground",
+							"sid": 275236320673582,
+							"parameters": {
+								"effect": "\"Tint\"",
+								"parameter-index": "0",
+								"value": "rgbEx255(int(tokenat(Photon.EventData, 5, \"|\")), int(tokenat(Photon.EventData, 6, \"|\")), int(tokenat(Photon.EventData, 7, \"|\")))"
+							}
+						},
+						{
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 169684328256697,
@@ -2181,16 +2199,16 @@
 							}
 						},
 						{
+							"callFunction": "ShowQuestion",
+							"sid": 924271220727531
+						},
+						{
 							"callFunction": "ShowQualifiedScreen",
-							"sid": 166199385478477,
+							"sid": 547841046167940,
 							"parameters": [
 								false,
 								"0"
 							]
-						},
-						{
-							"callFunction": "ShowQuestion",
-							"sid": 924271220727531
 						}
 					],
 					"sid": 410533722790128
@@ -3220,10 +3238,10 @@
 						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
-							"sid": 805321536660461,
+							"sid": 726952859723868,
 							"parameters": {
 								"code0": "BULLET_HIT_EVENT",
-								"data1": "Player.actorNr & \"|\" & Player.health - 1",
+								"data1": "Player.actorNr & \"|\" & Player.health - random(10, 20)",
 								"interestgroup2": "0",
 								"cache11": "donotcache",
 								"receivers15": "all",
@@ -3758,11 +3776,11 @@
 						{
 							"id": "compare-instance-variable",
 							"objectClass": "SpriteFontUI",
-							"sid": 768568108185712,
+							"sid": 660149369749628,
 							"parameters": {
 								"instance-variable": "id",
 								"comparison": 0,
-								"value": "\"heatlh\""
+								"value": "\"health\""
 							}
 						}
 					],
@@ -3824,11 +3842,11 @@
 						{
 							"id": "compare-instance-variable",
 							"objectClass": "SpriteFontUI",
-							"sid": 783384271947401,
+							"sid": 558221160405544,
 							"parameters": {
 								"instance-variable": "id",
 								"comparison": 0,
-								"value": "\"heatlh\""
+								"value": "\"health\""
 							}
 						}
 					],
@@ -3850,11 +3868,11 @@
 						{
 							"id": "compare-instance-variable",
 							"objectClass": "SpriteFontUI",
-							"sid": 116164377593285,
+							"sid": 530757214472002,
 							"parameters": {
 								"instance-variable": "id",
 								"comparison": 0,
-								"value": "\"Ammo\""
+								"value": "\"ammo\""
 							}
 						}
 					],

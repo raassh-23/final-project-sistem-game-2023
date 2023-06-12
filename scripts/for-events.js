@@ -574,3 +574,85 @@ function generateChoicePositions(layoutWidth, layoutHeight, choiceDiameter) {
 
     return positions;
 }
+
+/**
+ * Converts an HSL color value to RGB.
+ * @param {number} hue - The hue value (0-360)
+ * @param {number} saturation - The saturation value (0-100)
+ * @param {number} luminosity - The luminosity value (0-100)
+ * @returns {[number, number, number]} The RGB value as an array of [r, g, b] values (0-255)
+ */
+function hslToRgb(hue, saturation, luminosity) {
+  // Convert hue, saturation, and luminosity values to the range 0-1
+  console.log("hsl", hue, saturation, luminosity);
+  hue = hue % 360;
+  hue /= 360;
+  saturation /= 100;
+  luminosity /= 100;
+  console.log("hsl'", hue, saturation, luminosity);
+
+  // Calculate the chroma
+  const chroma = (1 - Math.abs(2 * luminosity - 1)) * saturation;
+
+  // Calculate the hue' value
+  const huePrime = hue * 6;
+
+  // Calculate the second largest component of the color
+  const secondLargestComponent = chroma * (1 - Math.abs(huePrime % 2 - 1));
+
+  // Calculate the lightness adjustment
+  const lightnessAdjustment = luminosity - chroma / 2;
+
+  // Calculate the RGB values
+  let red, green, blue;
+  
+  red = Math.max(510*Math.abs(Math.cos(hue))-255, 0);
+  green = Math.max(510*Math.abs(Math.cos(hue + 120))-255, 0);
+  blue = Math.max(510*Math.abs(Math.cos(hue + 240))-255, 0);
+  console.log("rgb", red, green, blue);
+  if (huePrime >= 0 && huePrime < 1) {
+    red = chroma;
+    green = secondLargestComponent;
+    blue = 0;
+  } else if (huePrime >= 1 && huePrime < 2) {
+    red = secondLargestComponent;
+    green = chroma;
+    blue = 0;
+  } else if (huePrime >= 2 && huePrime < 3) {
+    red = 0;
+    green = chroma;
+    blue = secondLargestComponent;
+  } else if (huePrime >= 3 && huePrime < 4) {
+    red = 0;
+    green = secondLargestComponent;
+    blue = chroma;
+  } else if (huePrime >= 4 && huePrime < 5) {
+    red = secondLargestComponent;
+    green = 0;
+    blue = chroma;
+  } else {
+    red = chroma;
+    green = 0;
+    blue = secondLargestComponent;
+  }
+
+  // Add the lightness adjustment to each component
+  red += lightnessAdjustment;
+  green += lightnessAdjustment;
+  blue += lightnessAdjustment;
+
+  // Convert the RGB values to the range 0-255 and round to the nearest integer
+  red = Math.round(red * 255);
+  green = Math.round(green * 255);
+  blue = Math.round(blue * 255);
+
+//   Return the RGB values as an array
+  return [red, green, blue];
+// 	saturation /= 100;
+//   luminosity /= 100;
+//   const k = n => (n + hue / 30) % 12;
+//   const a = saturation * Math.min(luminosity, 1 - luminosity);
+//   const f = n =>
+//     luminosity - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+//   return [255 * f(0), 255 * f(8), 255 * f(4)];
+}

@@ -5,7 +5,44 @@
 	"isGlobal": false,
 	"instanceVariables": [],
 	"behaviorTypes": [],
-	"effectTypes": [],
+	"effectTypes": [
+		{
+			"effectId": "overlay",
+			"name": "Overlay"
+		},
+		{
+			"effectId": "softlight",
+			"name": "SoftLight"
+		},
+		{
+			"effectId": "screen",
+			"name": "Screen"
+		},
+		{
+			"effectId": "colorblend",
+			"name": "Color"
+		},
+		{
+			"effectId": "multiply",
+			"name": "Multiply"
+		},
+		{
+			"effectId": "difference",
+			"name": "Difference"
+		},
+		{
+			"effectId": "lighten",
+			"name": "Lighten"
+		},
+		{
+			"effectId": "darken",
+			"name": "Darken"
+		},
+		{
+			"effectId": "hueblend",
+			"name": "Hue"
+		}
+	],
 	"animations": {
 		"items": [
 			{

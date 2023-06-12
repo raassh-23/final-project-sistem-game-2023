@@ -9,6 +9,10 @@
 		{
 			"effectId": "hsladjust",
 			"name": "AdjustHSL"
+		},
+		{
+			"effectId": "tint",
+			"name": "Tint"
 		}
 	],
 	"image": {
@@ -19,7 +23,7 @@
 		"originalSource": "",
 		"exportFormat": "lossless",
 		"exportQuality": 0.8,
-		"imageSpriteId": 4091075,
+		"imageSpriteId": 4523124,
 		"useCollisionPoly": true
 	}
 }

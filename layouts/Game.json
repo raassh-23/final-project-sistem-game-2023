@@ -32,9 +32,20 @@
 						"AdjustHSL": {
 							"isEnabled": true,
 							"parameters": {
-								"hue": 0.85,
+								"hue": 0.8,
 								"saturation": 1,
 								"luminosity": 1
+							}
+						},
+						"Tint": {
+							"isEnabled": true,
+							"parameters": {
+								"color": [
+									0.27058823529411763,
+									0.7490196078431373,
+									0.5254901960784314,
+									1
+								]
 							}
 						}
 					},
@@ -67,6 +78,44 @@
 					"uid": 64,
 					"instanceVariables": {},
 					"behaviors": {},
+					"effects": {
+						"Overlay": {
+							"isEnabled": false,
+							"parameters": {}
+						},
+						"SoftLight": {
+							"isEnabled": false,
+							"parameters": {}
+						},
+						"Screen": {
+							"isEnabled": false,
+							"parameters": {}
+						},
+						"Color": {
+							"isEnabled": false,
+							"parameters": {}
+						},
+						"Multiply": {
+							"isEnabled": false,
+							"parameters": {}
+						},
+						"Difference": {
+							"isEnabled": false,
+							"parameters": {}
+						},
+						"Lighten": {
+							"isEnabled": false,
+							"parameters": {}
+						},
+						"Darken": {
+							"isEnabled": false,
+							"parameters": {}
+						},
+						"Hue": {
+							"isEnabled": true,
+							"parameters": {}
+						}
+					},
 					"world": {
 						"x": 1280,
 						"y": 720,
@@ -78,7 +127,7 @@
 							0,
 							0,
 							0,
-							0.06
+							0.3
 						],
 						"angle": 0,
 						"zElevation": 0
@@ -130,7 +179,7 @@
 					"uid": 3,
 					"instanceVariables": {
 						"actorNr": 0,
-						"health": 5,
+						"health": 100,
 						"ammo": 30
 					},
 					"behaviors": {
@@ -826,8 +875,8 @@
 					"world": {
 						"x": 378.5503640744091,
 						"y": 384.47359342774246,
-						"width": 32,
-						"height": 27.5,
+						"width": 47,
+						"height": 53,
 						"originX": 0.5,
 						"originY": 0.4223300970873786,
 						"color": [
@@ -1331,7 +1380,7 @@
 					},
 					"uid": 25,
 					"instanceVariables": {
-						"id": "heatlh"
+						"id": "health"
 					},
 					"behaviors": {
 						"Fade": {
