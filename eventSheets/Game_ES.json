@@ -348,6 +348,14 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "layer-is-interactive",
+											"objectClass": "System",
+											"sid": 578879211819064,
+											"parameters": {
+												"layer": "\"UI\""
+											}
+										},
+										{
 											"id": "compare-instance-variable",
 											"objectClass": "Big",
 											"sid": 510799560012795,
@@ -651,6 +659,14 @@
 									"eventType": "block",
 									"conditions": [
 										{
+											"id": "layer-is-interactive",
+											"objectClass": "System",
+											"sid": 538601162999724,
+											"parameters": {
+												"layer": "\"UI\""
+											}
+										},
+										{
 											"id": "compare-instance-variable",
 											"objectClass": "Player",
 											"sid": 284483805657633,
@@ -785,6 +801,46 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 512560082145198
+						}
+					],
+					"actions": [],
+					"sid": 314890694012613,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SpriteFontUI",
+									"sid": 924571879585549,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"spectating-winner\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 890575203491701,
+									"parameters": {
+										"text": "\"\""
+									}
+								}
+							],
+							"sid": 508774034926450
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "on-any-touch-start",
 							"objectClass": "Touch",
 							"sid": 401684740852306
@@ -914,32 +970,6 @@
 						{
 							"id": "compare-instance-variable",
 							"objectClass": "SpriteFontUI",
-							"sid": 940173633411369,
-							"parameters": {
-								"instance-variable": "id",
-								"comparison": 0,
-								"value": "\"spectating-winner\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-text",
-							"objectClass": "SpriteFontUI",
-							"sid": 621692626479016,
-							"parameters": {
-								"text": "ActivePlayers.Width = 1 ? \"The winner is \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\") : \"\""
-							}
-						}
-					],
-					"sid": 951681011498009
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "SpriteFontUI",
 							"sid": 761284265253026,
 							"parameters": {
 								"instance-variable": "id",
@@ -952,9 +982,9 @@
 						{
 							"id": "set-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 324335277899854,
+							"sid": 144316946223488,
 							"parameters": {
-								"text": "ActivePlayers.Width = 1 ? \"Game Over\" : \"Spectating\""
+								"text": "ActivePlayers.Width <= 1 ? \"Game Over\" : \"Spectating\""
 							}
 						}
 					],
@@ -1012,49 +1042,61 @@
 							}
 						}
 					],
-					"sid": 261874358284375,
-					"children": [
+					"sid": 261874358284375
+				},
+				{
+					"eventType": "block",
+					"conditions": [
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 438830441241290,
-									"parameters": {
-										"variable": "joinedPlayer",
-										"comparison": 0,
-										"value": "Photon.ActorCount"
-									}
-								},
-								{
-									"id": "evaluate-expression",
-									"objectClass": "System",
-									"sid": 426389225308046,
-									"parameters": {
-										"value": "Functions.isRoomMaster"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "raiseevent17",
-									"objectClass": "Photon",
-									"sid": 879217630615548,
-									"parameters": {
-										"code0": "START_GAME_EVENT",
-										"data1": "0",
-										"interestgroup2": "0",
-										"cache11": "donotcache",
-										"receivers15": "all",
-										"targetactors16": "\"\"",
-										"webforward19": "no"
-									}
-								}
-							],
-							"sid": 637126724550976
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 920882993682563,
+							"parameters": {
+								"variable": "joinedPlayer",
+								"comparison": 5,
+								"value": "Photon.ActorCount"
+							}
+						},
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 772925853499795,
+							"parameters": {
+								"variable": "gameRunning"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 426389225308046,
+							"parameters": {
+								"value": "Functions.isRoomMaster"
+							}
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 361420448958356
 						}
-					]
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 879217630615548,
+							"parameters": {
+								"code0": "START_GAME_EVENT",
+								"data1": "0",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 637126724550976
 				},
 				{
 					"eventType": "block",
@@ -1115,18 +1157,6 @@
 							}
 						},
 						{
-							"id": "setpropertyofmyroom103",
-							"objectClass": "Photon",
-							"sid": 983041951494503,
-							"parameters": {
-								"propname0": "\"isStarted\"",
-								"value1": "1",
-								"webforward4": "no",
-								"checkandset7": "no",
-								"expectedvalue8": "0"
-							}
-						},
-						{
 							"id": "set-boolean-eventvar",
 							"objectClass": "System",
 							"sid": 617930197531643,
@@ -1161,7 +1191,20 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"id": "setpropertyofmyroom103",
+									"objectClass": "Photon",
+									"sid": 955185051106879,
+									"parameters": {
+										"propname0": "\"isStarted\"",
+										"value1": "1",
+										"webforward4": "no",
+										"checkandset7": "no",
+										"expectedvalue8": "0"
+									}
+								}
+							],
 							"sid": 630844337637174,
 							"children": [
 								{
@@ -3359,10 +3402,10 @@
 				{
 					"id": "compare-size",
 					"objectClass": "ActivePlayers",
-					"sid": 861390929939171,
+					"sid": 228505052096149,
 					"parameters": {
 						"axis": "x",
-						"comparison": 0,
+						"comparison": 3,
 						"value": "1"
 					}
 				}
@@ -3376,6 +3419,11 @@
 						"variable": "gameRunning",
 						"value": "false"
 					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Player",
+					"sid": 919911979280697
 				}
 			],
 			"sid": 562107528735348,
@@ -3406,6 +3454,24 @@
 					"sid": 403118954597523
 				}
 			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-suspend",
+					"objectClass": "System",
+					"sid": 986047502982584
+				}
+			],
+			"actions": [
+				{
+					"id": "disconnect14",
+					"objectClass": "Photon",
+					"sid": 766803308072095
+				}
+			],
+			"sid": 101891733890780
 		},
 		{
 			"eventType": "block",
@@ -4194,9 +4260,9 @@
 								{
 									"id": "set-text",
 									"objectClass": "SpriteFontUI",
-									"sid": 587172941481644,
+									"sid": 453210045873883,
 									"parameters": {
-										"text": "playersEliminated & \" players remained\""
+										"text": "ActivePlayers.Width & \" players remained\""
 									}
 								}
 							],
@@ -4329,15 +4395,6 @@
 						"layer": "win ? \"Won\" : \"Lost\"",
 						"interactive": true
 					}
-				},
-				{
-					"id": "log",
-					"objectClass": "Browser",
-					"sid": 352332798215867,
-					"parameters": {
-						"type": "log",
-						"message": "\"player\" & win ? \"won\" : \"lost\""
-					}
 				}
 			],
 			"sid": 192806792949922,
@@ -4419,6 +4476,32 @@
 						}
 					],
 					"sid": 157760543258094
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 940173633411369,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"spectating-winner\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 407337689637618,
+							"parameters": {
+								"text": "\"The winner is \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\")"
+							}
+						}
+					],
+					"sid": 951681011498009
 				}
 			]
 		}
