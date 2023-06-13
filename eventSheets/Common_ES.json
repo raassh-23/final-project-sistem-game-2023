@@ -124,6 +124,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "BGM_TAG",
+			"type": "string",
+			"initialValue": "bgm",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 573904761053483
+		},
+		{
+			"eventType": "variable",
 			"name": "CLICKABLE_CLICKED",
 			"type": "string",
 			"initialValue": "ClickableClicked",

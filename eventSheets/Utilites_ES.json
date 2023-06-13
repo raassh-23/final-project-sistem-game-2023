@@ -840,7 +840,8 @@
 				{
 					"id": "wait-for-previous-actions",
 					"objectClass": "System",
-					"sid": 765607624517796
+					"sid": 765607624517796,
+					"disabled": true
 				},
 				{
 					"id": "raiseevent17",
@@ -1348,6 +1349,116 @@
 				}
 			],
 			"sid": 885638949940821
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayStepSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "add-to-instvar",
+					"objectClass": "Player",
+					"sid": 662959120593926,
+					"parameters": {
+						"instance-variable": "secondsToStep",
+						"value": "dt"
+					}
+				}
+			],
+			"sid": 281411634617594,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 570258802404052,
+							"parameters": {
+								"instance-variable": "secondsToStep",
+								"comparison": 5,
+								"value": "PLAYER_STEP_INTERVAL"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 349617552002758,
+							"parameters": {
+								"instance-variable": "secondsToStep",
+								"value": "0"
+							}
+						},
+						{
+							"id": "play-at-object-by-name",
+							"objectClass": "Audio",
+							"sid": 909482651122753,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "\"stepdirt_\"&(Player.step%8)+1",
+								"loop": "not-looping",
+								"volume": "-20",
+								"object": "Player",
+								"inner-angle": "360",
+								"outer-angle": "360",
+								"outer-gain": "0",
+								"tag-optional": "SFX_TAG"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 204512933252072,
+							"parameters": {
+								"instance-variable": "step",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 749709392194861
+				}
+			]
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayShootSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "play-at-object",
+					"objectClass": "Audio",
+					"sid": 142238402600017,
+					"parameters": {
+						"audio-file": "shot",
+						"loop": "not-looping",
+						"volume": "-20",
+						"object": "Player",
+						"inner-angle": "360",
+						"outer-angle": "360",
+						"outer-gain": "0",
+						"tag-optional": "\"\""
+					}
+				}
+			],
+			"sid": 439471796898679
 		}
 	],
 	"sid": 390058048203286

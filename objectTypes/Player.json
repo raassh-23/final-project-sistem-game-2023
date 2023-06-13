@@ -24,6 +24,20 @@
 			"desc": "",
 			"show": true,
 			"sid": 902348920645355
+		},
+		{
+			"name": "secondsToStep",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 444820675182756
+		},
+		{
+			"name": "step",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 264206399480776
 		}
 	],
 	"behaviorTypes": [

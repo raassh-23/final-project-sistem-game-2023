@@ -717,10 +717,10 @@
 										{
 											"id": "raiseevent17",
 											"objectClass": "Photon",
-											"sid": 497718923432036,
+											"sid": 494578732854592,
 											"parameters": {
-												"code0": "SET_POSITION_PLAYER_EVENT",
-												"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+												"code0": "SET_ANGLE_PLAYER_EVENT",
+												"data1": "Player.Angle & \"|\"",
 												"interestgroup2": "0",
 												"cache11": "donotcache",
 												"receivers15": "others",
@@ -754,6 +754,11 @@
 												}
 											],
 											"actions": [
+												{
+													"customAction": "PlayShootSFX",
+													"objectClass": "Player",
+													"sid": 125610051463848
+												},
 												{
 													"id": "spawn-another-object",
 													"objectClass": "Player",
@@ -1518,6 +1523,14 @@
 											"parameters": {
 												"state": "enabled"
 											}
+										},
+										{
+											"id": "set-listener-object",
+											"objectClass": "Audio",
+											"sid": 772636549300213,
+											"parameters": {
+												"object": "Player"
+											}
 										}
 									],
 									"sid": 651835251597425
@@ -1572,16 +1585,6 @@
 							"sid": 749041491321976
 						},
 						{
-							"eventType": "variable",
-							"name": "newAngle",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": false,
-							"isConstant": false,
-							"sid": 126396551293519
-						},
-						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
@@ -1604,15 +1607,6 @@
 									}
 								},
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 631438484366823,
-									"parameters": {
-										"variable": "newAngle",
-										"value": "float(tokenat(Photon.EventData, 2, \"|\"))"
-									}
-								},
-								{
 									"id": "tween-two-properties",
 									"objectClass": "Player",
 									"sid": 100808193836884,
@@ -1631,9 +1625,67 @@
 									}
 								},
 								{
+									"customAction": "PlayStepSFX",
+									"objectClass": "Player",
+									"sid": 456541296151123
+								}
+							],
+							"sid": 499463094661786
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 123350387257958,
+							"parameters": {
+								"code0": "SET_ANGLE_PLAYER_EVENT"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 212845573022511,
+							"parameters": {
+								"instance-variable": "actorNr",
+								"comparison": 0,
+								"value": "Photon.ActorNr"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 209963618543568,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "newAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 928347331380852
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 174448322919550,
+									"parameters": {
+										"variable": "newAngle",
+										"value": "float(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
 									"id": "tween-one-property",
 									"objectClass": "Player",
-									"sid": 201917921300660,
+									"sid": 251619317608134,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "ROTATE_PLAYER",
@@ -1648,7 +1700,7 @@
 									}
 								}
 							],
-							"sid": 499463094661786
+							"sid": 559611572057656
 						}
 					]
 				},
@@ -1786,6 +1838,11 @@
 										"instance-variable": "ammo",
 										"value": "1"
 									}
+								},
+								{
+									"customAction": "PlayShootSFX",
+									"objectClass": "Player",
+									"sid": 190941539756397
 								}
 							],
 							"sid": 539453537712997
@@ -4352,12 +4409,17 @@
 					],
 					"actions": [
 						{
+							"customAction": "PlayStepSFX",
+							"objectClass": "Player",
+							"sid": 984169467320104
+						},
+						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
-							"sid": 655572882786625,
+							"sid": 536780596810272,
 							"parameters": {
 								"code0": "SET_POSITION_PLAYER_EVENT",
-								"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+								"data1": "Player.X & \"|\" & Player.Y ",
 								"interestgroup2": "0",
 								"cache11": "donotcache",
 								"receivers15": "others",
