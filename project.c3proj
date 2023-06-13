@@ -240,7 +240,8 @@
 			"BGOverlay",
 			"VSCodePlugin",
 			"HealthBox",
-			"Audio"
+			"Audio",
+			"Title"
 		],
 		"subfolders": []
 	},
