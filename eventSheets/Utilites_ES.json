@@ -670,18 +670,7 @@
 			"functionIsAsync": false,
 			"functionParameters": [],
 			"eventType": "function-block",
-			"conditions": [
-				{
-					"id": "compare-instance-variable",
-					"objectClass": "Button",
-					"sid": 858486104600791,
-					"parameters": {
-						"instance-variable": "id",
-						"comparison": 0,
-						"value": "\"start\""
-					}
-				}
-			],
+			"conditions": [],
 			"actions": [],
 			"sid": 644750799989992,
 			"children": [
@@ -697,27 +686,155 @@
 								"comparison": 5,
 								"second-value": "MIN_PLAYER"
 							}
+						}
+					],
+					"actions": [],
+					"sid": 642898822736619,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 739385745995389,
+									"parameters": {
+										"value": "Functions.isRoomMaster"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 520067553883847,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 999652235345189,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 524017165061176,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 319917258765235
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "SpriteFontUI",
+											"sid": 557830776672450,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"player-start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "SpriteFontUI",
+											"sid": 584887940798216,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 511523021810787
+								}
+							]
 						},
 						{
-							"id": "evaluate-expression",
-							"objectClass": "System",
-							"sid": 159019556889909,
-							"parameters": {
-								"value": "Functions.isRoomMaster"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 592812708534469
+								}
+							],
+							"actions": [],
+							"sid": 592337326738870,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 148764487880241,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 291097200511982,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 544953348083188
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "SpriteFontUI",
+											"sid": 199719626348045,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"player-start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "SpriteFontUI",
+											"sid": 300743512305975,
+											"parameters": {
+												"visibility": "visible"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "SpriteFontUI",
+											"sid": 450945670217234,
+											"parameters": {
+												"text": "\"Waiting for room master to start\""
+											}
+										}
+									],
+									"sid": 557554264285222
+								}
+							]
 						}
-					],
-					"actions": [
-						{
-							"id": "set-visible",
-							"objectClass": "Button",
-							"sid": 344954715756204,
-							"parameters": {
-								"visibility": "visible"
-							}
-						}
-					],
-					"sid": 642898822736619
+					]
 				},
 				{
 					"eventType": "block",
@@ -728,17 +845,70 @@
 							"sid": 331498143604313
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 479146902540556,
+					"children": [
 						{
-							"id": "set-visible",
-							"objectClass": "Button",
-							"sid": 438338328310043,
-							"parameters": {
-								"visibility": "invisible"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 698400144276849,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"start\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "Button",
+									"sid": 660631435445664,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 526712278196922
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SpriteFontUI",
+									"sid": 513054473526196,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"player-start\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "SpriteFontUI",
+									"sid": 884579096838342,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 700694279921523,
+									"parameters": {
+										"text": "\"Need \" & MIN_PLAYER - Photon.ActorCount & \" more player\" & (MIN_PLAYER - Photon.ActorCount > 1 ? \"s\" : \"\") & \" to start\""
+									}
+								}
+							],
+							"sid": 161272183631027
 						}
-					],
-					"sid": 479146902540556
+					]
 				}
 			]
 		},
@@ -841,11 +1011,25 @@
 					"id": "wait-for-previous-actions",
 					"objectClass": "System",
 					"sid": 765607624517796
-				},
+				}
+			],
+			"sid": 868708923240964
+		},
+		{
+			"functionName": "RaiseShowQuestion",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
 				{
 					"id": "raiseevent17",
 					"objectClass": "Photon",
-					"sid": 472040858123810,
+					"sid": 637922104530185,
 					"parameters": {
 						"code0": "SHOW_QUESTION_EVENT",
 						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition & \"|\" & backgroundOverlay & \"|\" & backgroundColorRed & \"|\" & backgroundColorGreen & \"|\" & backgroundColorBlue",
@@ -857,7 +1041,7 @@
 					}
 				}
 			],
-			"sid": 868708923240964
+			"sid": 751626091558491
 		},
 		{
 			"functionName": "ShowQuestion",
@@ -1313,6 +1497,10 @@
 							"parameters": [
 								false
 							]
+						},
+						{
+							"callFunction": "PlayEliminatedSFX",
+							"sid": 215623898399256
 						}
 					],
 					"sid": 109370833651271
@@ -1348,6 +1536,335 @@
 				}
 			],
 			"sid": 885638949940821
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayStepSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "add-to-instvar",
+					"objectClass": "Player",
+					"sid": 662959120593926,
+					"parameters": {
+						"instance-variable": "secondsToStep",
+						"value": "dt"
+					}
+				}
+			],
+			"sid": 281411634617594,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 570258802404052,
+							"parameters": {
+								"instance-variable": "secondsToStep",
+								"comparison": 5,
+								"value": "PLAYER_STEP_INTERVAL"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 349617552002758,
+							"parameters": {
+								"instance-variable": "secondsToStep",
+								"value": "0"
+							}
+						},
+						{
+							"id": "play-at-object-by-name",
+							"objectClass": "Audio",
+							"sid": 909482651122753,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "\"stepdirt_\"&(Player.step%8)+1",
+								"loop": "not-looping",
+								"volume": "-20",
+								"object": "Player",
+								"inner-angle": "360",
+								"outer-angle": "360",
+								"outer-gain": "0",
+								"tag-optional": "SFX_TAG"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 204512933252072,
+							"parameters": {
+								"instance-variable": "step",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 749709392194861
+				}
+			]
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayShootSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "play-at-object",
+					"objectClass": "Audio",
+					"sid": 588002198249356,
+					"parameters": {
+						"audio-file": "shot",
+						"loop": "not-looping",
+						"volume": "-10",
+						"object": "Player",
+						"inner-angle": "360",
+						"outer-angle": "360",
+						"outer-gain": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 439471796898679
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayPickUpSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 282635384471190,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 161990004947473,
+					"parameters": {
+						"audio-file": "pickup",
+						"loop": "not-looping",
+						"volume": "-10",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 372504352091829
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayHurtSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 140150926966851,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 288470444216138,
+					"parameters": {
+						"audio-file": "hurt",
+						"loop": "not-looping",
+						"volume": "-30",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 521549623635803
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayDieSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 985830941414121,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 704506850006689,
+					"parameters": {
+						"audio-file": "die",
+						"loop": "not-looping",
+						"volume": "-20",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 776103579350326
+		},
+		{
+			"functionName": "PlayQualifiedSFX",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "win",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "",
+					"sid": 930085583957636
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 918138618440601,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 287408580575711,
+							"parameters": {
+								"variable": "win"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 341629416580025,
+							"parameters": {
+								"audio-file": "win",
+								"loop": "not-looping",
+								"volume": "-20",
+								"stereo-pan": "0",
+								"tag-optional": "SFX_TAG"
+							}
+						}
+					],
+					"sid": 229872312775466
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 590472022441756
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 328617519435347,
+							"parameters": {
+								"audio-file": "qualified",
+								"loop": "not-looping",
+								"volume": "-10",
+								"stereo-pan": "0",
+								"tag-optional": "SFX_TAG"
+							}
+						}
+					],
+					"sid": 286480862725525
+				}
+			]
+		},
+		{
+			"functionName": "PlayEliminatedSFX",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 949534470784223,
+					"parameters": {
+						"audio-file": "eliminated",
+						"loop": "not-looping",
+						"volume": "-10",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 603263790189179
 		}
 	],
 	"sid": 390058048203286

@@ -15,6 +15,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Audio",
+			"name": "Audio",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Browser",
 			"name": "Browser",
 			"author": "Scirra",
@@ -232,7 +239,8 @@
 			"Panel",
 			"BGOverlay",
 			"VSCodePlugin",
-			"HealthBox"
+			"HealthBox",
+			"Audio"
 		],
 		"subfolders": []
 	},
@@ -287,7 +295,136 @@
 			"subfolders": []
 		},
 		"sound": {
-			"items": [],
+			"items": [
+				{
+					"name": "stepdirt_6.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 907516666483313,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "stepdirt_7.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 725420079467161,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "stepdirt_8.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 753368170374239,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "stepdirt_1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 868680562544022,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "stepdirt_2.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 123941387817875,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "stepdirt_3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 977711320053013,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "stepdirt_4.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 292904962382703,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "stepdirt_5.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 617855906232995,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "shot.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 684015647335378,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "click.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 326494100725299,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "pickup.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 826825434707143,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "qualified.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 450166640220721,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "eliminated.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 378248042814092,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "win.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 978141611365253,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hurt.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 593142668239497,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "die.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 106563552362121,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"music": {

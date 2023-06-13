@@ -124,6 +124,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "BGM_TAG",
+			"type": "string",
+			"initialValue": "bgm",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 573904761053483
+		},
+		{
+			"eventType": "variable",
 			"name": "CLICKABLE_CLICKED",
 			"type": "string",
 			"initialValue": "ClickableClicked",
@@ -586,7 +596,20 @@
 			"functionParameters": [],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 479981908721639,
+					"parameters": {
+						"audio-file": "click",
+						"loop": "not-looping",
+						"volume": "-10",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
 			"sid": 192362111677490
 		}
 	],

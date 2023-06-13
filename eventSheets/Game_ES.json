@@ -717,10 +717,10 @@
 										{
 											"id": "raiseevent17",
 											"objectClass": "Photon",
-											"sid": 497718923432036,
+											"sid": 494578732854592,
 											"parameters": {
-												"code0": "SET_POSITION_PLAYER_EVENT",
-												"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+												"code0": "SET_ANGLE_PLAYER_EVENT",
+												"data1": "Player.Angle & \"|\"",
 												"interestgroup2": "0",
 												"cache11": "donotcache",
 												"receivers15": "others",
@@ -754,6 +754,11 @@
 												}
 											],
 											"actions": [
+												{
+													"customAction": "PlayShootSFX",
+													"objectClass": "Player",
+													"sid": 125610051463848
+												},
 												{
 													"id": "spawn-another-object",
 													"objectClass": "Player",
@@ -1518,6 +1523,14 @@
 											"parameters": {
 												"state": "enabled"
 											}
+										},
+										{
+											"id": "set-listener-object",
+											"objectClass": "Audio",
+											"sid": 772636549300213,
+											"parameters": {
+												"object": "Player"
+											}
 										}
 									],
 									"sid": 651835251597425
@@ -1572,16 +1585,6 @@
 							"sid": 749041491321976
 						},
 						{
-							"eventType": "variable",
-							"name": "newAngle",
-							"type": "number",
-							"initialValue": "0",
-							"comment": "",
-							"isStatic": false,
-							"isConstant": false,
-							"sid": 126396551293519
-						},
-						{
 							"eventType": "block",
 							"conditions": [],
 							"actions": [
@@ -1604,15 +1607,6 @@
 									}
 								},
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 631438484366823,
-									"parameters": {
-										"variable": "newAngle",
-										"value": "float(tokenat(Photon.EventData, 2, \"|\"))"
-									}
-								},
-								{
 									"id": "tween-two-properties",
 									"objectClass": "Player",
 									"sid": 100808193836884,
@@ -1631,9 +1625,67 @@
 									}
 								},
 								{
+									"customAction": "PlayStepSFX",
+									"objectClass": "Player",
+									"sid": 456541296151123
+								}
+							],
+							"sid": 499463094661786
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "onevent3",
+							"objectClass": "Photon",
+							"sid": 123350387257958,
+							"parameters": {
+								"code0": "SET_ANGLE_PLAYER_EVENT"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 212845573022511,
+							"parameters": {
+								"instance-variable": "actorNr",
+								"comparison": 0,
+								"value": "Photon.ActorNr"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 209963618543568,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "newAngle",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 928347331380852
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 174448322919550,
+									"parameters": {
+										"variable": "newAngle",
+										"value": "float(tokenat(Photon.EventData, 0, \"|\"))"
+									}
+								},
+								{
 									"id": "tween-one-property",
 									"objectClass": "Player",
-									"sid": 201917921300660,
+									"sid": 251619317608134,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "ROTATE_PLAYER",
@@ -1648,7 +1700,7 @@
 									}
 								}
 							],
-							"sid": 499463094661786
+							"sid": 559611572057656
 						}
 					]
 				},
@@ -1786,6 +1838,11 @@
 										"instance-variable": "ammo",
 										"value": "1"
 									}
+								},
+								{
+									"customAction": "PlayShootSFX",
+									"objectClass": "Player",
+									"sid": 190941539756397
 								}
 							],
 							"sid": 539453537712997
@@ -1924,6 +1981,11 @@
 									],
 									"actions": [
 										{
+											"customAction": "PlayDieSFX",
+											"objectClass": "Player",
+											"sid": 232120543822492
+										},
+										{
 											"id": "destroy",
 											"objectClass": "Player",
 											"sid": 320773208131711
@@ -2027,6 +2089,24 @@
 											"sid": 775267824373199
 										}
 									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 850193053314843
+										}
+									],
+									"actions": [
+										{
+											"customAction": "PlayHurtSFX",
+											"objectClass": "Player",
+											"sid": 194831775014103
+										}
+									],
+									"sid": 157030053063490
 								}
 							]
 						}
@@ -2526,40 +2606,21 @@
 											"parameters": [
 												"nr"
 											]
-										},
-										{
-											"callFunction": "ShowQualifiedScreen",
-											"sid": 915820173620149,
-											"parameters": [
-												true,
-												"eliminatedCount"
-											]
 										}
 									],
 									"sid": 504034487009616
 								},
 								{
 									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "SpriteFontUI",
-											"sid": 786311035178998,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "\"countdown\""
-											}
-										}
-									],
+									"conditions": [],
 									"actions": [
 										{
-											"id": "set-text",
-											"objectClass": "SpriteFontUI",
-											"sid": 914616662644979,
-											"parameters": {
-												"text": "eliminatedCount & \" players eliminated\" & newline & \"waiting for the next question...\""
-											}
+											"callFunction": "ShowQualifiedScreen",
+											"sid": 615762234068728,
+											"parameters": [
+												true,
+												"eliminatedCount"
+											]
 										}
 									],
 									"sid": 302073177639989
@@ -2577,52 +2638,15 @@
 							],
 							"actions": [
 								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 587148380934991,
-									"parameters": {
-										"type": "log",
-										"message": "\"no winner\""
-									}
-								},
-								{
 									"callFunction": "ShowQualifiedScreen",
-									"sid": 127572552415921,
+									"sid": 593860264873046,
 									"parameters": [
 										true,
-										"eliminatedCount"
+										"0"
 									]
 								}
 							],
-							"sid": 204678922485539,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "SpriteFontUI",
-											"sid": 518911415885076,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "\"countdown\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-text",
-											"objectClass": "SpriteFontUI",
-											"sid": 960101308491162,
-											"parameters": {
-												"text": "\"no players eliminated\" & newline & \"waiting for the next question...\""
-											}
-										}
-									],
-									"sid": 841823841840686
-								}
-							]
+							"sid": 204678922485539
 						}
 					]
 				},
@@ -4001,6 +4025,32 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 151711048468697,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"spectating-winner\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 137889070080090,
+							"parameters": {
+								"text": "\"The winner is \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\")"
+							}
+						}
+					],
+					"sid": 126698349118586
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "compare-at-x",
 							"objectClass": "ActivePlayers",
 							"sid": 461359959897870,
@@ -4129,6 +4179,11 @@
 			],
 			"actions": [
 				{
+					"customAction": "PlayPickUpSFX",
+					"objectClass": "Player",
+					"sid": 305706923527036
+				},
+				{
 					"id": "destroy",
 					"objectClass": "AmmoBox",
 					"sid": 797806999767537
@@ -4149,6 +4204,11 @@
 				}
 			],
 			"actions": [
+				{
+					"customAction": "PlayPickUpSFX",
+					"objectClass": "Player",
+					"sid": 305706923527036
+				},
 				{
 					"id": "destroy",
 					"objectClass": "HealthBox",
@@ -4352,12 +4412,17 @@
 					],
 					"actions": [
 						{
+							"customAction": "PlayStepSFX",
+							"objectClass": "Player",
+							"sid": 984169467320104
+						},
+						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
-							"sid": 655572882786625,
+							"sid": 536780596810272,
 							"parameters": {
 								"code0": "SET_POSITION_PLAYER_EVENT",
-								"data1": "Player.X & \"|\" & Player.Y & \"|\" & Player.Angle",
+								"data1": "Player.X & \"|\" & Player.Y ",
 								"interestgroup2": "0",
 								"cache11": "donotcache",
 								"receivers15": "others",
@@ -4834,16 +4899,6 @@
 										"comparison": 4,
 										"second-value": "0"
 									}
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 208117310313771,
-									"parameters": {
-										"first-value": "playersEliminated",
-										"comparison": 2,
-										"second-value": "ActivePlayers.Width"
-									}
 								}
 							],
 							"actions": [
@@ -4856,7 +4911,54 @@
 									}
 								}
 							],
-							"sid": 794265337213580
+							"sid": 794265337213580,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-size",
+											"objectClass": "ActivePlayers",
+											"sid": 461928093282081,
+											"parameters": {
+												"axis": "x",
+												"comparison": 3,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "PlayQualifiedSFX",
+											"sid": 636045900076165,
+											"parameters": [
+												true
+											]
+										}
+									],
+									"sid": 927949633972011
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 849876510697533
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "PlayQualifiedSFX",
+											"sid": 672667871397736,
+											"parameters": [
+												false
+											]
+										}
+									],
+									"sid": 770186136575401
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -4875,6 +4977,13 @@
 									"parameters": {
 										"text": "\"All players qualified\""
 									}
+								},
+								{
+									"callFunction": "PlayQualifiedSFX",
+									"sid": 633860239004349,
+									"parameters": [
+										false
+									]
 								}
 							],
 							"sid": 700479215788320
@@ -5084,32 +5193,6 @@
 						}
 					],
 					"sid": 157760543258094
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "SpriteFontUI",
-							"sid": 940173633411369,
-							"parameters": {
-								"instance-variable": "id",
-								"comparison": 0,
-								"value": "\"spectating-winner\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-text",
-							"objectClass": "SpriteFontUI",
-							"sid": 407337689637618,
-							"parameters": {
-								"text": "\"The winner is \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\")"
-							}
-						}
-					],
-					"sid": 951681011498009
 				}
 			]
 		}

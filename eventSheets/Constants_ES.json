@@ -19,7 +19,7 @@
 			"eventType": "variable",
 			"name": "MIN_PLAYER",
 			"type": "number",
-			"initialValue": "2",
+			"initialValue": "3",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -204,6 +204,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 563455353737599
+		},
+		{
+			"eventType": "variable",
+			"name": "SET_ANGLE_PLAYER_EVENT",
+			"type": "number",
+			"initialValue": "17",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 702743664804523
 		},
 		{
 			"eventType": "comment",
@@ -446,6 +456,16 @@
 			"isStatic": false,
 			"isConstant": false,
 			"sid": 732369476190677
+		},
+		{
+			"eventType": "variable",
+			"name": "PLAYER_STEP_INTERVAL",
+			"type": "number",
+			"initialValue": "0.33",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 820458532991903
 		},
 		{
 			"eventType": "comment",
