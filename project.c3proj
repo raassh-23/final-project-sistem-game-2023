@@ -242,7 +242,8 @@
 			"HealthBox",
 			"Audio",
 			"Title",
-			"BGCircle"
+			"BGCircle",
+			"frame"
 		],
 		"subfolders": []
 	},
