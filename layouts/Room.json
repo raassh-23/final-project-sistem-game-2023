@@ -155,7 +155,7 @@
 				{
 					"type": "Button",
 					"properties": {
-						"initially-visible": true,
+						"initially-visible": false,
 						"initial-animation": "Animation 1",
 						"initial-frame": 4,
 						"enable-collisions": true,
@@ -257,6 +257,110 @@
 						"y": 208,
 						"width": 275,
 						"height": 53,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "SpriteFontUI",
+					"properties": {
+						"text": "0/8",
+						"enable-bbcode": true,
+						"character-width": 66,
+						"character-height": 70,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
+						"spacing-data": "[[15,\" \"],[14,\"|\"],[15,\"i\"],[16,\"I.,;:!\"],[17,\"l'\"],[19,\"J`\"],[20,\"j1[]°\"],[23,\"r\"],[24,\"()\"],[25,\"ft?-~\"],[26,\"Lc>\"],[27,\"s<\"],[28,\"EF=\"],[29,\"5\"],[30,\"z\\/+\"],[31,\"CS23_\\\"*$\"],[32,\"Pabehnpu7\"],[33,\"Tkoqx8\"],[34,\"BRZgv069\"],[35,\"GKNUdy#€\"],[36,\"DHY\"],[37,\"VX\"],[38,\"AO4\"],[40,\"Q\"],[42,\"£\"],[43,\"&\"],[44,\"w\"],[47,\"M\"],[49,\"Wm\"],[57,\"%\"],[64,\"@\"]]",
+						"scale": 0.6,
+						"character-spacing": 0,
+						"line-height": 0,
+						"horizontal-alignment": "left",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "center",
+						"read-aloud": false
+					},
+					"uid": 73,
+					"instanceVariables": {
+						"id": "player-count"
+					},
+					"behaviors": {
+						"Fade": {
+							"properties": {
+								"fade-in-time": 0,
+								"wait-time": 0,
+								"fade-out-time": 1,
+								"destroy": false,
+								"enabled": false,
+								"live-preview": false
+							}
+						}
+					},
+					"world": {
+						"x": 217,
+						"y": 115,
+						"width": 217,
+						"height": 49.48760835001292,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "SpriteFontUI",
+					"properties": {
+						"text": "Need x more players to start",
+						"enable-bbcode": true,
+						"character-width": 66,
+						"character-height": 70,
+						"character-set": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#\"'&()[]|`\\/@°+=*$£€<>",
+						"spacing-data": "[[15,\" \"],[14,\"|\"],[15,\"i\"],[16,\"I.,;:!\"],[17,\"l'\"],[19,\"J`\"],[20,\"j1[]°\"],[23,\"r\"],[24,\"()\"],[25,\"ft?-~\"],[26,\"Lc>\"],[27,\"s<\"],[28,\"EF=\"],[29,\"5\"],[30,\"z\\/+\"],[31,\"CS23_\\\"*$\"],[32,\"Pabehnpu7\"],[33,\"Tkoqx8\"],[34,\"BRZgv069\"],[35,\"GKNUdy#€\"],[36,\"DHY\"],[37,\"VX\"],[38,\"AO4\"],[40,\"Q\"],[42,\"£\"],[43,\"&\"],[44,\"w\"],[47,\"M\"],[49,\"Wm\"],[57,\"%\"],[64,\"@\"]]",
+						"scale": 0.6,
+						"character-spacing": 0,
+						"line-height": 0,
+						"horizontal-alignment": "center",
+						"vertical-alignment": "top",
+						"wrapping": "word",
+						"initially-visible": true,
+						"origin": "center",
+						"read-aloud": false
+					},
+					"uid": 74,
+					"instanceVariables": {
+						"id": "player-start"
+					},
+					"behaviors": {
+						"Fade": {
+							"properties": {
+								"fade-in-time": 0,
+								"wait-time": 0,
+								"fade-out-time": 1,
+								"destroy": false,
+								"enabled": false,
+								"live-preview": false
+							}
+						}
+					},
+					"world": {
+						"x": 1004,
+						"y": 472,
+						"width": 359,
+						"height": 101.48760835001292,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

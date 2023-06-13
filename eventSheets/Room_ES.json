@@ -114,6 +114,32 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "compare-instance-variable",
+					"objectClass": "SpriteFontUI",
+					"sid": 863720332750483,
+					"parameters": {
+						"instance-variable": "id",
+						"comparison": 0,
+						"value": "\"player-count\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "SpriteFontUI",
+					"sid": 460553695182457,
+					"parameters": {
+						"text": "Photon.ActorCount & \"/\" & MAX_PLAYER"
+					}
+				}
+			],
+			"sid": 759784928038478
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "onactorleave16",
 					"objectClass": "Photon",
 					"sid": 884326419322403

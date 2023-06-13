@@ -670,18 +670,7 @@
 			"functionIsAsync": false,
 			"functionParameters": [],
 			"eventType": "function-block",
-			"conditions": [
-				{
-					"id": "compare-instance-variable",
-					"objectClass": "Button",
-					"sid": 858486104600791,
-					"parameters": {
-						"instance-variable": "id",
-						"comparison": 0,
-						"value": "\"start\""
-					}
-				}
-			],
+			"conditions": [],
 			"actions": [],
 			"sid": 644750799989992,
 			"children": [
@@ -697,27 +686,155 @@
 								"comparison": 5,
 								"second-value": "MIN_PLAYER"
 							}
+						}
+					],
+					"actions": [],
+					"sid": 642898822736619,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "evaluate-expression",
+									"objectClass": "System",
+									"sid": 739385745995389,
+									"parameters": {
+										"value": "Functions.isRoomMaster"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 520067553883847,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 999652235345189,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 524017165061176,
+											"parameters": {
+												"visibility": "visible"
+											}
+										}
+									],
+									"sid": 319917258765235
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "SpriteFontUI",
+											"sid": 557830776672450,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"player-start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "SpriteFontUI",
+											"sid": 584887940798216,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 511523021810787
+								}
+							]
 						},
 						{
-							"id": "evaluate-expression",
-							"objectClass": "System",
-							"sid": 159019556889909,
-							"parameters": {
-								"value": "Functions.isRoomMaster"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 592812708534469
+								}
+							],
+							"actions": [],
+							"sid": 592337326738870,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "Button",
+											"sid": 148764487880241,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "Button",
+											"sid": 291097200511982,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 544953348083188
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "SpriteFontUI",
+											"sid": 199719626348045,
+											"parameters": {
+												"instance-variable": "id",
+												"comparison": 0,
+												"value": "\"player-start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "SpriteFontUI",
+											"sid": 300743512305975,
+											"parameters": {
+												"visibility": "visible"
+											}
+										},
+										{
+											"id": "set-text",
+											"objectClass": "SpriteFontUI",
+											"sid": 450945670217234,
+											"parameters": {
+												"text": "\"Waiting for room master to start\""
+											}
+										}
+									],
+									"sid": 557554264285222
+								}
+							]
 						}
-					],
-					"actions": [
-						{
-							"id": "set-visible",
-							"objectClass": "Button",
-							"sid": 344954715756204,
-							"parameters": {
-								"visibility": "visible"
-							}
-						}
-					],
-					"sid": 642898822736619
+					]
 				},
 				{
 					"eventType": "block",
@@ -728,17 +845,70 @@
 							"sid": 331498143604313
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 479146902540556,
+					"children": [
 						{
-							"id": "set-visible",
-							"objectClass": "Button",
-							"sid": 438338328310043,
-							"parameters": {
-								"visibility": "invisible"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "Button",
+									"sid": 698400144276849,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"start\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "Button",
+									"sid": 660631435445664,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 526712278196922
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SpriteFontUI",
+									"sid": 513054473526196,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"player-start\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "SpriteFontUI",
+									"sid": 884579096838342,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 700694279921523,
+									"parameters": {
+										"text": "\"Need \" & MIN_PLAYER - Photon.ActorCount & \" more player\" & (MIN_PLAYER - Photon.ActorCount > 1 ? \"s\" : \"\") & \" to start\""
+									}
+								}
+							],
+							"sid": 161272183631027
 						}
-					],
-					"sid": 479146902540556
+					]
 				}
 			]
 		},
