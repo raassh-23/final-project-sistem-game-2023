@@ -203,6 +203,10 @@ const levelVariables = {
 	},
 }
 
+export function reset() {
+	level = 0;
+}
+
 function updateCountdownRange(runtime) {
 	const newCountdownRange = currentLevelVariables["countdownRange"];
 	runtime.globalVars.MIN_COUNTDOWN_DURATION = newCountdownRange[0];

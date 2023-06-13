@@ -1241,12 +1241,12 @@
 						{
 							"id": "start-timer",
 							"objectClass": "TimeManager",
-							"sid": 729041769114712,
+							"sid": 921992776090037,
 							"behaviorType": "Timer",
 							"parameters": {
 								"duration": "WAITING_DURATION",
 								"type": "once",
-								"tag": "WAITING_TAG"
+								"tag": "WAITING_START_TAG"
 							}
 						}
 					],
@@ -3468,6 +3468,10 @@
 			],
 			"actions": [
 				{
+					"type": "script",
+					"script": "reset();"
+				},
+				{
 					"id": "set-layer-visible",
 					"objectClass": "System",
 					"sid": 870369275032517,
@@ -3527,6 +3531,15 @@
 					"sid": 813618693794505,
 					"parameters": {
 						"variable": "currentQuestion",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 322139553330368,
+					"parameters": {
+						"variable": "countdownMultiplier",
 						"value": "0"
 					}
 				},
@@ -3943,6 +3956,15 @@
 							"parameters": {
 								"tag": "WAITING_TAG"
 							}
+						},
+						{
+							"id": "on-timer",
+							"objectClass": "TimeManager",
+							"sid": 560689087954922,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "WAITING_START_TAG"
+							}
 						}
 					],
 					"actions": [
@@ -3951,7 +3973,8 @@
 							"sid": 725484583777772
 						}
 					],
-					"sid": 781983128739026
+					"sid": 781983128739026,
+					"isOrBlock": true
 				},
 				{
 					"eventType": "block",
@@ -5480,6 +5503,50 @@
 						}
 					],
 					"sid": 157760543258094
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-timer-running",
+					"objectClass": "TimeManager",
+					"sid": 986310651472695,
+					"behaviorType": "Timer",
+					"parameters": {
+						"tag": "WAITING_START_TAG"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 445265375517160,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 583283940061889,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"countdown\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 252003743089767,
+							"parameters": {
+								"text": "\"Starting in \" & clamp(floor(TimeManager.Timer.Duration(WAITING_START_TAG) - TimeManager.Timer.CurrentTime(WAITING_START_TAG)), 0, WAITING_DURATION) & \" seconds\""
+							}
+						}
+					],
+					"sid": 819412823474280
 				}
 			]
 		}

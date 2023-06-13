@@ -19,7 +19,7 @@
 			"eventType": "variable",
 			"name": "MIN_PLAYER",
 			"type": "number",
-			"initialValue": "3",
+			"initialValue": "2",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -490,6 +490,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 268967549545074
+		},
+		{
+			"eventType": "variable",
+			"name": "WAITING_START_TAG",
+			"type": "string",
+			"initialValue": "waiting-start",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 783498358483337
 		},
 		{
 			"eventType": "variable",

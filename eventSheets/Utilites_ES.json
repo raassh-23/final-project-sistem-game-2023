@@ -1068,16 +1068,6 @@
 			"children": [
 				{
 					"eventType": "variable",
-					"name": "multiplier",
-					"type": "number",
-					"initialValue": "0",
-					"comment": "",
-					"isStatic": false,
-					"isConstant": false,
-					"sid": 689709221921434
-				},
-				{
-					"eventType": "variable",
 					"name": "choiceSize",
 					"type": "number",
 					"initialValue": "0",
@@ -1093,28 +1083,19 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 901623278812270,
-							"parameters": {
-								"variable": "multiplier",
-								"value": "Functions.GetMultiplier(countdownMultiplier)"
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 377483835454484,
+							"sid": 381777252484840,
 							"parameters": {
 								"variable": "choiceSize",
-								"value": "MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE)"
+								"value": "MAX_CHOICE_SIZE - Functions.GetMultiplier(currentQuestion) * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE)"
 							}
 						},
 						{
 							"id": "start-timer",
 							"objectClass": "TimeManager",
-							"sid": 998973143603890,
+							"sid": 995725084986090,
 							"behaviorType": "Timer",
 							"parameters": {
-								"duration": "round(MAX_COUNTDOWN_DURATION - multiplier * (MAX_COUNTDOWN_DURATION - MIN_COUNTDOWN_DURATION))",
+								"duration": "round(MAX_COUNTDOWN_DURATION - Functions.GetMultiplier(countdownMultiplier) * (MAX_COUNTDOWN_DURATION - MIN_COUNTDOWN_DURATION))",
 								"type": "once",
 								"tag": "COUNTDOWN_TAG"
 							}
