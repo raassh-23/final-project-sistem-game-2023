@@ -835,18 +835,26 @@
 			"actions": [
 				{
 					"type": "script",
-					"script": "const [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconst multiplier = runtime.callFunction(\"GetMultiplier\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\nconsole.log(backgroundColorHue, backgroundColorRgb);\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);"
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 765607624517796,
-					"disabled": true
-				},
+					"script": "const [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconst multiplier = runtime.callFunction(\"GetMultiplier\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\n\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);\n\nruntime.callFunction(\"RaiseShowQuestion\");"
+				}
+			],
+			"sid": 868708923240964
+		},
+		{
+			"functionName": "RaiseShowQuestion",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
 				{
 					"id": "raiseevent17",
 					"objectClass": "Photon",
-					"sid": 472040858123810,
+					"sid": 637922104530185,
 					"parameters": {
 						"code0": "SHOW_QUESTION_EVENT",
 						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition & \"|\" & backgroundOverlay & \"|\" & backgroundColorRed & \"|\" & backgroundColorGreen & \"|\" & backgroundColorBlue",
@@ -858,7 +866,7 @@
 					}
 				}
 			],
-			"sid": 868708923240964
+			"sid": 751626091558491
 		},
 		{
 			"functionName": "ShowQuestion",
