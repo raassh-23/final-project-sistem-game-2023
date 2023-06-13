@@ -1314,6 +1314,10 @@
 							"parameters": [
 								false
 							]
+						},
+						{
+							"callFunction": "PlayEliminatedSFX",
+							"sid": 215623898399256
 						}
 					],
 					"sid": 109370833651271
@@ -1445,20 +1449,239 @@
 				{
 					"id": "play-at-object",
 					"objectClass": "Audio",
-					"sid": 142238402600017,
+					"sid": 588002198249356,
 					"parameters": {
 						"audio-file": "shot",
 						"loop": "not-looping",
-						"volume": "-20",
+						"volume": "-10",
 						"object": "Player",
 						"inner-angle": "360",
 						"outer-angle": "360",
 						"outer-gain": "0",
-						"tag-optional": "\"\""
+						"tag-optional": "SFX_TAG"
 					}
 				}
 			],
 			"sid": 439471796898679
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayPickUpSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 282635384471190,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 161990004947473,
+					"parameters": {
+						"audio-file": "pickup",
+						"loop": "not-looping",
+						"volume": "-10",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 372504352091829
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayHurtSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 140150926966851,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 288470444216138,
+					"parameters": {
+						"audio-file": "hurt",
+						"loop": "not-looping",
+						"volume": "-30",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 521549623635803
+		},
+		{
+			"aceType": "action",
+			"aceName": "PlayDieSFX",
+			"objectClass": "Player",
+			"functionDescription": "",
+			"functionCategory": "Audio",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "Player",
+					"sid": 985830941414121,
+					"parameters": {
+						"instance-variable": "actorNr",
+						"comparison": 0,
+						"value": "Photon.MyActorNr"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 704506850006689,
+					"parameters": {
+						"audio-file": "die",
+						"loop": "not-looping",
+						"volume": "-20",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 776103579350326
+		},
+		{
+			"functionName": "PlayQualifiedSFX",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "win",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "",
+					"sid": 930085583957636
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 918138618440601,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 287408580575711,
+							"parameters": {
+								"variable": "win"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 341629416580025,
+							"parameters": {
+								"audio-file": "win",
+								"loop": "not-looping",
+								"volume": "-20",
+								"stereo-pan": "0",
+								"tag-optional": "SFX_TAG"
+							}
+						}
+					],
+					"sid": 229872312775466
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 590472022441756
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 328617519435347,
+							"parameters": {
+								"audio-file": "qualified",
+								"loop": "not-looping",
+								"volume": "-10",
+								"stereo-pan": "0",
+								"tag-optional": "SFX_TAG"
+							}
+						}
+					],
+					"sid": 286480862725525
+				}
+			]
+		},
+		{
+			"functionName": "PlayEliminatedSFX",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 949534470784223,
+					"parameters": {
+						"audio-file": "eliminated",
+						"loop": "not-looping",
+						"volume": "-10",
+						"stereo-pan": "0",
+						"tag-optional": "SFX_TAG"
+					}
+				}
+			],
+			"sid": 603263790189179
 		}
 	],
 	"sid": 390058048203286

@@ -367,6 +367,62 @@
 					"file-info": {
 						"purpose": "none"
 					}
+				},
+				{
+					"name": "click.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 326494100725299,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "pickup.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 826825434707143,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "qualified.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 450166640220721,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "eliminated.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 378248042814092,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "win.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 978141611365253,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hurt.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 593142668239497,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "die.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 106563552362121,
+					"file-info": {
+						"purpose": "none"
+					}
 				}
 			],
 			"subfolders": []

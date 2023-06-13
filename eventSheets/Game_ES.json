@@ -1981,6 +1981,11 @@
 									],
 									"actions": [
 										{
+											"customAction": "PlayDieSFX",
+											"objectClass": "Player",
+											"sid": 232120543822492
+										},
+										{
 											"id": "destroy",
 											"objectClass": "Player",
 											"sid": 320773208131711
@@ -2084,6 +2089,24 @@
 											"sid": 775267824373199
 										}
 									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 850193053314843
+										}
+									],
+									"actions": [
+										{
+											"customAction": "PlayHurtSFX",
+											"objectClass": "Player",
+											"sid": 194831775014103
+										}
+									],
+									"sid": 157030053063490
 								}
 							]
 						}
@@ -2583,40 +2606,21 @@
 											"parameters": [
 												"nr"
 											]
-										},
-										{
-											"callFunction": "ShowQualifiedScreen",
-											"sid": 915820173620149,
-											"parameters": [
-												true,
-												"eliminatedCount"
-											]
 										}
 									],
 									"sid": 504034487009616
 								},
 								{
 									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "SpriteFontUI",
-											"sid": 786311035178998,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "\"countdown\""
-											}
-										}
-									],
+									"conditions": [],
 									"actions": [
 										{
-											"id": "set-text",
-											"objectClass": "SpriteFontUI",
-											"sid": 914616662644979,
-											"parameters": {
-												"text": "eliminatedCount & \" players eliminated\" & newline & \"waiting for the next question...\""
-											}
+											"callFunction": "ShowQualifiedScreen",
+											"sid": 615762234068728,
+											"parameters": [
+												true,
+												"eliminatedCount"
+											]
 										}
 									],
 									"sid": 302073177639989
@@ -2634,52 +2638,15 @@
 							],
 							"actions": [
 								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 587148380934991,
-									"parameters": {
-										"type": "log",
-										"message": "\"no winner\""
-									}
-								},
-								{
 									"callFunction": "ShowQualifiedScreen",
-									"sid": 127572552415921,
+									"sid": 593860264873046,
 									"parameters": [
 										true,
-										"eliminatedCount"
+										"0"
 									]
 								}
 							],
-							"sid": 204678922485539,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-instance-variable",
-											"objectClass": "SpriteFontUI",
-											"sid": 518911415885076,
-											"parameters": {
-												"instance-variable": "id",
-												"comparison": 0,
-												"value": "\"countdown\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-text",
-											"objectClass": "SpriteFontUI",
-											"sid": 960101308491162,
-											"parameters": {
-												"text": "\"no players eliminated\" & newline & \"waiting for the next question...\""
-											}
-										}
-									],
-									"sid": 841823841840686
-								}
-							]
+							"sid": 204678922485539
 						}
 					]
 				},
@@ -4058,6 +4025,32 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 151711048468697,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"spectating-winner\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 137889070080090,
+							"parameters": {
+								"text": "\"The winner is \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\")"
+							}
+						}
+					],
+					"sid": 126698349118586
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "compare-at-x",
 							"objectClass": "ActivePlayers",
 							"sid": 461359959897870,
@@ -4186,6 +4179,11 @@
 			],
 			"actions": [
 				{
+					"customAction": "PlayPickUpSFX",
+					"objectClass": "Player",
+					"sid": 305706923527036
+				},
+				{
 					"id": "destroy",
 					"objectClass": "AmmoBox",
 					"sid": 797806999767537
@@ -4206,6 +4204,11 @@
 				}
 			],
 			"actions": [
+				{
+					"customAction": "PlayPickUpSFX",
+					"objectClass": "Player",
+					"sid": 305706923527036
+				},
 				{
 					"id": "destroy",
 					"objectClass": "HealthBox",
@@ -4896,16 +4899,6 @@
 										"comparison": 4,
 										"second-value": "0"
 									}
-								},
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 208117310313771,
-									"parameters": {
-										"first-value": "playersEliminated",
-										"comparison": 2,
-										"second-value": "ActivePlayers.Width"
-									}
 								}
 							],
 							"actions": [
@@ -4918,7 +4911,54 @@
 									}
 								}
 							],
-							"sid": 794265337213580
+							"sid": 794265337213580,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-size",
+											"objectClass": "ActivePlayers",
+											"sid": 461928093282081,
+											"parameters": {
+												"axis": "x",
+												"comparison": 3,
+												"value": "1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "PlayQualifiedSFX",
+											"sid": 636045900076165,
+											"parameters": [
+												true
+											]
+										}
+									],
+									"sid": 927949633972011
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 849876510697533
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "PlayQualifiedSFX",
+											"sid": 672667871397736,
+											"parameters": [
+												false
+											]
+										}
+									],
+									"sid": 770186136575401
+								}
+							]
 						},
 						{
 							"eventType": "block",
@@ -4937,6 +4977,13 @@
 									"parameters": {
 										"text": "\"All players qualified\""
 									}
+								},
+								{
+									"callFunction": "PlayQualifiedSFX",
+									"sid": 633860239004349,
+									"parameters": [
+										false
+									]
 								}
 							],
 							"sid": 700479215788320
@@ -5146,32 +5193,6 @@
 						}
 					],
 					"sid": 157760543258094
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "SpriteFontUI",
-							"sid": 940173633411369,
-							"parameters": {
-								"instance-variable": "id",
-								"comparison": 0,
-								"value": "\"spectating-winner\""
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-text",
-							"objectClass": "SpriteFontUI",
-							"sid": 407337689637618,
-							"parameters": {
-								"text": "\"The winner is \" & Photon.PropertyOfActorByNr(ActivePlayers.At(0), \"name\")"
-							}
-						}
-					],
-					"sid": 951681011498009
 				}
 			]
 		}
