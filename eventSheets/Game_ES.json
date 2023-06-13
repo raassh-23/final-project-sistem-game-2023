@@ -1078,18 +1078,9 @@
 					],
 					"actions": [
 						{
-							"id": "add-to-eventvar",
-							"objectClass": "System",
-							"sid": 430396746937992,
-							"parameters": {
-								"variable": "joinedPlayer",
-								"value": "1"
-							}
-						},
-						{
 							"id": "log",
 							"objectClass": "Browser",
-							"sid": 700767162830308,
+							"sid": 386566044684063,
 							"parameters": {
 								"type": "log",
 								"message": "\"Join event\""
@@ -1098,11 +1089,20 @@
 						{
 							"id": "push",
 							"objectClass": "ActivePlayers",
-							"sid": 898453832046044,
+							"sid": 733574046477946,
 							"parameters": {
 								"where": "back",
 								"value": "Photon.ActorNr",
 								"axis": "x"
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 430396746937992,
+							"parameters": {
+								"variable": "joinedPlayer",
+								"value": "1"
 							}
 						}
 					],
@@ -1154,6 +1154,14 @@
 						}
 					],
 					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 468184031151311,
+							"parameters": {
+								"seconds": "3"
+							}
+						},
 						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
@@ -1390,10 +1398,10 @@
 						{
 							"id": "log",
 							"objectClass": "Browser",
-							"sid": 404287993837549,
+							"sid": 607277617351043,
 							"parameters": {
 								"type": "log",
-								"message": "\"Spawn event\""
+								"message": "\"Spawn event \" & Photon.EventData"
 							}
 						}
 					],
@@ -1532,6 +1540,15 @@
 											"behaviorType": "ScrollTo",
 											"parameters": {
 												"state": "enabled"
+											}
+										},
+										{
+											"id": "set-default-controls",
+											"objectClass": "Player",
+											"sid": 108371343465218,
+											"behaviorType": "8Direction",
+											"parameters": {
+												"default-controls": true
 											}
 										},
 										{
@@ -3508,6 +3525,15 @@
 					}
 				},
 				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 676702495878232,
+					"parameters": {
+						"variable": "joinedPlayer",
+						"value": "0"
+					}
+				},
+				{
 					"id": "set-group-active",
 					"objectClass": "System",
 					"sid": 609084487249439,
@@ -3585,15 +3611,6 @@
 					"id": "destroy",
 					"objectClass": "Bullet",
 					"sid": 400569623575542
-				},
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 436904155196969,
-					"parameters": {
-						"variable": "joinedPlayer",
-						"value": "0"
-					}
 				},
 				{
 					"id": "raiseevent17",
