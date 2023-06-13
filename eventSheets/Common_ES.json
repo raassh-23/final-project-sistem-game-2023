@@ -169,11 +169,11 @@
 				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 493302478712602,
+					"sid": 493310495480336,
 					"parameters": {
 						"audio-file": "bgm",
 						"loop": "looping",
-						"volume": "-20",
+						"volume": "-30",
 						"stereo-pan": "0",
 						"tag-optional": "BGM_TAG"
 					}

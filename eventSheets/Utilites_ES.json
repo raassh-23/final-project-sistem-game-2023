@@ -1638,11 +1638,11 @@
 				{
 					"id": "play-at-object",
 					"objectClass": "Audio",
-					"sid": 588002198249356,
+					"sid": 886913217766773,
 					"parameters": {
 						"audio-file": "shot",
 						"loop": "not-looping",
-						"volume": "-10",
+						"volume": "-15",
 						"object": "Player",
 						"inner-angle": "360",
 						"outer-angle": "360",
