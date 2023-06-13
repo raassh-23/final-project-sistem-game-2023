@@ -477,6 +477,125 @@
 				}
 			],
 			"sid": 402891161482082
+		},
+		{
+			"eventType": "variable",
+			"name": "EXPANDING_SPEED",
+			"type": "number",
+			"initialValue": "10",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 315147203205867
+		},
+		{
+			"eventType": "variable",
+			"name": "MAX_WIDTH",
+			"type": "number",
+			"initialValue": "2204",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 104546475929004
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-width",
+					"objectClass": "BGCircle",
+					"sid": 468150158657974,
+					"parameters": {
+						"comparison": 4,
+						"width": "MAX_WIDTH"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "BGCircle",
+					"sid": 246253497537876
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 111039877031948,
+					"parameters": {
+						"object-to-create": "BGCircle",
+						"layer": "\"BGOverlay\"",
+						"x": "LayoutWidth / 2",
+						"y": "LayoutHeight / 2",
+						"create-hierarchy": false,
+						"template-name": "\"circle_overlay\""
+					}
+				}
+			],
+			"sid": 361314454142938,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-last-created",
+							"objectClass": "System",
+							"sid": 938445975073855,
+							"disabled": true,
+							"parameters": {
+								"object": "BGCircle"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-size",
+							"objectClass": "BGCircle",
+							"sid": 322744088526491,
+							"parameters": {
+								"width": "1",
+								"height": "1"
+							}
+						}
+					],
+					"sid": 134320864560862,
+					"disabled": true
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 103844600913965,
+					"parameters": {
+						"object": "BGCircle"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-size",
+					"objectClass": "BGCircle",
+					"sid": 414560744827841,
+					"parameters": {
+						"width": "Self.Width+(EXPANDING_SPEED * (Self.Width / MAX_WIDTH * 100) / 100)",
+						"height": "Self.Height+(EXPANDING_SPEED * (Self.Height/ MAX_WIDTH * 100) / 100)"
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "BGCircle",
+					"sid": 985621488566333,
+					"disabled": true,
+					"parameters": {
+						"width": "Self.Width+EXPANDING_SPEED",
+						"height": "Self.Height+EXPANDING_SPEED"
+					}
+				}
+			],
+			"sid": 975742740059195
 		}
 	],
 	"sid": 750548703589974

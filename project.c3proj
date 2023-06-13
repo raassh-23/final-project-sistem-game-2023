@@ -241,7 +241,8 @@
 			"VSCodePlugin",
 			"HealthBox",
 			"Audio",
-			"Title"
+			"Title",
+			"BGCircle"
 		],
 		"subfolders": []
 	},
