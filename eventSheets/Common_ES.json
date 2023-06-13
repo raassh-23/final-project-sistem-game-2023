@@ -169,11 +169,11 @@
 				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 493310495480336,
+					"sid": 247170683983293,
 					"parameters": {
 						"audio-file": "bgm",
 						"loop": "looping",
-						"volume": "-30",
+						"volume": "-10",
 						"stereo-pan": "0",
 						"tag-optional": "BGM_TAG"
 					}
@@ -629,11 +629,11 @@
 				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 479981908721639,
+					"sid": 521787481702486,
 					"parameters": {
 						"audio-file": "click",
 						"loop": "not-looping",
-						"volume": "-10",
+						"volume": "0",
 						"stereo-pan": "0",
 						"tag-optional": "SFX_TAG"
 					}

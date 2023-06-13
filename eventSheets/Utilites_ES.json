@@ -1595,12 +1595,12 @@
 						{
 							"id": "play-at-object-by-name",
 							"objectClass": "Audio",
-							"sid": 909482651122753,
+							"sid": 325615165322878,
 							"parameters": {
 								"folder": "sounds",
 								"audio-file-name": "\"stepdirt_\"&(Player.step%8)+1",
 								"loop": "not-looping",
-								"volume": "-20",
+								"volume": "-10",
 								"object": "Player",
 								"inner-angle": "360",
 								"outer-angle": "360",
@@ -1638,11 +1638,11 @@
 				{
 					"id": "play-at-object",
 					"objectClass": "Audio",
-					"sid": 886913217766773,
+					"sid": 964728336149207,
 					"parameters": {
 						"audio-file": "shot",
 						"loop": "not-looping",
-						"volume": "-15",
+						"volume": "-5",
 						"object": "Player",
 						"inner-angle": "360",
 						"outer-angle": "360",
@@ -1680,11 +1680,11 @@
 				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 161990004947473,
+					"sid": 856371725022172,
 					"parameters": {
 						"audio-file": "pickup",
 						"loop": "not-looping",
-						"volume": "-10",
+						"volume": "0",
 						"stereo-pan": "0",
 						"tag-optional": "SFX_TAG"
 					}
@@ -1719,11 +1719,11 @@
 				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 288470444216138,
+					"sid": 415863142393805,
 					"parameters": {
 						"audio-file": "hurt",
 						"loop": "not-looping",
-						"volume": "-30",
+						"volume": "-10",
 						"stereo-pan": "0",
 						"tag-optional": "SFX_TAG"
 					}
@@ -1758,11 +1758,11 @@
 				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 704506850006689,
+					"sid": 849974619454601,
 					"parameters": {
 						"audio-file": "die",
 						"loop": "not-looping",
-						"volume": "-20",
+						"volume": "-10",
 						"stereo-pan": "0",
 						"tag-optional": "SFX_TAG"
 					}
@@ -1807,11 +1807,11 @@
 						{
 							"id": "play",
 							"objectClass": "Audio",
-							"sid": 341629416580025,
+							"sid": 857779412683975,
 							"parameters": {
 								"audio-file": "win",
 								"loop": "not-looping",
-								"volume": "-20",
+								"volume": "-5",
 								"stereo-pan": "0",
 								"tag-optional": "SFX_TAG"
 							}
@@ -1832,11 +1832,11 @@
 						{
 							"id": "play",
 							"objectClass": "Audio",
-							"sid": 328617519435347,
+							"sid": 724795766809141,
 							"parameters": {
 								"audio-file": "qualified",
 								"loop": "not-looping",
-								"volume": "-10",
+								"volume": "5",
 								"stereo-pan": "0",
 								"tag-optional": "SFX_TAG"
 							}
@@ -1860,11 +1860,11 @@
 				{
 					"id": "play",
 					"objectClass": "Audio",
-					"sid": 949534470784223,
+					"sid": 818394512932913,
 					"parameters": {
 						"audio-file": "eliminated",
 						"loop": "not-looping",
-						"volume": "-10",
+						"volume": "5",
 						"stereo-pan": "0",
 						"tag-optional": "SFX_TAG"
 					}
