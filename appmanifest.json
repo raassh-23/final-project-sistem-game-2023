@@ -1,7 +1,7 @@
 {
-	"name": "New project",
-	"short_name": "New project",
-	"description": "",
+	"name": "Arithmetic Rumble",
+	"short_name": "Arithmetic Rumble",
+	"description": "Battle Royale and Arithmetic Quiz",
 	"start_url": "index.html",
 	"display": "fullscreen",
 	"orientation": "landscape",
