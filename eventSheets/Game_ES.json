@@ -1112,13 +1112,13 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-eventvar",
+							"id": "compare-two-values",
 							"objectClass": "System",
-							"sid": 920882993682563,
+							"sid": 363550149726386,
 							"parameters": {
-								"variable": "joinedPlayer",
+								"first-value": "ActivePlayers.Width",
 								"comparison": 5,
-								"value": "Photon.ActorCount"
+								"second-value": "Photon.ActorCount"
 							}
 						},
 						{

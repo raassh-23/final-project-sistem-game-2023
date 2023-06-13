@@ -61,6 +61,14 @@
 						"layer": "\"Loading\"",
 						"visibility": "visible"
 					}
+				},
+				{
+					"id": "get-item",
+					"objectClass": "LocalStorage",
+					"sid": 847690228565815,
+					"parameters": {
+						"key": "LOCAL_NAME_STORAGE_TAG"
+					}
 				}
 			],
 			"sid": 918199405317389,
@@ -193,6 +201,15 @@
 				{
 					"type": "comment",
 					"text": "add wait here because photon wont update properties correctly without it"
+				},
+				{
+					"id": "set-item",
+					"objectClass": "LocalStorage",
+					"sid": 267812205159675,
+					"parameters": {
+						"key": "LOCAL_NAME_STORAGE_TAG",
+						"value": "TextInput.Text"
+					}
 				},
 				{
 					"id": "wait",
@@ -596,6 +613,40 @@
 				}
 			],
 			"sid": 975742740059195
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-item-get",
+					"objectClass": "LocalStorage",
+					"sid": 446154604666119,
+					"parameters": {
+						"key": "LOCAL_NAME_STORAGE_TAG"
+					}
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "TextInput",
+					"sid": 642353055624718,
+					"parameters": {
+						"instance-variable": "id",
+						"comparison": 0,
+						"value": "\"name\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "TextInput",
+					"sid": 600966754771855,
+					"parameters": {
+						"text": "LocalStorage.ItemValue"
+					}
+				}
+			],
+			"sid": 583364613556078
 		}
 	],
 	"sid": 750548703589974

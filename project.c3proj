@@ -37,6 +37,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "LocalStorage",
+			"name": "Local storage",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Photon",
 			"name": "Photon",
 			"author": "Exit Games",
@@ -243,7 +250,8 @@
 			"Audio",
 			"Title",
 			"BGCircle",
-			"frame"
+			"frame",
+			"LocalStorage"
 		],
 		"subfolders": []
 	},
@@ -539,7 +547,7 @@
 	},
 	"properties": {
 		"description": "Battle Royale and Arithmetic Quiz",
-		"version": "1.0.0.0",
+		"version": "1.0.0.2",
 		"author": "RushHourDream",
 		"authorEmail": "",
 		"authorWebsite": "",

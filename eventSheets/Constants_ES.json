@@ -510,6 +510,20 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 953479100756976
+		},
+		{
+			"eventType": "comment",
+			"text": "Storage"
+		},
+		{
+			"eventType": "variable",
+			"name": "LOCAL_NAME_STORAGE_TAG",
+			"type": "string",
+			"initialValue": "local-name",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 808381735941525
 		}
 	],
 	"sid": 688673809868010
