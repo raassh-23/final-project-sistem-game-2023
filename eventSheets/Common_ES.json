@@ -156,6 +156,35 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "is-tag-playing",
+					"objectClass": "Audio",
+					"sid": 504000542282338,
+					"parameters": {
+						"tag": "BGM_TAG"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "play",
+					"objectClass": "Audio",
+					"sid": 493302478712602,
+					"parameters": {
+						"audio-file": "bgm",
+						"loop": "looping",
+						"volume": "-20",
+						"stereo-pan": "0",
+						"tag-optional": "BGM_TAG"
+					}
+				}
+			],
+			"sid": 953855445883842
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
 					"id": "on-created",
 					"objectClass": "Clickable",
 					"sid": 635459727148349
