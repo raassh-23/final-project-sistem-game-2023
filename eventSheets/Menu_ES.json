@@ -473,7 +473,7 @@
 			"actions": [
 				{
 					"type": "script",
-					"script": "// updateLevelVariables();\n// generateQuestion();\n// console.log(\"=============\\n\\n\");\n// console.log(\"tes\");\n// const exp = [49, '/', 7, '*', 1, '*', 25, '-', 226, '-', 236];\n// const correct = evaluateExpression(exp);\n// getWrongChoices(exp, correct);"
+					"script": "// updateLevelVariables();\n// generateQuestion();\n// console.log(\"=============\\n\\n\");\n// console.log(\"tes\");\n// const exp = [3, '+', 4];\n// const correct = evaluateExpression(exp);\n// getWrongChoices(exp, correct);"
 				}
 			],
 			"sid": 402891161482082

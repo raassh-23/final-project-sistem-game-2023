@@ -47,6 +47,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "countdownMultiplier",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": true,
+			"isConstant": false,
+			"sid": 919596458937286
+		},
+		{
+			"eventType": "variable",
 			"name": "isLost",
 			"type": "boolean",
 			"initialValue": "false",
@@ -2443,6 +2453,33 @@
 								"effect": "\"Tint\"",
 								"parameter-index": "0",
 								"value": "rgbEx255(int(tokenat(Photon.EventData, 5, \"|\")), int(tokenat(Photon.EventData, 6, \"|\")), int(tokenat(Photon.EventData, 7, \"|\")))"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 525022013096628,
+							"parameters": {
+								"variable": "countdownMultiplier",
+								"value": "int(tokenat(Photon.EventData, 8, \"|\"))"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 175229601746398,
+							"parameters": {
+								"variable": "MIN_COUNTDOWN_DURATION",
+								"value": "int(tokenat(Photon.EventData, 9, \"|\"))"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 209640571059872,
+							"parameters": {
+								"variable": "MAX_COUNTDOWN_DURATION",
+								"value": "int(tokenat(Photon.EventData, 10, \"|\"))"
 							}
 						},
 						{

@@ -1005,7 +1005,7 @@
 			"actions": [
 				{
 					"type": "script",
-					"script": "updateLevelVariables();\n\nconst [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconsole.log(\"1\");\n\nconst multiplier = runtime.callFunction(\"GetMultiplier\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconsole.log(\"2\");\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\nconsole.log(\"3\");\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\nconsole.log(\"4\");\nconsole.log(backgroundColorHue, backgroundColorRgb);\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);\nruntime.callFunction(\"RaiseShowQuestion\");"
+					"script": "updateLevelVariables(runtime);\n\nconst [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconsole.log(\"1\");\n\nconst multiplier = runtime.callFunction(\"GetMultiplier\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconsole.log(\"2\");\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\nconsole.log(\"3\");\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\nconsole.log(\"4\");\nconsole.log(backgroundColorHue, backgroundColorRgb);\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);\n\nruntime.callFunction(\"RaiseShowQuestion\");"
 				}
 			],
 			"sid": 868708923240964
@@ -1024,10 +1024,10 @@
 				{
 					"id": "raiseevent17",
 					"objectClass": "Photon",
-					"sid": 637922104530185,
+					"sid": 728316135139119,
 					"parameters": {
 						"code0": "SHOW_QUESTION_EVENT",
-						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition & \"|\" & backgroundOverlay & \"|\" & backgroundColorRed & \"|\" & backgroundColorGreen & \"|\" & backgroundColorBlue",
+						"data1": "question & \"|\" & correctAnswer & \"|\" & choices & \"|\" & choicesPosition & \"|\" & backgroundOverlay & \"|\" & backgroundColorRed & \"|\" & backgroundColorGreen & \"|\" & backgroundColorBlue & \"|\" &  countdownMultiplier & \"|\" & MIN_COUNTDOWN_DURATION & \"|\" &  MAX_COUNTDOWN_DURATION",
 						"interestgroup2": "0",
 						"cache11": "donotcache",
 						"receivers15": "all",
@@ -1093,10 +1093,10 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 841190864756629,
+							"sid": 901623278812270,
 							"parameters": {
 								"variable": "multiplier",
-								"value": "Functions.GetMultiplier(currentQuestion)"
+								"value": "Functions.GetMultiplier(countdownMultiplier)"
 							}
 						},
 						{

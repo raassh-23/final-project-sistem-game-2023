@@ -386,7 +386,10 @@ function getWrongChoices(expressionTokens, correctAnswer) {
 
     // First wrong choice: the correct answer +/- tolerance
     const tolerance = Math.max(1, Math.round(Math.abs(correctAnswer) * 0.1));
-    const firstChoice = correctAnswer + getRandomNumber(-tolerance, tolerance);
+    let firstChoice = correctAnswer + getRandomNumber(-tolerance, tolerance);
+    while (firstChoice === correctAnswer) {
+        firstChoice = correctAnswer + getRandomNumber(-tolerance, tolerance);
+    }
     wrongChoices.push(firstChoice);
     console.log("First choice: " + firstChoice);
 
@@ -488,6 +491,8 @@ function getWrongChoices(expressionTokens, correctAnswer) {
         thirdChoice += getRandomNumber(-2, 2);
     }
     wrongChoices.push(thirdChoice);
+
+    console.log("choices", wrongChoices.join(" "), correctAnswer);
 
     return wrongChoices;
 }
