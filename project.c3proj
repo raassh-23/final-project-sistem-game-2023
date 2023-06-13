@@ -428,7 +428,16 @@
 			"subfolders": []
 		},
 		"music": {
-			"items": [],
+			"items": [
+				{
+					"name": "bgm.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 940773382133700,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		},
 		"video": {

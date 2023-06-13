@@ -3743,6 +3743,32 @@
 						}
 					],
 					"sid": 617965407071958
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 102235220112151,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"spectating-winner\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 354384703383625,
+							"parameters": {
+								"text": "\"\""
+							}
+						}
+					],
+					"sid": 368978714913883
 				}
 			]
 		},
@@ -4026,6 +4052,32 @@
 					"conditions": [
 						{
 							"id": "compare-instance-variable",
+							"objectClass": "Button",
+							"sid": 657896637023963,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"spectate\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "Button",
+							"sid": 569529095185540,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 180331290351233
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
 							"objectClass": "SpriteFontUI",
 							"sid": 151711048468697,
 							"parameters": {
@@ -4046,6 +4098,58 @@
 						}
 					],
 					"sid": 126698349118586
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 867199920924875,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"countdown\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 254793022766770,
+							"parameters": {
+								"text": "\"\""
+							}
+						}
+					],
+					"sid": 634552358033185
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "SpriteFontUI",
+							"sid": 755231893337966,
+							"parameters": {
+								"instance-variable": "id",
+								"comparison": 0,
+								"value": "\"question\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFontUI",
+							"sid": 428335593018459,
+							"parameters": {
+								"text": "\"\""
+							}
+						}
+					],
+					"sid": 749561303282268
 				},
 				{
 					"eventType": "block",
@@ -4801,17 +4905,7 @@
 				}
 			],
 			"eventType": "function-block",
-			"conditions": [
-				{
-					"id": "compare-boolean-eventvar",
-					"objectClass": "System",
-					"sid": 288232237641860,
-					"parameters": {
-						"variable": "isLost"
-					},
-					"isInverted": true
-				}
-			],
+			"conditions": [],
 			"actions": [
 				{
 					"id": "log",
@@ -4840,103 +4934,159 @@
 						{
 							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 773073345542635,
+							"sid": 288232237641860,
 							"parameters": {
-								"variable": "show"
-							}
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "SpriteFontUI",
-							"sid": 784061277547677,
-							"parameters": {
-								"instance-variable": "id",
-								"comparison": 0,
-								"value": "\"players_left\""
-							}
+								"variable": "isLost"
+							},
+							"isInverted": true
 						}
 					],
-					"actions": [
-						{
-							"id": "set-layer-visible",
-							"objectClass": "System",
-							"sid": 653431181572968,
-							"parameters": {
-								"layer": "\"Qualified\"",
-								"visibility": "visible"
-							}
-						},
-						{
-							"id": "set-layer-visible",
-							"objectClass": "System",
-							"sid": 842774873471818,
-							"parameters": {
-								"layer": "\"UI\"",
-								"visibility": "invisible"
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 659745119881390,
-							"parameters": {
-								"layer": "\"UI\"",
-								"interactive": false
-							}
-						}
-					],
-					"sid": 528169288982222,
+					"actions": [],
+					"sid": 218583235186977,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "compare-two-values",
+									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 856353519921203,
+									"sid": 958432727042294,
 									"parameters": {
-										"first-value": "playersEliminated",
-										"comparison": 4,
-										"second-value": "0"
+										"variable": "show"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-text",
-									"objectClass": "SpriteFontUI",
-									"sid": 453210045873883,
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 153806238180400,
 									"parameters": {
-										"text": "ActivePlayers.Width & \" players remained\""
+										"layer": "\"Qualified\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 800344386741950,
+									"parameters": {
+										"layer": "\"UI\"",
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 405728687252707,
+									"parameters": {
+										"layer": "\"UI\"",
+										"interactive": false
 									}
 								}
 							],
-							"sid": 794265337213580,
+							"sid": 800818902847040,
 							"children": [
 								{
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-size",
-											"objectClass": "ActivePlayers",
-											"sid": 461928093282081,
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 518237882238865,
 											"parameters": {
-												"axis": "x",
-												"comparison": 3,
-												"value": "1"
+												"first-value": "playersEliminated",
+												"comparison": 4,
+												"second-value": "0"
 											}
 										}
 									],
-									"actions": [
+									"actions": [],
+									"sid": 666682684116928,
+									"children": [
 										{
-											"callFunction": "PlayQualifiedSFX",
-											"sid": 636045900076165,
-											"parameters": [
-												true
-											]
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "SpriteFontUI",
+													"sid": 618115294641361,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"players_left\""
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "SpriteFontUI",
+													"sid": 716231265950761,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"countdown\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "SpriteFontUI",
+													"sid": 915605260208545,
+													"parameters": {
+														"text": "ActivePlayers.Width & \" players remained\""
+													}
+												}
+											],
+											"sid": 849374267226978,
+											"isOrBlock": true
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-size",
+													"objectClass": "ActivePlayers",
+													"sid": 488986516370104,
+													"parameters": {
+														"axis": "x",
+														"comparison": 3,
+														"value": "1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "PlayQualifiedSFX",
+													"sid": 177582976686127,
+													"parameters": [
+														true
+													]
+												}
+											],
+											"sid": 316554995238843
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 224098638661287
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "PlayQualifiedSFX",
+													"sid": 159900732123135,
+													"parameters": [
+														false
+													]
+												}
+											],
+											"sid": 979768207233590
 										}
-									],
-									"sid": 927949633972011
+									]
 								},
 								{
 									"eventType": "block",
@@ -4944,19 +5094,58 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 849876510697533
+											"sid": 642999461004338
 										}
 									],
 									"actions": [
 										{
 											"callFunction": "PlayQualifiedSFX",
-											"sid": 672667871397736,
+											"sid": 989824062330702,
 											"parameters": [
 												false
 											]
 										}
 									],
-									"sid": 770186136575401
+									"sid": 124884777799804,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "SpriteFontUI",
+													"sid": 439492115873161,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"players_left\""
+													}
+												},
+												{
+													"id": "compare-instance-variable",
+													"objectClass": "SpriteFontUI",
+													"sid": 411008208884712,
+													"parameters": {
+														"instance-variable": "id",
+														"comparison": 0,
+														"value": "\"countdown\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "SpriteFontUI",
+													"sid": 978181549834326,
+													"parameters": {
+														"text": "\"All players qualified\""
+													}
+												}
+											],
+											"sid": 675055530182269,
+											"isOrBlock": true
+										}
+									]
 								}
 							]
 						},
@@ -4966,27 +5155,39 @@
 								{
 									"id": "else",
 									"objectClass": "System",
-									"sid": 839980607654636
+									"sid": 663826035948476
 								}
 							],
 							"actions": [
 								{
-									"id": "set-text",
-									"objectClass": "SpriteFontUI",
-									"sid": 490376438281926,
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 817097367745141,
 									"parameters": {
-										"text": "\"All players qualified\""
+										"layer": "\"Qualified\"",
+										"visibility": "invisible"
 									}
 								},
 								{
-									"callFunction": "PlayQualifiedSFX",
-									"sid": 633860239004349,
-									"parameters": [
-										false
-									]
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 559390510085978,
+									"parameters": {
+										"layer": "\"UI\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layer-interactive",
+									"objectClass": "System",
+									"sid": 918816116818969,
+									"parameters": {
+										"layer": "\"UI\"",
+										"interactive": true
+									}
 								}
 							],
-							"sid": 700479215788320
+							"sid": 117226649637296
 						}
 					]
 				},
@@ -4996,39 +5197,88 @@
 						{
 							"id": "else",
 							"objectClass": "System",
-							"sid": 751238651849573
-						}
-					],
-					"actions": [
-						{
-							"id": "set-layer-visible",
-							"objectClass": "System",
-							"sid": 731283289556562,
-							"parameters": {
-								"layer": "\"Qualified\"",
-								"visibility": "invisible"
-							}
+							"sid": 710830409515427
 						},
 						{
-							"id": "set-layer-visible",
+							"id": "compare-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 840006601871046,
+							"sid": 760664232813155,
 							"parameters": {
-								"layer": "\"UI\"",
-								"visibility": "visible"
-							}
-						},
-						{
-							"id": "set-layer-interactive",
-							"objectClass": "System",
-							"sid": 150294422006439,
-							"parameters": {
-								"layer": "\"UI\"",
-								"interactive": true
+								"variable": "show"
 							}
 						}
 					],
-					"sid": 382389913484007
+					"actions": [],
+					"sid": 515508667545848,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 946190641299541,
+									"parameters": {
+										"first-value": "playersEliminated",
+										"comparison": 4,
+										"second-value": "0"
+									}
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SpriteFontUI",
+									"sid": 766317589004727,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"countdown\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 314827480939400,
+									"parameters": {
+										"text": "ActivePlayers.Width & \" players remained\""
+									}
+								}
+							],
+							"sid": 494119422704249
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 990937167089047
+								},
+								{
+									"id": "compare-instance-variable",
+									"objectClass": "SpriteFontUI",
+									"sid": 697850214130630,
+									"parameters": {
+										"instance-variable": "id",
+										"comparison": 0,
+										"value": "\"countdown\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "SpriteFontUI",
+									"sid": 240995048332564,
+									"parameters": {
+										"text": "\"All players qualified\""
+									}
+								}
+							],
+							"sid": 509019305749428
+						}
+					]
 				}
 			]
 		},
