@@ -1,4 +1,4 @@
-import { updateLevelVariables, getCurrentLevelVariables } from "./level-data.js";
+import { updateLevelVariables, getCurrentLevelVariables, reset } from "./level-data.js";
 
 /**
  *
