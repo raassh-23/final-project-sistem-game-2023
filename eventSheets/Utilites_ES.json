@@ -1005,7 +1005,7 @@
 			"actions": [
 				{
 					"type": "script",
-					"script": "updateLevelVariables(runtime);\n\nconst [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconsole.log(\"1\");\n\nconst multiplier = runtime.callFunction(\"GetMultiplier\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconsole.log(\"2\");\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\nconsole.log(\"3\");\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\nconsole.log(\"4\");\nconsole.log(backgroundColorHue, backgroundColorRgb);\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);\n\nruntime.callFunction(\"RaiseShowQuestion\");"
+					"script": "updateLevelVariables(runtime);\n\nconst [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconsole.log(\"1\");\n\nconst multiplier = runtime.callFunction(\"GetMultiplierChoiceArea\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconsole.log(\"2\");\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\nconsole.log(\"3\");\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\nconsole.log(\"4\");\nconsole.log(backgroundColorHue, backgroundColorRgb);\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);\n\nruntime.callFunction(\"RaiseShowQuestion\");"
 				}
 			],
 			"sid": 868708923240964
@@ -1083,10 +1083,10 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 381777252484840,
+							"sid": 435378077429183,
 							"parameters": {
 								"variable": "choiceSize",
-								"value": "MAX_CHOICE_SIZE - Functions.GetMultiplier(currentQuestion) * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE)"
+								"value": "MAX_CHOICE_SIZE - Functions.GetMultiplierChoiceArea(currentQuestion) * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE)"
 							}
 						},
 						{
@@ -1095,7 +1095,7 @@
 							"sid": 995725084986090,
 							"behaviorType": "Timer",
 							"parameters": {
-								"duration": "round(MAX_COUNTDOWN_DURATION - Functions.GetMultiplier(countdownMultiplier) * (MAX_COUNTDOWN_DURATION - MIN_COUNTDOWN_DURATION))",
+								"duration": "round(MAX_COUNTDOWN_DURATION - Functions.GetMultiplierCountdown(countdownMultiplier) * (MAX_COUNTDOWN_DURATION - MIN_COUNTDOWN_DURATION))",
 								"type": "once",
 								"tag": "COUNTDOWN_TAG"
 							}
@@ -1484,7 +1484,7 @@
 			]
 		},
 		{
-			"functionName": "GetMultiplier",
+			"functionName": "GetMultiplierCountdown",
 			"functionDescription": "",
 			"functionCategory": "",
 			"functionReturnType": "number",
@@ -1512,6 +1512,36 @@
 				}
 			],
 			"sid": 885638949940821
+		},
+		{
+			"functionName": "GetMultiplierChoiceArea",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "x",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"sid": 298631557183876
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 335571479733335,
+					"parameters": {
+						"value": "clamp(0.5 * log10(x), 0, 1)"
+					}
+				}
+			],
+			"sid": 173163360416628
 		},
 		{
 			"aceType": "action",

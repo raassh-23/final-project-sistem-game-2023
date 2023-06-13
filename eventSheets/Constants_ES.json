@@ -19,7 +19,7 @@
 			"eventType": "variable",
 			"name": "MIN_PLAYER",
 			"type": "number",
-			"initialValue": "2",
+			"initialValue": "3",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
