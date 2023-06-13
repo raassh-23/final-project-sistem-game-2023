@@ -463,20 +463,20 @@
 				{
 					"id": "every-x-seconds",
 					"objectClass": "System",
-					"sid": 574631136948787,
+					"sid": 803099917634477,
+					"disabled": true,
 					"parameters": {
-						"interval-seconds": "0.5"
+						"interval-seconds": "0.3"
 					}
 				}
 			],
 			"actions": [
 				{
 					"type": "script",
-					"script": "const expression = getComplexArithmeticExpression(getRandomNumber(2, 5));\nconsole.log(\"expression\", expression, \"=\", eval(expression));\nconsole.log(\"\");"
+					"script": "// updateLevelVariables();\n// generateQuestion();\n// console.log(\"=============\\n\\n\");\n// console.log(\"tes\");\n// const exp = [49, '/', 7, '*', 1, '*', 25, '-', 226, '-', 236];\n// const correct = evaluateExpression(exp);\n// getWrongChoices(exp, correct);"
 				}
 			],
-			"sid": 402891161482082,
-			"disabled": true
+			"sid": 402891161482082
 		}
 	],
 	"sid": 750548703589974

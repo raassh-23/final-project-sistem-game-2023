@@ -1,3 +1,5 @@
+import { updateLevelVariables, getCurrentLevelVariables } from "./level-data.js";
+
 /**
  *
  * @param {number} length
@@ -35,11 +37,15 @@ function getRandomOperator() {
 
 /**
  *
- * @param {any[]} expressionTokens
- * @param {number} maxMultiplier
- * @param {number} maxAddend
- * @param {number} maxSubtrahend
- * @returns {number} operand
+ * @param {string} operator
+ * @param {number} prevNumber
+ * @param {number} prevNumber2
+ * @param {string} prevOperator
+ * @param {number[]} multiplierRange
+ * @param {number[]} addendRange
+ * @param {number[]} subtrahendRange
+ * @param {number} minExponent
+ * @returns {string} operand
  */
 function getOperand(
     operator,
@@ -80,6 +86,12 @@ function getOperand(
             // by making the divisor a factor of the dividend
             const factors = [];
             for (let i = 1; i <= prevNumber; i++) {
+                if (isPrime(prevNumber)) {
+                    factors.push(prevNumber);
+                    factors.push(1);
+                    break;
+                }
+
                 if (prevNumber % i === 0 && i !== 1 && i !== prevNumber) {
                     factors.push(i);
                 }
@@ -121,8 +133,9 @@ function getOperator(
 ) {
     // Limit the number of operators used
     // in order to prevent the expression from becoming too complex and large
+    console.log("getOperator", operators, operatorLimits);
     let availableOperators = operators.filter(
-        (_, index) => operatorLimits[index] !== 0
+        (_, index) => operatorLimits[index] != 0
     );
 
     // Prevent consecutive use of ^ and / operators and the use of / after a prime number
@@ -136,6 +149,7 @@ function getOperator(
     if (prevOperator === "/" || isPrime(prevNumber)) {
         availableOperators = availableOperators.filter((value, _) => value !== "/");
     }
+    console.log("getOperator", availableOperators);
 
     return availableOperators[getRandomNumber(0, availableOperators.length - 1)];
 }
@@ -167,25 +181,32 @@ function isPrime(number) {
  * Generate a simple arithmetic expression
  * @param {number} operandCount The number of operands in the expression
  * @param {string[]} operators The operators used in the expression
- * @param {number[]} operatorLimits The maximum number of times each operator can be used
+ * @param {number[]} operatorLimitsParam The maximum number of times each operator can be used
  * @param {number} maxExpBase The maximum base number for the exponent operator
- * @param {number} maxMultiplier The maximum multiplier for the multiplication operator
- * @returns {string} complex arithmetic expression
+ * @param {[number, number]} multiplierRange The multiplier range for the multiplication operator
+ * @param {[number, number]} addendRange The addend range for the addition operator
+ * @param {[number, number]} subtrahendRange The subtrahend range for the subtraction operator
+ * @param {number} minExponent The minimum exponent for the exponent operator
+ * @param {number} parenthesesProbability The probability of adding parentheses to the expression
+ * @returns {string[]} The expression tokens
  */
 function getComplexArithmeticExpression(
     operandCount = 2,
-    operators = ["+", "-", "*", "/", "^"],
-    operatorLimits = [-1, -1, 3, 2, 1],
-    maxExpBase = 5,
-    multiplierRange = [1, 10],
-    addendRange = [1, 30],
-    subtrahendRange = [1, 30],
-    minExponent = 1,
+    operators = ["+"],
+    operatorLimitsParam = [-1],
+    addendRange = [1, 5],
+    subtrahendRange = [1, 5],
+    multiplierRange = [0, 0],
+    maxExpBase = 0,
+    minExponent = 0,
     parenthesesProbability = 0,
 ) {
-    let expressionTokens = [getRandomNumber(1, 20)];
+    let expressionTokens = [getRandomNumber(...addendRange)];
 
-    for (let i = 0; i < operandCount; i++) {
+    // make copies of objects in the parameter to prevent the orignal being modified
+    let operatorLimits = [...operatorLimitsParam];
+
+    for (let i = 0; i < operandCount - 1; i++) {
         let operator = getOperator(
             operators,
             operatorLimits,
@@ -254,16 +275,16 @@ function getComplexArithmeticExpression(
         expressionTokens.splice(openingParenIndex, 0, "(");
         expressionTokens.splice(closingParenIndex + 1, 0, ")");
     }
-    return expressionTokens.join(" ");
+    return expressionTokens;
 }
 
 /**
  * Evaluates an arithmetical expression
- * @param {string} expression The expression to be evaluated
+ * @param {string[]} expressionTokens The expression to be evaluated
  * @returns {number} The result of the expression
  */
-function evaluateExpression(expression) {
-    const tokens = expression.split(" ");
+function evaluateExpression(expressionTokens) {
+    const tokens = expressionTokens;
     const precedence = {
         "+": 1,
         "-": 1,
@@ -355,18 +376,19 @@ function evaluateExpression(expression) {
  * Get 3 wrong choices for the question. The first wrong choice is the correct answer +/- tolerance.
  * The second wrong choice is the correct answer of a wrong expression by changing one number.
  * The third wrong choice is the correct answer of a wrong expression by changing one operator.
- * @param {string} expression
- * @param {number} correctAnswer
+ * @param {string[]} expressionTokens The tokens of the expression
+ * @param {number} correctAnswer The correct answer
  * @returns {[number, number, number]} The 3 wrong choices
  */
-function getWrongChoices(expression, correctAnswer) {
+function getWrongChoices(expressionTokens, correctAnswer) {
     const wrongChoices = [];
-    const expressionTokens = expression.split(" ");
+    console.log("expressionTokens: " + expressionTokens);
 
     // First wrong choice: the correct answer +/- tolerance
     const tolerance = Math.max(1, Math.round(Math.abs(correctAnswer) * 0.1));
     const firstChoice = correctAnswer + getRandomNumber(-tolerance, tolerance);
     wrongChoices.push(firstChoice);
+    console.log("First choice: " + firstChoice);
 
     // Second wrong choice: the correct answer of wrong expression by changing one number
     let wrongExpressionTokens = [...expressionTokens];
@@ -379,6 +401,9 @@ function getWrongChoices(expression, correctAnswer) {
     const operator = wrongExpressionTokens[randomNumberIndex - 1] ?? "";
     const nextOperator = wrongExpressionTokens[randomNumberIndex + 1] ?? "";
     let newNumber = oldNumber;
+    console.log("Old number: " + oldNumber);
+
+    let tries = 0;
 
     // If the next operator is division and the previous operator is exponent, change the divident instead of the exponent
     if (operator === "^" && nextOperator === "/") {
@@ -387,6 +412,12 @@ function getWrongChoices(expression, correctAnswer) {
             const divisor = Math.pow(base, oldNumber);
             randomNumberIndex += 2;
             newNumber = divisor * getRandomNumber(2, 10);
+            
+            tries++;
+            if (tries > 100) {
+                newNumber = oldNumber + getRandomNumber(-10, 10);
+                break;
+            }
         }
 
     // If the next operator is division, make sure the new number (the divisor) is divisible by the dividend
@@ -394,26 +425,41 @@ function getWrongChoices(expression, correctAnswer) {
         const dividend = wrongExpressionTokens[randomNumberIndex + 2] ?? 0;
         while (newNumber === 0 || newNumber === oldNumber) {
             newNumber = dividend * getRandomNumber(2, 10);
+            tries++;
+            if (tries > 100) {
+                newNumber = oldNumber + getRandomNumber(-10, 10);
+                break;
+            }
         }
 
     // If the number is the first number in the expression or the previous operator is opening parenthesis, change the number by +/- 10
     } else if (operator === "(" || randomNumberIndex === 0) {
         while (newNumber === 0 || newNumber === oldNumber) {
             newNumber = oldNumber + getRandomNumber(-10, 10);
+            tries++;
+            if (tries > 100) {
+                newNumber = oldNumber + getRandomNumber(-10, 10);
+                break;
+            }
         }
     } else {
         const prevOperator = wrongExpressionTokens[randomNumberIndex - 3] ?? "";
         const prevNumber = wrongExpressionTokens[randomNumberIndex - 2] ?? 0;
         const prevNumber2 = wrongExpressionTokens[randomNumberIndex - 4] ?? 0;
-
+        
         while (newNumber === 0 ||newNumber === oldNumber) {
-            newNumber = getOperand(operator, prevNumber, prevNumber2, prevOperator, 3, 30, 30);
+            newNumber = getOperand(operator, prevNumber, prevNumber2, prevOperator, [0, 3], [0, 30], [0, 30], 2);
+            tries++;
+            if (tries > 100) {
+                newNumber = oldNumber + getRandomNumber(-10, 10);
+                break;
+            }
         }
     }
     wrongExpressionTokens[randomNumberIndex] = newNumber;
 
     console.log("wrong expression number", randomNumberIndex, nextOperator, wrongExpressionTokens.join(" "), wrongExpressionTokens);
-    let secondChoice = evaluateExpression(wrongExpressionTokens.join(" "));
+    let secondChoice = evaluateExpression(wrongExpressionTokens);
     while (secondChoice === correctAnswer || wrongChoices.includes(secondChoice)) {
         secondChoice += getRandomNumber(-2, 2);
     }
@@ -437,7 +483,7 @@ function getWrongChoices(expression, correctAnswer) {
     wrongExpressionTokens[randomOperatorIndex] = newOperator;
 
     console.log("wrong expression number", randomOperatorIndex, wrongExpressionTokens.join(" "));
-    let thirdChoice = evaluateExpression(wrongExpressionTokens.join(" "));
+    let thirdChoice = evaluateExpression(wrongExpressionTokens);
     while (thirdChoice === correctAnswer || wrongChoices.includes(thirdChoice)) {
         thirdChoice += getRandomNumber(-2, 2);
     }
@@ -524,30 +570,46 @@ function generateWrongChoices(correctAnswer, op) {
  * @returns {[string, number, [number, number, number, number]]} [question, correctAnswer, choices]
  */
 function generateQuestion() {
-    const [a, op, b, c] = getRandomExpression();
-    const format = getRandomNumber(1, 3);
+    // const [a, op, b, c] = getRandomExpression();
+    // const format = getRandomNumber(1, 3);
+    const expressionTokens = getComplexArithmeticExpression(...getCurrentLevelVariables());
+    console.log("expression tokens", expressionTokens)
+    const correctAnswer = evaluateExpression([...expressionTokens]);
+    console.log("correct answer", correctAnswer)
+    let choices = getWrongChoices([...expressionTokens], correctAnswer);
+    console.log("choices", choices);
+    
+    let question = expressionTokens.join(" ") + " = ?";
+    question = question.replace("( ", "(");
+    question = question.replace(" )", ")");
 
-    let question, correctAnswer;
+    // replace "^ number" with that number in superscript
+    question = question.replace(/\^ \d+/g, (match) => {
+        const number = match.split(" ")[1];
+        return `<sup>${number}</sup>`;
+    });
 
-    switch (format) {
-        case 1:
-            question = `${a} ${op} ${b} = ?`;
-            correctAnswer = c;
-            break;
-        case 2:
-            question = `${a} ${op} ? = ${c}`;
-            correctAnswer = b;
-            break;
-        case 3:
-            question = `? ${op} ${b} = ${c}`;
-            correctAnswer = a;
-            break;
-    }
+    // let question, correctAnswer;
 
-    const choices = generateWrongChoices(correctAnswer, op);
+    // switch (format) {
+    //     case 1:
+    //         question = `${a} ${op} ${b} = ?`;
+    //         correctAnswer = c;
+    //         break;
+    //     case 2:
+    //         question = `${a} ${op} ? = ${c}`;
+    //         correctAnswer = b;
+    //         break;
+    //     case 3:
+    //         question = `? ${op} ${b} = ${c}`;
+    //         correctAnswer = a;
+    //         break;
+    // }
+
+    // const choices = generateWrongChoices(correctAnswer, op);
     const randomIndex = getRandomNumber(0, 3);
     choices.splice(randomIndex, 0, correctAnswer);
-
+    console.log("question", question, correctAnswer, choices)
     return [question, correctAnswer, choices];
 }
 
@@ -578,20 +640,6 @@ function generateChoicePositions(layoutWidth, layoutHeight, choiceDiameter) {
 
     return positions;
 }
-
-export const currentLevelVariables = {
-	"addendRange": [0, 30],
-	"subtrahendRange": [0, 30],
-	"multiplierRange": [1, 2],
-	"maxExpBase": 20,
-    "minExponent": 1,
-	"operandCount": 2,
-	"operators": ['+', '-'],
-	"operatorLimits": [-1, -1],
-	"countdownSecond": 30
-}
-
-export const level = 0;
 
 /**
  * Converts an HSL color value to RGB.
