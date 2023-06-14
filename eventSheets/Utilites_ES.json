@@ -442,6 +442,7 @@
 					"id": "log",
 					"objectClass": "Browser",
 					"sid": 146183117863761,
+					"disabled": true,
 					"parameters": {
 						"type": "log",
 						"message": "\"update player\""
@@ -512,9 +513,9 @@
 						{
 							"id": "append-text",
 							"objectClass": "SpriteFontUI",
-							"sid": 705595444530623,
+							"sid": 450270311887105,
 							"parameters": {
-								"text": "playerName & Functions.getNameSuffix(playerActorNr) & newline"
+								"text": "\"- \" & playerName & Functions.getNameSuffix(playerActorNr) & newline"
 							}
 						}
 					],
@@ -1005,7 +1006,7 @@
 			"actions": [
 				{
 					"type": "script",
-					"script": "updateLevelVariables(runtime);\n\nconst [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\nconsole.log(\"1\");\n\nconst multiplier = runtime.callFunction(\"GetMultiplierChoiceArea\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\nconsole.log(\"2\");\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\nconsole.log(\"3\");\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\nconsole.log(\"4\");\nconsole.log(backgroundColorHue, backgroundColorRgb);\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);\n\nruntime.callFunction(\"RaiseShowQuestion\");"
+					"script": "updateLevelVariables(runtime);\n\nconst [question, correct, choices] = generateQuestion();\n\nconst {width, height} = runtime.layout;\n\nconst {\n\tcurrentQuestion,\n\tMAX_CHOICE_SIZE,\n\tMIN_CHOICE_SIZE,\n} = runtime.globalVars;\n\n// console.log(\"1\");\n\nconst multiplier = runtime.callFunction(\"GetMultiplierChoiceArea\", currentQuestion + 1);\nconst choiceSize = MAX_CHOICE_SIZE - multiplier * (MAX_CHOICE_SIZE - MIN_CHOICE_SIZE);\n// console.log(\"2\");\nconst choicePositions = generateChoicePositions(width, height, choiceSize);\n// console.log(\"3\");\n\nruntime.globalVars.question = question;\nruntime.globalVars.correctAnswer = correct;\nruntime.globalVars.choices = choices.join(\",\");\nruntime.globalVars.choicesPosition = choicePositions\n\t.map(([x, y]) => `${x}:${y}`)\n\t.join(\",\");\n\t\nconst backgroundColorHue = getRandomNumber(0, 36) * 10;\nconst backgroundColorRgb = hslToRgb(backgroundColorHue, 50, 50);\n// console.log(\"4\");\n// console.log(backgroundColorHue, backgroundColorRgb);\nruntime.globalVars.backgroundColorRed = backgroundColorRgb[0];\nruntime.globalVars.backgroundColorGreen = backgroundColorRgb[1];\nruntime.globalVars.backgroundColorBlue = backgroundColorRgb[2];\nruntime.globalVars.backgroundOverlay = getRandomNumber(0, 7);\n\nruntime.callFunction(\"RaiseShowQuestion\");"
 				}
 			],
 			"sid": 868708923240964
@@ -1369,6 +1370,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 408925018277007,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"should eliminate \" & eliminated"

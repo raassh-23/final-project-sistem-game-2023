@@ -133,7 +133,7 @@ function getOperator(
 ) {
     // Limit the number of operators used
     // in order to prevent the expression from becoming too complex and large
-    console.log("getOperator", operators, operatorLimits);
+    // console.log("getOperator", operators, operatorLimits);
     let availableOperators = operators.filter(
         (_, index) => operatorLimits[index] != 0
     );
@@ -149,7 +149,7 @@ function getOperator(
     if (prevOperator === "/" || isPrime(prevNumber)) {
         availableOperators = availableOperators.filter((value, _) => value !== "/");
     }
-    console.log("getOperator", availableOperators);
+    // console.log("getOperator", availableOperators);
 
     return availableOperators[getRandomNumber(0, availableOperators.length - 1)];
 }
@@ -382,7 +382,7 @@ function evaluateExpression(expressionTokens) {
  */
 function getWrongChoices(expressionTokens, correctAnswer) {
     const wrongChoices = [];
-    console.log("expressionTokens: " + expressionTokens);
+    // console.log("expressionTokens: " + expressionTokens);
 
     // First wrong choice: the correct answer +/- tolerance
     const tolerance = Math.max(1, Math.round(Math.abs(correctAnswer) * 0.1));
@@ -391,7 +391,7 @@ function getWrongChoices(expressionTokens, correctAnswer) {
         firstChoice = correctAnswer + getRandomNumber(-tolerance, tolerance);
     }
     wrongChoices.push(firstChoice);
-    console.log("First choice: " + firstChoice);
+    // console.log("First choice: " + firstChoice);
 
     // Second wrong choice: the correct answer of wrong expression by changing one number
     let wrongExpressionTokens = [...expressionTokens];
@@ -404,7 +404,7 @@ function getWrongChoices(expressionTokens, correctAnswer) {
     const operator = wrongExpressionTokens[randomNumberIndex - 1] ?? "";
     const nextOperator = wrongExpressionTokens[randomNumberIndex + 1] ?? "";
     let newNumber = oldNumber;
-    console.log("Old number: " + oldNumber);
+    // console.log("Old number: " + oldNumber);
 
     let tries = 0;
 
@@ -415,7 +415,7 @@ function getWrongChoices(expressionTokens, correctAnswer) {
             const divisor = Math.pow(base, oldNumber);
             randomNumberIndex += 2;
             newNumber = divisor * getRandomNumber(2, 10);
-            
+
             tries++;
             if (tries > 100) {
                 newNumber = oldNumber + getRandomNumber(-10, 10);
@@ -423,7 +423,7 @@ function getWrongChoices(expressionTokens, correctAnswer) {
             }
         }
 
-    // If the next operator is division, make sure the new number (the divisor) is divisible by the dividend
+        // If the next operator is division, make sure the new number (the divisor) is divisible by the dividend
     } else if (nextOperator === "/") {
         const dividend = wrongExpressionTokens[randomNumberIndex + 2] ?? 0;
         while (newNumber === 0 || newNumber === oldNumber) {
@@ -435,7 +435,7 @@ function getWrongChoices(expressionTokens, correctAnswer) {
             }
         }
 
-    // If the number is the first number in the expression or the previous operator is opening parenthesis, change the number by +/- 10
+        // If the number is the first number in the expression or the previous operator is opening parenthesis, change the number by +/- 10
     } else if (operator === "(" || randomNumberIndex === 0) {
         while (newNumber === 0 || newNumber === oldNumber) {
             newNumber = oldNumber + getRandomNumber(-10, 10);
@@ -449,8 +449,8 @@ function getWrongChoices(expressionTokens, correctAnswer) {
         const prevOperator = wrongExpressionTokens[randomNumberIndex - 3] ?? "";
         const prevNumber = wrongExpressionTokens[randomNumberIndex - 2] ?? 0;
         const prevNumber2 = wrongExpressionTokens[randomNumberIndex - 4] ?? 0;
-        
-        while (newNumber === 0 ||newNumber === oldNumber) {
+
+        while (newNumber === 0 || newNumber === oldNumber) {
             newNumber = getOperand(operator, prevNumber, prevNumber2, prevOperator, [0, 3], [0, 30], [0, 30], 2);
             tries++;
             if (tries > 100) {
@@ -461,7 +461,7 @@ function getWrongChoices(expressionTokens, correctAnswer) {
     }
     wrongExpressionTokens[randomNumberIndex] = newNumber;
 
-    console.log("wrong expression number", randomNumberIndex, nextOperator, wrongExpressionTokens.join(" "), wrongExpressionTokens);
+    // console.log("wrong expression number", randomNumberIndex, nextOperator, wrongExpressionTokens.join(" "), wrongExpressionTokens);
     let secondChoice = evaluateExpression(wrongExpressionTokens);
     while (secondChoice === correctAnswer || wrongChoices.includes(secondChoice)) {
         secondChoice += getRandomNumber(-2, 2);
@@ -485,14 +485,14 @@ function getWrongChoices(expressionTokens, correctAnswer) {
     }
     wrongExpressionTokens[randomOperatorIndex] = newOperator;
 
-    console.log("wrong expression number", randomOperatorIndex, wrongExpressionTokens.join(" "));
+    // console.log("wrong expression number", randomOperatorIndex, wrongExpressionTokens.join(" "));
     let thirdChoice = evaluateExpression(wrongExpressionTokens);
     while (thirdChoice === correctAnswer || wrongChoices.includes(thirdChoice)) {
         thirdChoice += getRandomNumber(-2, 2);
     }
     wrongChoices.push(thirdChoice);
 
-    console.log("choices", wrongChoices.join(" "), correctAnswer);
+    // console.log("choices", wrongChoices.join(" "), correctAnswer);
 
     return wrongChoices;
 }
@@ -578,12 +578,12 @@ function generateQuestion() {
     // const [a, op, b, c] = getRandomExpression();
     // const format = getRandomNumber(1, 3);
     const expressionTokens = getComplexArithmeticExpression(...getCurrentLevelVariables());
-    console.log("expression tokens", expressionTokens)
+    // console.log("expression tokens", expressionTokens)
     const correctAnswer = evaluateExpression([...expressionTokens]);
-    console.log("correct answer", correctAnswer)
+    // console.log("correct answer", correctAnswer)
     let choices = getWrongChoices([...expressionTokens], correctAnswer);
-    console.log("choices", choices);
-    
+    // console.log("choices", choices);
+
     let question = expressionTokens.join(" ") + " = ?";
     question = question.replace("( ", "(");
     question = question.replace(" )", ")");
@@ -614,7 +614,7 @@ function generateQuestion() {
     // const choices = generateWrongChoices(correctAnswer, op);
     const randomIndex = getRandomNumber(0, 3);
     choices.splice(randomIndex, 0, correctAnswer);
-    console.log("question", question, correctAnswer, choices)
+    // console.log("question", question, correctAnswer, choices)
     return [question, correctAnswer, choices];
 }
 
@@ -654,76 +654,76 @@ function generateChoicePositions(layoutWidth, layoutHeight, choiceDiameter) {
  * @returns {[number, number, number]} The RGB value as an array of [r, g, b] values (0-255)
  */
 function hslToRgb(hue, saturation, luminosity) {
-  // Convert hue, saturation, and luminosity values to the range 0-1
-  console.log("hsl", hue, saturation, luminosity);
-  hue = hue % 360;
-  hue /= 360;
-  saturation /= 100;
-  luminosity /= 100;
-  console.log("hsl'", hue, saturation, luminosity);
+    // Convert hue, saturation, and luminosity values to the range 0-1
+    //   console.log("hsl", hue, saturation, luminosity);
+    hue = hue % 360;
+    hue /= 360;
+    saturation /= 100;
+    luminosity /= 100;
+    //   console.log("hsl'", hue, saturation, luminosity);
 
-  // Calculate the chroma
-  const chroma = (1 - Math.abs(2 * luminosity - 1)) * saturation;
+    // Calculate the chroma
+    const chroma = (1 - Math.abs(2 * luminosity - 1)) * saturation;
 
-  // Calculate the hue' value
-  const huePrime = hue * 6;
+    // Calculate the hue' value
+    const huePrime = hue * 6;
 
-  // Calculate the second largest component of the color
-  const secondLargestComponent = chroma * (1 - Math.abs(huePrime % 2 - 1));
+    // Calculate the second largest component of the color
+    const secondLargestComponent = chroma * (1 - Math.abs(huePrime % 2 - 1));
 
-  // Calculate the lightness adjustment
-  const lightnessAdjustment = luminosity - chroma / 2;
+    // Calculate the lightness adjustment
+    const lightnessAdjustment = luminosity - chroma / 2;
 
-  // Calculate the RGB values
-  let red, green, blue;
-  
-  red = Math.max(510*Math.abs(Math.cos(hue))-255, 0);
-  green = Math.max(510*Math.abs(Math.cos(hue + 120))-255, 0);
-  blue = Math.max(510*Math.abs(Math.cos(hue + 240))-255, 0);
-  console.log("rgb", red, green, blue);
-  if (huePrime >= 0 && huePrime < 1) {
-    red = chroma;
-    green = secondLargestComponent;
-    blue = 0;
-  } else if (huePrime >= 1 && huePrime < 2) {
-    red = secondLargestComponent;
-    green = chroma;
-    blue = 0;
-  } else if (huePrime >= 2 && huePrime < 3) {
-    red = 0;
-    green = chroma;
-    blue = secondLargestComponent;
-  } else if (huePrime >= 3 && huePrime < 4) {
-    red = 0;
-    green = secondLargestComponent;
-    blue = chroma;
-  } else if (huePrime >= 4 && huePrime < 5) {
-    red = secondLargestComponent;
-    green = 0;
-    blue = chroma;
-  } else {
-    red = chroma;
-    green = 0;
-    blue = secondLargestComponent;
-  }
+    // Calculate the RGB values
+    let red, green, blue;
 
-  // Add the lightness adjustment to each component
-  red += lightnessAdjustment;
-  green += lightnessAdjustment;
-  blue += lightnessAdjustment;
+    red = Math.max(510 * Math.abs(Math.cos(hue)) - 255, 0);
+    green = Math.max(510 * Math.abs(Math.cos(hue + 120)) - 255, 0);
+    blue = Math.max(510 * Math.abs(Math.cos(hue + 240)) - 255, 0);
+    //   console.log("rgb", red, green, blue);
+    if (huePrime >= 0 && huePrime < 1) {
+        red = chroma;
+        green = secondLargestComponent;
+        blue = 0;
+    } else if (huePrime >= 1 && huePrime < 2) {
+        red = secondLargestComponent;
+        green = chroma;
+        blue = 0;
+    } else if (huePrime >= 2 && huePrime < 3) {
+        red = 0;
+        green = chroma;
+        blue = secondLargestComponent;
+    } else if (huePrime >= 3 && huePrime < 4) {
+        red = 0;
+        green = secondLargestComponent;
+        blue = chroma;
+    } else if (huePrime >= 4 && huePrime < 5) {
+        red = secondLargestComponent;
+        green = 0;
+        blue = chroma;
+    } else {
+        red = chroma;
+        green = 0;
+        blue = secondLargestComponent;
+    }
 
-  // Convert the RGB values to the range 0-255 and round to the nearest integer
-  red = Math.round(red * 255);
-  green = Math.round(green * 255);
-  blue = Math.round(blue * 255);
+    // Add the lightness adjustment to each component
+    red += lightnessAdjustment;
+    green += lightnessAdjustment;
+    blue += lightnessAdjustment;
 
-//   Return the RGB values as an array
-  return [red, green, blue];
-// 	saturation /= 100;
-//   luminosity /= 100;
-//   const k = n => (n + hue / 30) % 12;
-//   const a = saturation * Math.min(luminosity, 1 - luminosity);
-//   const f = n =>
-//     luminosity - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-//   return [255 * f(0), 255 * f(8), 255 * f(4)];
+    // Convert the RGB values to the range 0-255 and round to the nearest integer
+    red = Math.round(red * 255);
+    green = Math.round(green * 255);
+    blue = Math.round(blue * 255);
+
+    //   Return the RGB values as an array
+    return [red, green, blue];
+    // 	saturation /= 100;
+    //   luminosity /= 100;
+    //   const k = n => (n + hue / 30) % 12;
+    //   const a = saturation * Math.min(luminosity, 1 - luminosity);
+    //   const f = n =>
+    //     luminosity - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    //   return [255 * f(0), 255 * f(8), 255 * f(4)];
 }

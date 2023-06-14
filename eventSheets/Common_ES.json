@@ -32,6 +32,7 @@
 					"id": "log",
 					"objectClass": "Browser",
 					"sid": 854287937595050,
+					"disabled": true,
 					"parameters": {
 						"type": "error",
 						"message": "\"Error: \" & Photon.ErrorMessage"

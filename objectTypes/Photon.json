@@ -11,7 +11,7 @@
 			"region": "asia",
 			"hosttype": "photon cloud",
 			"selfhostedaddress": "localhost:9090",
-			"loglevel": "info"
+			"loglevel": "off"
 		},
 		"uid": 20
 	}

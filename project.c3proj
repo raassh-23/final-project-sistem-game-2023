@@ -29,14 +29,6 @@
 		},
 		{
 			"type": "plugin",
-			"id": "EdwardBonnett_VsCodePlugin",
-			"name": "VS Code Plugin",
-			"author": "Edward Bonnett",
-			"bundled": false,
-			"version": "1.0.0.1"
-		},
-		{
-			"type": "plugin",
 			"id": "LocalStorage",
 			"name": "Local storage",
 			"author": "Scirra",
@@ -245,7 +237,6 @@
 			"BG",
 			"Panel",
 			"BGOverlay",
-			"VSCodePlugin",
 			"HealthBox",
 			"Audio",
 			"Title",
@@ -547,7 +538,7 @@
 	},
 	"properties": {
 		"description": "Battle Royale and Arithmetic Quiz",
-		"version": "1.0.0.2",
+		"version": "1.0.0.3",
 		"author": "RushHourDream",
 		"authorEmail": "",
 		"authorWebsite": "",

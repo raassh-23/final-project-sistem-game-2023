@@ -25,7 +25,7 @@ export function getCurrentLevelVariables() {
     currentLevel.push(currentLevelVariables["maxExpBase"]);
     currentLevel.push(currentLevelVariables["minExponent"]);
     currentLevel.push(currentLevelVariables["parenthesesProbability"]);
-	console.log("level", currentLevel)
+	// console.log("level", currentLevel)
     return currentLevel;
 }
 
@@ -222,14 +222,14 @@ export function updateLevelVariables(runtime) {
 	// }
 
 	if (newLevelVariables) {
-		console.log("update", level, newLevelVariables);
+		// console.log("update", level, newLevelVariables);
 		runtime.globalVars.countdownMultiplier = 0;
 		for (const variable in newLevelVariables) {
 			currentLevelVariables[variable] = newLevelVariables[variable];
 		}
 	}
 
-	console.log("currentLevelVariables", level, currentLevelVariables);
+	// console.log("currentLevelVariables", level, currentLevelVariables);
 
 	updateCountdownRange(runtime);
 	runtime.globalVars.countdownMultiplier++;

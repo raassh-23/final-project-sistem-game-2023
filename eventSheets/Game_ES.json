@@ -1081,6 +1081,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 386566044684063,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"Join event\""
@@ -1196,6 +1197,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 222114845923140,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"Start event\""
@@ -1421,6 +1423,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 607277617351043,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"Spawn event \" & Photon.EventData"
@@ -1780,6 +1783,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 878043359563219,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"shoot event\""
@@ -1915,6 +1919,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 483370833380752,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"hit event\""
@@ -2178,6 +2183,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 768528550252156,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"kill event\""
@@ -2525,6 +2531,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 169684328256697,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"Show question event \" & Photon.EventData"
@@ -2562,6 +2569,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 926767939543328,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"Eliminate event \" & Photon.EventData"
@@ -2636,6 +2644,7 @@
 									"id": "log",
 									"objectClass": "Browser",
 									"sid": 150347145827962,
+									"disabled": true,
 									"parameters": {
 										"type": "log",
 										"message": "\"has winner\""
@@ -3090,6 +3099,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 603636135754706,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"use ammo box event\""
@@ -3343,6 +3353,7 @@
 							"id": "log",
 							"objectClass": "Browser",
 							"sid": 801661114791068,
+							"disabled": true,
 							"parameters": {
 								"type": "log",
 								"message": "\"use health box event\""
@@ -5018,6 +5029,7 @@
 					"id": "log",
 					"objectClass": "Browser",
 					"sid": 115338706577092,
+					"disabled": true,
 					"parameters": {
 						"type": "log",
 						"message": "\"qualscr game run\" & gameRunning"
@@ -5027,6 +5039,7 @@
 					"id": "log",
 					"objectClass": "Browser",
 					"sid": 775502268614687,
+					"disabled": true,
 					"parameters": {
 						"type": "log",
 						"message": "\"qualscr is lost\" & isLost"
