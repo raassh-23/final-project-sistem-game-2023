@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PersistableFontDetails xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Letterset>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#"'&amp;()[]|`\/@°+=*$£€&lt;&gt;%^</Letterset>
+  <Letterset>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#"'&amp;()[]|`\/@°+=*$£€&lt;&gt;%^⁰¹²³⁴⁵⁶⁷⁸⁹</Letterset>
   <AdjustHeight>1</AdjustHeight>
   <AdjustWidth>1</AdjustWidth>
-  <SampleText>^The quick brown fox jumped over the lazy dog.</SampleText>
+  <SampleText>The quick brown fox jumped over the lazy dog.</SampleText>
   <ShiftHorz>1</ShiftHorz>
   <ShiftVert>1</ShiftVert>
   <ShowGrid>true</ShowGrid>
@@ -21,7 +21,7 @@
   <ShadowOffsetX>4</ShadowOffsetX>
   <ShadowOffsetY>4</ShadowOffsetY>
   <FontStyleDisplayName>Regular</FontStyleDisplayName>
-  <Height>70</Height>
+  <Height>80</Height>
   <Width>66</Width>
   <FontFamilyName>Passion One</FontFamilyName>
   <FontStyleName>Normal</FontStyleName>

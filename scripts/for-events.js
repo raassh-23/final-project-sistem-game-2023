@@ -587,12 +587,7 @@ function generateQuestion() {
     let question = expressionTokens.join(" ") + " = ?";
     question = question.replace("( ", "(");
     question = question.replace(" )", ")");
-
-    // replace "^ number" with that number in superscript
-    question = question.replace(/\^ \d+/g, (match) => {
-        const number = match.split(" ")[1];
-        return `<sup>${number}</sup>`;
-    });
+	question = question.replace(" ^ ", "^");
 
     // let question, correctAnswer;
 
