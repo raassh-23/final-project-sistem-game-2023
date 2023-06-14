@@ -1256,6 +1256,28 @@
 								"type": "once",
 								"tag": "WAITING_START_TAG"
 							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "TimeManager",
+							"sid": 292687329711521,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "random(MIN_AMMO_SPAWN_TIME, MAX_AMMO_SPAWN_TIME)",
+								"type": "once",
+								"tag": "AMMO_BOX_TAG"
+							}
+						},
+						{
+							"id": "start-timer",
+							"objectClass": "TimeManager",
+							"sid": 500612618393648,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "random(MIN_HEALTH_SPAWN_TIME, MAX_HEALTH_SPAWN_TIME)",
+								"type": "once",
+								"tag": "HEALTH_BOX_TAG"
+							}
 						}
 					],
 					"sid": 428061507399803,
@@ -1292,11 +1314,11 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "for-each-element",
-											"objectClass": "ActivePlayers",
-											"sid": 227682711811532,
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 338557293203344,
 											"parameters": {
-												"axes": "x"
+												"count": "ActivePlayers.Width"
 											}
 										}
 									],
@@ -1304,10 +1326,10 @@
 										{
 											"id": "raiseevent17",
 											"objectClass": "Photon",
-											"sid": 964122196768874,
+											"sid": 953414120879746,
 											"parameters": {
 												"code0": "SPAWN_PLAYER_EVENT",
-												"data1": "ActivePlayers.CurValue & \"|\" & Functions.getRandomPosition",
+												"data1": "ActivePlayers.At(loopindex) & \"|\" & Functions.getRandomPosition",
 												"interestgroup2": "0",
 												"cache11": "donotcache",
 												"receivers15": "all",
@@ -2909,7 +2931,19 @@
 							}
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"id": "start-timer",
+							"objectClass": "TimeManager",
+							"sid": 872753625245808,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "random(MIN_AMMO_SPAWN_TIME, MAX_AMMO_SPAWN_TIME)",
+								"type": "once",
+								"tag": "AMMO_BOX_TAG"
+							}
+						}
+					],
 					"sid": 972331171387175,
 					"children": [
 						{
@@ -2934,7 +2968,18 @@
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 905927460395082,
+									"parameters": {
+										"first-value": "AmmoBox.Count",
+										"comparison": 2,
+										"second-value": "MAX_AMMO_BOX"
+									}
+								}
+							],
 							"actions": [
 								{
 									"id": "set-eventvar-value",
@@ -3139,7 +3184,19 @@
 							}
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"id": "start-timer",
+							"objectClass": "TimeManager",
+							"sid": 926559381665915,
+							"behaviorType": "Timer",
+							"parameters": {
+								"duration": "random(MIN_HEALTH_SPAWN_TIME, MAX_HEALTH_SPAWN_TIME)",
+								"type": "once",
+								"tag": "HEALTH_BOX_TAG"
+							}
+						}
+					],
 					"sid": 991811182851643,
 					"children": [
 						{
@@ -3164,7 +3221,18 @@
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 964530864394113,
+									"parameters": {
+										"first-value": "HealthBox.Count",
+										"comparison": 2,
+										"second-value": "MAX_HEALTH_BOX"
+									}
+								}
+							],
 							"actions": [
 								{
 									"id": "set-eventvar-value",
@@ -3717,26 +3785,6 @@
 					}
 				},
 				{
-					"id": "set-size",
-					"objectClass": "ActivePlayers",
-					"sid": 873809485333284,
-					"parameters": {
-						"width": "0",
-						"height": "1",
-						"depth": "1"
-					}
-				},
-				{
-					"id": "set-size",
-					"objectClass": "EliminatedPlayers",
-					"sid": 444007288761292,
-					"parameters": {
-						"width": "0",
-						"height": "1",
-						"depth": "1"
-					}
-				},
-				{
 					"id": "destroy",
 					"objectClass": "Choice",
 					"sid": 513264846968728
@@ -3843,19 +3891,19 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "evaluate-expression",
+					"objectClass": "System",
+					"sid": 613491824353972,
+					"parameters": {
+						"value": "Functions.isRoomMaster"
+					}
+				},
+				{
 					"id": "compare-boolean-eventvar",
 					"objectClass": "System",
 					"sid": 869333437316528,
 					"parameters": {
 						"variable": "gameRunning"
-					}
-				},
-				{
-					"id": "evaluate-expression",
-					"objectClass": "System",
-					"sid": 701203424305599,
-					"parameters": {
-						"value": "Functions.isRoomMaster"
 					}
 				}
 			],
@@ -3997,21 +4045,12 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "every-x-seconds",
-							"objectClass": "System",
-							"sid": 947377928579188,
+							"id": "on-timer",
+							"objectClass": "TimeManager",
+							"sid": 470813490007800,
+							"behaviorType": "Timer",
 							"parameters": {
-								"interval-seconds": "random(MIN_AMMO_SPAWN_TIME, MAX_AMMO_SPAWN_TIME)"
-							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 177802136662281,
-							"parameters": {
-								"first-value": "AmmoBox.Count",
-								"comparison": 2,
-								"second-value": "MAX_AMMO_BOX"
+								"tag": "HEALTH_BOX_TAG"
 							}
 						}
 					],
@@ -4019,47 +4058,7 @@
 						{
 							"id": "raiseevent17",
 							"objectClass": "Photon",
-							"sid": 725152105494928,
-							"parameters": {
-								"code0": "ADD_AMMO_BOX_EVENT",
-								"data1": "Functions.getRandomPosition",
-								"interestgroup2": "0",
-								"cache11": "donotcache",
-								"receivers15": "all",
-								"targetactors16": "\"\"",
-								"webforward19": "no"
-							}
-						}
-					],
-					"sid": 513257455813380
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "every-x-seconds",
-							"objectClass": "System",
-							"sid": 170574421282447,
-							"parameters": {
-								"interval-seconds": "random(MIN_HEALTH_SPAWN_TIME, MAX_HEALTH_SPAWN_TIME)"
-							}
-						},
-						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 258389772675804,
-							"parameters": {
-								"first-value": "AmmoBox.Count",
-								"comparison": 2,
-								"second-value": "MAX_HEALTH_BOX"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "raiseevent17",
-							"objectClass": "Photon",
-							"sid": 881221090160908,
+							"sid": 152872361250594,
 							"parameters": {
 								"code0": "ADD_HEALTH_BOX_EVENT",
 								"data1": "Functions.getRandomPosition",
@@ -4071,7 +4070,38 @@
 							}
 						}
 					],
-					"sid": 102220610911168
+					"sid": 789002797454781
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "TimeManager",
+							"sid": 481671074304286,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "AMMO_BOX_TAG"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "raiseevent17",
+							"objectClass": "Photon",
+							"sid": 507967594711432,
+							"parameters": {
+								"code0": "ADD_AMMO_BOX_EVENT",
+								"data1": "Functions.getRandomPosition",
+								"interestgroup2": "0",
+								"cache11": "donotcache",
+								"receivers15": "all",
+								"targetactors16": "\"\"",
+								"webforward19": "no"
+							}
+						}
+					],
+					"sid": 261266937786405
 				}
 			]
 		},
@@ -4079,21 +4109,21 @@
 			"eventType": "block",
 			"conditions": [
 				{
+					"id": "compare-size",
+					"objectClass": "ActivePlayers",
+					"sid": 940760693795660,
+					"parameters": {
+						"axis": "x",
+						"comparison": 3,
+						"value": "1"
+					}
+				},
+				{
 					"id": "compare-boolean-eventvar",
 					"objectClass": "System",
 					"sid": 342919698396822,
 					"parameters": {
 						"variable": "gameRunning"
-					}
-				},
-				{
-					"id": "compare-size",
-					"objectClass": "ActivePlayers",
-					"sid": 228505052096149,
-					"parameters": {
-						"axis": "x",
-						"comparison": 3,
-						"value": "1"
 					}
 				}
 			],

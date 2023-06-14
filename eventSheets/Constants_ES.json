@@ -512,6 +512,26 @@
 			"sid": 953479100756976
 		},
 		{
+			"eventType": "variable",
+			"name": "AMMO_BOX_TAG",
+			"type": "string",
+			"initialValue": "ammo-box",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 222417419208685
+		},
+		{
+			"eventType": "variable",
+			"name": "HEALTH_BOX_TAG",
+			"type": "string",
+			"initialValue": "health-box",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 246566082560934
+		},
+		{
 			"eventType": "comment",
 			"text": "Storage"
 		},

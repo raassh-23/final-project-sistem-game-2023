@@ -177,6 +177,26 @@
 			],
 			"actions": [
 				{
+					"id": "set-size",
+					"objectClass": "ActivePlayers",
+					"sid": 618346162622624,
+					"parameters": {
+						"width": "0",
+						"height": "1",
+						"depth": "1"
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "EliminatedPlayers",
+					"sid": 799669979460291,
+					"parameters": {
+						"width": "0",
+						"height": "1",
+						"depth": "1"
+					}
+				},
+				{
 					"id": "go-to-layout",
 					"objectClass": "System",
 					"sid": 167210938424959,

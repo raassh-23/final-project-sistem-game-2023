@@ -451,9 +451,9 @@
 						{
 							"id": "joinroom12",
 							"objectClass": "Photon",
-							"sid": 607813899181363,
+							"sid": 288834773935118,
 							"parameters": {
-								"room0": "TextInput.Text",
+								"room0": "uppercase(TextInput.Text)",
 								"rejoin3": "no",
 								"createifnotexists6": "no",
 								"lobbyname7": "LOBBY_NAME",
